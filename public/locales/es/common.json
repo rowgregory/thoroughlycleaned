@@ -1,0 +1,22 @@
+{
+  "header": {
+    "getAQuote": "Obtener una cotización",
+    "bottomSection": {
+      "link1": "Inicio",
+      "link2": "Sobre Nosotros",
+      "link3": "Servicios",
+      "link4": "Testimonios"
+    }
+  },
+  "resources": {
+    "select-location": {
+      "selectYourLocation": "Selecciona tu ubicación",
+      "americas": "AMERICAS"
+    }
+  },
+  "banner": {
+    "text1": "Servicios de Limpieza Profesional",
+    "text2": "Tan fresco y tan limpio",
+    "text3": "Presupuesto gratis"
+  }
+}
