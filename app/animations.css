@@ -1,0 +1,38 @@
+@keyframes scaleIn {
+  from {
+    scale: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.scale-in {
+  animation: scaleIn 600ms ease-in-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-down {
+  animation: slideDown 600ms ease-in-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  animation: slideUp 600ms ease-in-out;
+}
