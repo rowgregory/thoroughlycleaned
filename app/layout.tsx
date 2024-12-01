@@ -4,6 +4,7 @@ import './globals.css'
 import './animations.css'
 import './fonts.css'
 import PageWrapper from './page-wrapper'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const roboto = Roboto({ weight: ['400'], subsets: ['latin'] })
 
@@ -96,6 +97,7 @@ export default function RootLayout({
       <body className={roboto.className}>
         <PageWrapper>{children}</PageWrapper>
       </body>
+      <GoogleAnalytics gaId="G-PF464ZYST9" />
     </html>
   )
 }
