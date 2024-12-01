@@ -69,6 +69,13 @@ export const authSlice = createSlice({
         }
       )
       .addMatcher(
+        authApi.endpoints.verifyPasscode.matchFulfilled,
+        (state: any, { payload }: any) => {
+          state.success = true;
+          state.message = payload.message;
+        }
+      )
+      .addMatcher(
         (action: any) =>
           action.type.endsWith("/rejected") &&
           action.payload?.data?.sliceName === "authApi",

@@ -1,22 +1,27 @@
-const headerLinkData = (path: string, t: any) => {
+const headerLinkData = (path: string) => {
   return [
     {
-      linkText: t("header.bottomSection.link1"),
+      linkText: "Home",
       linkKey: "/",
       active: path === "/",
     },
     {
-      linkText: t("header.bottomSection.link2"),
+      linkText: "About",
       linkKey: "/about",
       active: path === "/about",
     },
     {
-      linkText: t("header.bottomSection.link3"),
+      linkText: "Services",
       linkKey: "/services",
       active: path === "/services",
     },
     {
-      linkText: t("header.bottomSection.link4"),
+      linkText: "Projects",
+      linkKey: "/projects",
+      active: path === "/projects",
+    },
+    {
+      linkText: "Testimonials",
       linkKey: "/testimonials",
       active: path === "/testimonials",
     },

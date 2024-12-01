@@ -7,7 +7,8 @@ import { authReducer } from "./features/authSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import { api } from "./services/api";
 import storage from "../utils/createNoopStorage";
-import { languageReducer } from "./features/languageSlice";
+import { homePageReducer } from "./features/homePageSlice";
+import { twilioReducer } from "./features/twilioSlice";
 
 const rootReducer = combineReducers({
   auth: persistReducer(
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     },
     authReducer
   ),
-  language: languageReducer,
+  homePage: homePageReducer,
+  twilio: twilioReducer,
   [api.reducerPath]: api.reducer,
 });
 

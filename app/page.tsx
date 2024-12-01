@@ -1,21 +1,15 @@
-import AboutOurCompany from './components/home/AboutOurCompany';
-import Banner from './components/home/Banner';
-import CleaningIndustryNews from './components/home/CleaningIndustryNews';
-import OurCleaningServices from './components/home/OurCleaningServices';
-import ReasonsToChooseUs from './components/home/ReasonsToChooseUs';
-import Testimonials from './components/home/Testimonials';
+import About from './components/home/About'
+import Banner from './components/home/Banner'
+import RequestEstimate from './components/home/RequestEstimate'
 
 const Home = () => {
   return (
     <main>
       <Banner />
-      <OurCleaningServices />
-      <AboutOurCompany />
-      <ReasonsToChooseUs />
-      <Testimonials />
-      <CleaningIndustryNews />
+      <RequestEstimate />
+      <About />
     </main>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
