@@ -12,3 +12,15 @@ body {
     text-wrap: balance;
   }
 }
+
+.login-shape:after {
+  border-color: #ffd600;
+  position: absolute;
+  height: 220px;
+  width: 100%;
+  clip-path: polygon(0 0, 100% 0, 29% 59%, 0 33%);
+  left: -1px;
+  background-color: #ffd600;
+  top: -1px;
+  content: "";
+}

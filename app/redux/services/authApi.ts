@@ -26,6 +26,13 @@ export const authApi = api.injectEndpoints({
         body,
       }),
     }),
+    verifyPasscode: build.mutation({
+      query: (passcode: any) => ({
+        url: `${BASE_URL}?endpoint=VERIFY_PASSCODE`,
+        method: "POST",
+        body: passcode,
+      }),
+    }),
   }),
 });
 
@@ -33,4 +40,5 @@ export const {
   useLoginMutation,
   useRegisterMutation,
   useVerifyRegisterCodeMutation,
+  useVerifyPasscodeMutation,
 } = authApi;

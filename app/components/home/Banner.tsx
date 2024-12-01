@@ -1,75 +1,52 @@
-'use client';
+'use client'
 
-import React, { FormEvent, Fragment, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
+import React from 'react'
+import Picture from '../common/Picture'
+import useVideo from '@/app/hooks/useVideo'
+import Video from '../common/Video'
+import BubbleBtn from '../common/BubbleBtn'
+import { useRouter } from 'next/navigation'
 
 const Banner = () => {
-  const { t } = useTranslation('common');
-  // State for managing edit mode and the text
-  const [isEditing, setIsEditing] = useState(false);
-  const [bannerText, setBannerText] = useState(t('banner.text2'));
-
-  // Handle text click to enter edit mode
-  const handleTextClick = () => {
-    setIsEditing(true);
-  };
-
-  // Handle input change
-  const handleInputChange = (e: any) => {
-    setBannerText(e.target.value);
-  };
-
-  // Handle pressing Enter to exit edit mode
-  const handleKeyPress = (e: any) => {
-    if (e.key === 'Enter') {
-      setIsEditing(false);
-    }
-  };
-
+  const { videoRef } = useVideo()
+  const navigate = useRouter()
   return (
-    <Fragment>
-      <Image
-        src="/images/banner.webp"
-        alt="Thoroughly Cleaned LLC"
-        className="lg:h-[500px] xl:h-[750px] w-full object-cover"
-        width="0"
-        height="0"
-        sizes="100vw"
-        priority
-      />
-      <div className="absolute z-10 top-[144px] left-1/2 -translate-x-1/2 text-center flex-col w-full lg:h-[500px] xl:h-[750px] flex items-center justify-center bg-black/40">
-        <p className="slide-down text-white text-xl tracking-wider mb-5 px-16">
-          Professional Cleaning Services
-        </p>
-        <div className="flex items-center mb-10">
-          <h1 className="scale-in text-3xl sm:text-4xl md:text-6xl text-white whitespace-nowrap font-bold uppercase">
-            {isEditing ? (
-              <input
-                type="text"
-                value={bannerText}
-                onChange={handleInputChange}
-                onKeyDown={handleKeyPress}
-                className="bg-transparent text-white border-b-2 focus:outline-none text-center"
-                autoFocus
+    <div className="bg-banner relative overflow-hidden">
+      <div className="max-w-screen-sm lg:max-w-screen-xl mx-auto w-full flex flex-col lg:flex-row lg:items-center gap-y-20 sm:gap-x-20 py-44">
+        <div className="w-[40%]">
+          <div className="">
+            <div className="flex items-center gap-x-3 mb-8">
+              <Picture
+                src="/images/banner-brush.png"
+                alt="Brush Icon"
+                className="w-12 h-12"
+                priority={false}
               />
-            ) : (
-              <span onClick={handleTextClick}>{bannerText}...</span>
-            )}
-          </h1>
+              <h1 className="uppercase text-royal poppins-semibold">Thoroughly Cleaned Provides</h1>
+            </div>
+            <h2 className="translate-left-left-x poppins-bold text-7xl text-[#0B0B0B] mb-12">
+              Qualified and Skilled Cleaning Professionals
+            </h2>
+            <button onClick={() => navigate.push('/services')} className="w-fit">
+              <BubbleBtn bubbleColor="bg-sunny" text="View All Services" />
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-5">
-          <Link
-            href="/contact"
-            className="slide-up px-10 py-2.5 text-white border-2 border-white font-bold duration-200 rounded-full"
-          >
-            {t('banner.text3')}
-          </Link>
+        <div className="w-[60%]">
+          <div className="max-w-[680px] w-full relative">
+            <div className="translate-element bg-[url('/images/yellow-stripes.png')] bg-cover bg-no-repeat w-32 h-32 absolute z-0 bg-cenver -top-8 -right-8"></div>
+            <Video
+              videoRef={videoRef}
+              src="/videos/banner-vid.mp4"
+              className="flex w-full h-full max-h-[600px] object-cover aspect-[4/3] relative z-10"
+            />
+            <div className="scaling-element bg-[url('/images/yellow-circles.png')] bg-contain w-40 h-36 absolute z-0 -bottom-9 left-1/2 translate-x-1/2"></div>
+          </div>
         </div>
       </div>
-    </Fragment>
-  );
-};
+      <div className="translate-y-element bg-[url('/images/yellow-bubble-corner-3.png')] z-0 bg-contain bg-no-repeat w-full h-full max-h-[550px] absolute bottom-0 left-0"></div>
+    </div>
+  )
+}
 
-export default Banner;
+export default Banner
