@@ -4,7 +4,7 @@ import './globals.css'
 import './animations.css'
 import './fonts.css'
 import PageWrapper from './page-wrapper'
-import Script from 'next/script'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const roboto = Roboto({ weight: ['400'], subsets: ['latin'] })
 
@@ -97,19 +97,7 @@ export default function RootLayout({
       <body className={roboto.className}>
         <PageWrapper>{children}</PageWrapper>
       </body>
-      <Script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_MEASUREMENT_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '${process.env.GOOGLE_ANALYTICS_MEASUREMENT_ID}');
-  `}
-      </Script>
+      <GoogleAnalytics gaId="G-PF464ZYST9" />
     </html>
   )
 }
