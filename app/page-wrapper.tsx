@@ -5,12 +5,14 @@ import Header from './components/header/Header'
 import { Provider } from 'react-redux'
 import { persistor, store } from './redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
+import LoadingScreen from './components/LoadingScreen'
 
 const PageWrapper = ({ children }: { children: ReactNode }) => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <div className="min-h-screen">
+          <LoadingScreen />
           <Header />
           {children}
         </div>

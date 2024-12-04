@@ -1,24 +1,16 @@
-import React, { MouseEventHandler } from 'react'
-import Picture from './Picture'
+import React, { FC, MouseEventHandler } from 'react'
 import Link from 'next/link'
 
-const Logo = ({
-  className,
-  src,
-  onClick
-}: {
+interface LogoProps {
   className: string
-  src?: string
   onClick?: MouseEventHandler<HTMLAnchorElement>
-}) => {
+  src?: string
+}
+
+const Logo: FC<LogoProps> = ({ className, onClick, src }) => {
   return (
     <Link href="/" onClick={onClick}>
-      <Picture
-        src={`${src ? src : '/images/logo.webp'}`}
-        alt="Story Construction"
-        className={`${className}`}
-        priority={true}
-      />
+      <div className={`${src ? src : 'bg-logo'} bg-center bg-no-repeat ${className}`}></div>
     </Link>
   )
 }

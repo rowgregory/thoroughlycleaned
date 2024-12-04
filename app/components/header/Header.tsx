@@ -1,12 +1,11 @@
-import { Fragment } from 'react'
-import TopSection from './TopSection'
-import BottomSection from './BottomSection'
+import HeaderTop from './HeaderTop'
+import HeaderBottom from './HeaderBottom'
 
 const Header = () => (
-  <Fragment>
-    <TopSection />
-    <BottomSection />
-  </Fragment>
+  <header className="990:bg-header">
+    <HeaderTop />
+    <HeaderBottom />
+  </header>
 )
 
 export default Header

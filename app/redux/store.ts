@@ -9,6 +9,7 @@ import { api } from "./services/api";
 import storage from "../utils/createNoopStorage";
 import { homePageReducer } from "./features/homePageSlice";
 import { twilioReducer } from "./features/twilioSlice";
+import { appReducer } from "./features/appSlice";
 
 const rootReducer = combineReducers({
   auth: persistReducer(
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   ),
   homePage: homePageReducer,
   twilio: twilioReducer,
+  app: appReducer,
   [api.reducerPath]: api.reducer,
 });
 
