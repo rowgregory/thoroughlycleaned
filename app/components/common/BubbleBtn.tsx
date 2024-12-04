@@ -2,7 +2,7 @@ import React from 'react'
 
 const BubbleBtn = ({ bubbleColor, text }: { bubbleColor: string; text: string }) => {
   return (
-    <div className="overflow-hidden flex items-center justify-center bg-royal text-white px-8 py-4 group relative z-10">
+    <div className="overflow-hidden flex items-center justify-center bg-skyAqua text-white px-8 py-4 group relative z-10">
       <p className="poppins-medium uppercase group-hover:text-zinc-800 duration-500 relative z-10">
         {text}
       </p>

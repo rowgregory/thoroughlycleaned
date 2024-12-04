@@ -1,20 +1,37 @@
+import { setIsVideoLoaded } from '@/app/redux/features/appSlice'
+import { useAppDispatch } from '@/app/redux/store'
 import React, { FC } from 'react'
-import { VideoProps } from '@/app/types/common-types'
+import ReactPlayer from 'react-player/lazy'
 
-const Video: FC<VideoProps> = ({ videoRef, src, className }) => {
+interface VideoProps {
+  src: string
+  className?: string
+}
+
+const Video: FC<VideoProps> = ({ src, className }) => {
+  const dispatch = useAppDispatch()
+
   return (
-    <video
-      ref={videoRef}
-      className={`fade-in ${className}`}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="auto"
-    >
-      <source src={src} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+    <div className={`${className}`}>
+      <ReactPlayer
+        onReady={() => dispatch(setIsVideoLoaded())}
+        url={src}
+        playing={true}
+        muted={true}
+        loop={true}
+        controls={false}
+        width="100%"
+        height="100%"
+        config={{
+          file: {
+            attributes: {
+              preload: 'auto',
+              playsInline: true
+            }
+          }
+        }}
+      />
+    </div>
   )
 }
 
