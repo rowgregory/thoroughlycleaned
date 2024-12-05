@@ -2,11 +2,10 @@
   "name": "thoroughlycleaned",
   "version": "0.3.4",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "npm run generate && next build",
-    "postbuild": "next-sitemap",
+    "postbuild": "next-sitemap --config ./next-sitemap.config.js",
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",

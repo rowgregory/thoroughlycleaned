@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://thoroughlycleaned.vercel.app
+
+# Sitemaps
+Sitemap: https://thoroughlycleaned.vercel.app/sitemap.xml
