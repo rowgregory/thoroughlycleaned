@@ -22,28 +22,28 @@ const RequestEstimage = () => {
   }
 
   return (
-    <div className="bg-sunny px-4 lg:px-12 xl:px-4 py-20">
-      <div className="max-w-screen-sm lg:max-w-screen-xl w-full mx-auto">
-        <h3 className="text-[28px] sm:text-3xl poppins-bold mb-7">Get a Price Estimate</h3>
+    <section className="bg-sunny px-4 990:px-12 xl:px-4 py-20">
+      <div className="max-w-2xl 990:max-w-screen-xl w-full mx-auto">
+        <h1 className="text-[28px] sm:text-3xl poppins-bold mb-7">Get a Price Estimate</h1>
         <form onSubmit={handleSubmit} className="grid grid-cols-12 gap-y-5 md:gap-x-8">
           <input
             name="name"
             onChange={handleInput}
-            className="col-span-12 md:col-span-6 lg:col-span-3 bg-white p-4 border-2 border-white focus:border-skyAqua focus:outline-none "
+            className="col-span-12 md:col-span-6 990:col-span-3 bg-white p-4 border-2 border-white focus:border-skyAqua focus:outline-none "
             aria-label="name"
             placeholder="Your Name"
           />
           <input
             name="number"
             onChange={handleInput}
-            className="col-span-12 md:col-span-6 lg:col-span-3 bg-white p-4 border-2 border-white focus:border-skyAqua focus:outline-none "
+            className="col-span-12 md:col-span-6 990:col-span-3 bg-white p-4 border-2 border-white focus:border-skyAqua focus:outline-none "
             aria-label="number"
             placeholder="Your Number"
           />
           <select
             name="service"
             onChange={handleSelect}
-            className="col-span-12 md:col-span-6 lg:col-span-3 bg-white p-4 text-[#adadb7] border-2 border-white focus:border-skyAqua focus:outline-none "
+            className="col-span-12 md:col-span-6 990:col-span-3 bg-white p-4 text-[#adadb7] border-2 border-white focus:border-skyAqua focus:outline-none "
             aria-label="Service"
             value={(inputs.service as string) || ''}
           >
@@ -53,12 +53,12 @@ const RequestEstimage = () => {
               </option>
             ))}
           </select>
-          <button type="submit" className="col-span-12 md:col-span-6 lg:col-span-3">
+          <button type="submit" className="col-span-12 md:col-span-6 990:col-span-3">
             <BubbleBtn bubbleColor="bg-white" text="Submit Now" />
           </button>
         </form>
       </div>
-    </div>
+    </section>
   )
 }
 

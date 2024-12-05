@@ -39,6 +39,8 @@ import {
   faGem,
   faBriefcase,
   faLock,
+  faArrowLeft,
+  faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 const calendarIcon = faCalendar;
@@ -82,6 +84,8 @@ const coffeeIcon = faCoffee;
 const fbIcon = faFacebook;
 const briefCaseIcon = faBriefcase;
 const lockIcon = faLock;
+const arrowLeftIcon = faArrowLeft;
+const arrowRightIcon = faArrowRight;
 
 const ADMIN_LINK_ICONS = {
   DASHBOARD: dashboardIcon,
@@ -141,4 +145,6 @@ export {
   fbIcon,
   briefCaseIcon,
   lockIcon,
+  arrowLeftIcon,
+  arrowRightIcon,
 };

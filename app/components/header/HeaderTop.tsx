@@ -14,7 +14,7 @@ const HeaderTop = () => {
             className="bg-contain 990:mr-12 aspect-[3/2.5] bg-skyAqua 990:bg-sunny
             w-20 990:w-40
             mt-0 990:mt-[72px]"
-            src="bg-logo2 990:bg-logoYellow"
+            src="bg-logoText 990:bg-logoYellow"
           />
           <div className="hidden 990:flex items-center gap-2 text-white group hover:text-sunny duration-200 cursor-pointer">
             <FaEnvelope className="w-5 h-5" />

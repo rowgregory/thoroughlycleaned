@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
+import { GoogleAnalytics } from '@next/third-parties/google'
+import PageWrapper from './page-wrapper'
 import { Roboto } from 'next/font/google'
 import './globals.css'
-import './animations.css'
 import './fonts.css'
-import PageWrapper from './page-wrapper'
-import { GoogleAnalytics } from '@next/third-parties/google'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 const roboto = Roboto({ weight: ['400'], subsets: ['latin'] })
 

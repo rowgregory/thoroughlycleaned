@@ -49,15 +49,12 @@ const Login = () => {
       style={{ backgroundImage: `url('/images/login-bg.png')` }}
     >
       <div className="relative max-w-sm w-full mx-auto">
-        <div className="translate-element bg-sunny w-24 h-24 absolute z-0 -bottom-4 -left-8"></div>
+        <div className="animate-translateXBackForth bg-sunny w-24 h-24 absolute z-0 -bottom-4 -left-8"></div>
         <div
           className={`h-[440px] overflow-hidden bg-skyAqua relative z-20 login-shape flex flex-col p-5`}
         >
           <span className="text-4xl text-skyAqua relative z-30 mb-32 poppins-bold">Login</span>
-          <div
-            className="translate-y-element z-10 bg-contain bg-center bg-no-repeat absolute w-full h-full -bottom-12 left-0 right-0"
-            style={{ backgroundImage: `url('/images/clear-bubbles.png')` }}
-          ></div>
+          <div className="animate-translateYBackForth bg-clearBubbles z-10 bg-contain bg-center bg-no-repeat absolute w-full h-full -bottom-12 left-0 right-0"></div>
           {showPasscode ? (
             <form
               onSubmit={submitPasscode}

@@ -25,7 +25,7 @@ const LoadingScreen = () => {
       } ${isHidden ? 'hidden' : ''}`}
     >
       <div
-        className={`bg-loadingImg bg-contain bg-center bg-no-repeat aspect-square w-80 h-80 transition-transform ${
+        className={`bg-logo bg-contain bg-center bg-no-repeat aspect-square w-80 h-80 transition-transform ${
           !isVideoLoaded ? 'animate-scaleFadeOut' : ''
         }`}
       ></div>

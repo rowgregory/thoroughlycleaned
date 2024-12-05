@@ -1,21 +1,20 @@
 'use client'
 
-import React, { ReactNode } from 'react'
-import Header from './components/header/Header'
+import React, { FC } from 'react'
 import { Provider } from 'react-redux'
-import { persistor, store } from './redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
+import { persistor, store } from './redux/store'
+import Header from './components/header/Header'
 import LoadingScreen from './components/LoadingScreen'
+import { ChildrenProps } from './types/common-types'
 
-const PageWrapper = ({ children }: { children: ReactNode }) => {
+const PageWrapper: FC<ChildrenProps> = ({ children }) => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <div className="min-h-screen">
-          <LoadingScreen />
-          <Header />
-          {children}
-        </div>
+        <LoadingScreen />
+        <Header />
+        <main>{children}</main>
       </PersistGate>
     </Provider>
   )
