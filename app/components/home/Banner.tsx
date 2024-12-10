@@ -22,7 +22,7 @@ const BannerText = () => {
       <h2
         className={`${
           !isVideoLoaded ? 'animate-scaleIn' : ''
-        } poppins-bold text-[62px] xl:text-7xl text-[#0B0B0B] mb-12 opacity-0 leading-[70px] sm:leading-[77px]`}
+        } poppins-bold text-5xl 990:text-[62px] xl:text-7xl text-[#0B0B0B] mb-12 opacity-0 leading-[55px] 990:leading-[70px] sm:leading-[77px]`}
       >
         Qualified Cleaning Experts
       </h2>
@@ -38,18 +38,23 @@ const BannerText = () => {
   )
 }
 
-const BannerVideo = () => (
-  <div className="w-full 990:w-3/5">
-    <div className="w-full relative">
-      <div className="animate-translateXBackForth bg-yellowStripes bg-cover bg-no-repeat w-32 h-32 absolute z-0 bg-cenver -top-8 -right-8"></div>
-      <Video
-        src="/videos/banner-vid.mp4"
-        className="flex w-full h-full object-cover relative z-10 animate-fadeIn"
-      />
-      <div className="animate-scaleBackForth bg-yellowDots bg-no-repeat bg-contain w-40 h-36 absolute z-0 990:-bottom-28 -left-10 990:left-1/2 990:translate-x-1/2"></div>
+const BannerVideo = () => {
+  const { isVideoLoaded } = useAppSelector((state: RootState) => state.app)
+  return (
+    <div className="w-full 990:w-3/5">
+      <div className="w-full relative">
+        <div className="animate-translateXBackForth bg-yellowStripes bg-cover bg-no-repeat w-32 h-32 absolute z-0 bg-cenver -top-8 -right-8"></div>
+        <Video
+          src="/videos/banner-vid.mp4"
+          className={`flex w-full h-full object-cover relative z-10 ${
+            !isVideoLoaded ? 'animate-slideUp' : ''
+          }`}
+        />
+        <div className="animate-scaleBackForth bg-yellowDots bg-no-repeat bg-contain w-40 h-36 absolute z-0 990:-bottom-28 -left-10 990:left-1/2 990:translate-x-1/2"></div>
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 const Banner = () => {
   return (

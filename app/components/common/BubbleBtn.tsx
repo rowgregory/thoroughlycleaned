@@ -8,7 +8,7 @@ const BubbleBtn = ({ bubbleColor, text }: { bubbleColor: string; text: string })
       </p>
       <span
         className={`${bubbleColor} w-10 h-10 bottom-0 absolute z-0 rounded-full translate-x-1/2 translate-y-1/2 right-0 
-        group-hover:scale-[15] duration-500 group-hover:ease-out`}
+        group-hover:scale-[35] duration-500 group-hover:ease-out`}
       ></span>
     </div>
   )

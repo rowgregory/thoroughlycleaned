@@ -1,10 +1,19 @@
 'use client'
 
-import React, { useEffect, useState, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
-const Counter = ({ targetNumber, duration = 2000 }: { targetNumber: number; duration: number }) => {
+const Counter = ({
+  targetNumber,
+  duration = 2000,
+  className
+}: {
+  targetNumber: number
+  duration: number
+  className?: string
+}) => {
   const [displayedNumber, setDisplayedNumber] = useState(0)
   const [inView, setInView] = useState(false)
+  const [scrollingDown, setScrollingDown] = useState(true)
   const ref = useRef(null)
 
   useEffect(() => {
@@ -12,7 +21,8 @@ const Counter = ({ targetNumber, duration = 2000 }: { targetNumber: number; dura
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true)
-          observer.disconnect()
+        } else {
+          setInView(false)
         }
       },
       { threshold: 0.1 }
@@ -23,7 +33,25 @@ const Counter = ({ targetNumber, duration = 2000 }: { targetNumber: number; dura
   }, [])
 
   useEffect(() => {
-    if (!inView) return
+    let lastScrollY = window.scrollY
+
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setScrollingDown(true) // User is scrolling down
+      } else {
+        setScrollingDown(false) // User is scrolling up
+      }
+      lastScrollY = window.scrollY
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!inView || !scrollingDown) return
 
     const stepTime = Math.max(duration / targetNumber, 20)
     let currentNumber = 0
@@ -39,10 +67,10 @@ const Counter = ({ targetNumber, duration = 2000 }: { targetNumber: number; dura
     }, stepTime)
 
     return () => clearInterval(interval)
-  }, [inView, targetNumber, duration])
+  }, [inView, scrollingDown, targetNumber, duration])
 
   return (
-    <div ref={ref} className="text-4xl sm:ext-5xl font-bold">
+    <div ref={ref} className={`${className} text-4xl sm:text-5xl font-bold`}>
       {displayedNumber}
     </div>
   )

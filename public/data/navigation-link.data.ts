@@ -1,4 +1,10 @@
-const headerLinkData = (path: string) => {
+type NavigationLinkData = {
+  linkText: string;
+  linkKey: string;
+  active: boolean;
+};
+
+const navigationLinkData = (path: string): NavigationLinkData[] => {
   return [
     {
       linkText: "Home",
@@ -25,7 +31,12 @@ const headerLinkData = (path: string) => {
       linkKey: "/testimonials",
       active: path === "/testimonials",
     },
+    {
+      linkText: "Login",
+      linkKey: "/auth/login",
+      active: path === "/auth/login",
+    },
   ];
 };
 
-export default headerLinkData;
+export default navigationLinkData;

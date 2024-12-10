@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import Logo from '../common/Logo'
-import { FaEnvelope, FaFacebook, FaPhone, FaInstagram } from 'react-icons/fa'
+import { FaFacebook, FaPhone, FaInstagram } from 'react-icons/fa'
 import AwesomeIcon from '../common/AwesomeIcon'
-import { barsIcon } from '@/app/icons'
+import { barsIcon, envelopeIcon } from '@/app/icons'
 
 const HeaderTop = () => {
   return (
@@ -17,7 +17,7 @@ const HeaderTop = () => {
             src="bg-logoText 990:bg-logoYellow"
           />
           <div className="hidden 990:flex items-center gap-2 text-white group hover:text-sunny duration-200 cursor-pointer">
-            <FaEnvelope className="w-5 h-5" />
+            <AwesomeIcon icon={envelopeIcon} className="w-5 h-5" />
             <p className="text-sm poppins-medium">admin@thoroughlycleanedma.com</p>
           </div>
           <span className="hidden 990:block w-[1px] bg-sunny h-5 mx-6" />

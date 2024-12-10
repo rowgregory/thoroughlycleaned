@@ -1,13 +1,11 @@
 'use client'
 
-import React, { FC, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Slider from 'react-slick'
-import AwesomeIcon from './common/AwesomeIcon'
-import { arrowLeftIcon, arrowRightIcon } from '../icons'
-
-interface ServiceCarouselProps {
-  items: any[]
-}
+import AwesomeIcon from '../common/AwesomeIcon'
+import { arrowLeftIcon, arrowRightIcon } from '../../icons'
+import ServiceCarouselSlide from './ServiceCarouselSlide'
+import { services } from '@/public/data/home.data'
 
 const PrevArrow = ({ onClick }: any) => (
   <button
@@ -29,13 +27,9 @@ const NextArrow = ({ onClick }: any) => (
   </button>
 )
 
-const ServiceCarousel: FC<ServiceCarouselProps> = ({ items }) => {
+const ServiceCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(1)
   const slider = useRef<Slider | null>(null)
-
-  const getSlideClass = (index: number) => {
-    return index === currentSlide ? 'bg-white 1200:bg-skyAqua' : 'bg-white'
-  }
 
   const settings = {
     dots: true,
@@ -51,15 +45,15 @@ const ServiceCarousel: FC<ServiceCarouselProps> = ({ items }) => {
       let newMiddleIndex = newIndex + middleIndex
 
       // Adjust the new middle index to stay within valid bounds
-      if (newMiddleIndex >= items.length) {
-        newMiddleIndex = newMiddleIndex - items.length
+      if (newMiddleIndex >= services.length) {
+        newMiddleIndex = newMiddleIndex - services.length
       }
 
       setCurrentSlide(newMiddleIndex)
     },
     responsive: [
       {
-        breakpoint: 1200, // Less than 1200px
+        breakpoint: 1200,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -78,25 +72,15 @@ const ServiceCarousel: FC<ServiceCarouselProps> = ({ items }) => {
   }
 
   return (
-    <div className="slider-container w-full relative">
+    <div className="w-full relative">
       <PrevArrow onClick={() => slider?.current?.slickPrev()} />
-      <Slider ref={slider} {...settings}>
-        {items.map((item: any, index: number) => (
-          <div
-            key={index}
-            className={`${getSlideClass(
-              index
-            )} flex flex-col items-center py-16 px-7 h-[475px] border-1 border-gray-200`}
-          >
-            <div className="bg-sunny rounded-full w-20 h-20 mb-8"></div>
-            <h3 className="poppins-bold text-[21px] mb-5">{item.name}</h3>
-            <h4 className="poppins-light text-sm 990:text-base mb-10 text-center leading-7">
-              {item.description}
-            </h4>
-            <h5 className="poppins-medium">Read More</h5>
-          </div>
-        ))}
-      </Slider>
+      <div data-aos="fade-up">
+        <Slider ref={slider} {...settings}>
+          {services.map((item, i) => (
+            <ServiceCarouselSlide key={i} currentSlide={currentSlide} index={i} item={item} />
+          ))}
+        </Slider>
+      </div>
       <NextArrow onClick={() => slider?.current?.slickNext()} />
     </div>
   )

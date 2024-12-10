@@ -41,6 +41,7 @@ import {
   faLock,
   faArrowLeft,
   faArrowRight,
+  faClock,
 } from "@fortawesome/free-solid-svg-icons";
 
 const calendarIcon = faCalendar;
@@ -86,6 +87,7 @@ const briefCaseIcon = faBriefcase;
 const lockIcon = faLock;
 const arrowLeftIcon = faArrowLeft;
 const arrowRightIcon = faArrowRight;
+const clockIcon = faClock;
 
 const ADMIN_LINK_ICONS = {
   DASHBOARD: dashboardIcon,
@@ -147,4 +149,5 @@ export {
   lockIcon,
   arrowLeftIcon,
   arrowRightIcon,
+  clockIcon,
 };
