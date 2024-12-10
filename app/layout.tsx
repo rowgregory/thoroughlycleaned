@@ -4,8 +4,6 @@ import PageWrapper from './page-wrapper'
 import { Roboto } from 'next/font/google'
 import './globals.css'
 import './fonts.css'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 
 const roboto = Roboto({ weight: ['400'], subsets: ['latin'] })
 
@@ -61,6 +59,14 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: 'Thoroughly Cleaned logo'
+      }
+    ],
+    videos: [
+      {
+        url: 'https://thoroughlycleaned.vercel.app/videos/banner-vid.mp4',
+        width: 1280,
+        height: 720,
+        type: 'video/mp4'
       }
     ],
     locale: 'en_US',

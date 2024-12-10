@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import useSoundEffect from '@/app/hooks/useSoundEffect'
 import Picture from '@/app/components/common/Picture'
-import adminNavLinkData from '@/public/data/admin-navigation-link-data'
+import adminNavLinkData from '@/public/data/admin-navigation-link.data'
 
 const AdminSideNavigation = () => {
   const params = usePathname()
