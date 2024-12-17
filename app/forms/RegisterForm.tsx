@@ -1,48 +1,52 @@
-import Spinner from '@/app/components/common/Spinner';
-import { RootState, useAppSelector } from '@/app/redux/store';
-import { faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { FC } from 'react'
+import { RegisterFormProps } from '../types/form.types'
 
-const RegisterForm = ({ handleSubmit, handleInput, isLoading }: any) => {
-  const auth = useAppSelector((state: RootState) => state.auth);
-  const [type, setType] = useState(false);
-
+const RegisterForm: FC<RegisterFormProps> = ({
+  handleSubmit,
+  handleInput,
+  handleToggle,
+  inputs
+}) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col sm:flex-row items-center gap-3 mt-2"
+      className="flex flex-col items-center gap-y-4 w-full relative z-40"
     >
       <input
-        autoComplete="off"
-        name="username"
-        type="search"
+        name="firstName"
         onChange={handleInput}
-        placeholder="Username"
-        className="input-box text-lime-400 font-semibold text-sm focus:outline-none h-9 w-40 sm:w-48 rounded-sm px-3 bg-zinc-900 placeholder:text-zinc-600"
+        value={(inputs.firstName as string) || ''}
+        className="bg-white p-4 w-full border-[3px] border-sunny focus:border-sunny focus:outline-none"
+        aria-label="Enter First Name"
+        placeholder="Enter First Name"
       />
       <input
-        autoComplete="off"
-        onClick={() => setType(true)}
-        onKeyDown={() => setType(true)}
-        name="password"
-        type={type ? 'password' : 'search'}
+        name="lastName"
         onChange={handleInput}
-        placeholder="Password"
-        className="input-box text-lime-400 font-semibold text-sm focus:outline-none h-9 w-40 sm:w-48 rounded-sm px-3 bg-zinc-900 placeholder:text-zinc-600"
+        value={(inputs.lastName as string) || ''}
+        className="bg-white p-4 w-full border-[3px] border-sunny focus:border-sunny focus:outline-none"
+        aria-label="Enter Last Name"
+        placeholder="Enter Last Name"
       />
-      {isLoading ? (
-        <Spinner fill="fill-lime-400" />
-      ) : (
-        <button type="submit" className="text-sm font-bold">
-          <FontAwesomeIcon
-            icon={auth.accountWasCreated ? faLockOpen : faLock}
-            className="fa-lg text-zinc-400 w-5 hover:text-zinc-500 duration-200"
-          />
-        </button>
-      )}
+      <input
+        name="phoneNumber"
+        onChange={handleInput}
+        value={(inputs.phoneNumber as string) || ''}
+        className="bg-white p-4 w-full border-[3px] border-sunny focus:border-sunny focus:outline-none"
+        aria-label="Enter Phone Number"
+        placeholder="Enter Phone Number"
+      />
+      <div className="flex justify-start items-center my-6 gap-x-3">
+        <input type="checkbox" name="consentToSMS" onChange={handleToggle} className="" />
+        <label htmlFor="consentToSMS" className="text-white text-sm">
+          By registering, you agree to receive text messages from potential clients.
+        </label>
+      </div>
+      <button type="submit" className="p-4 border-[3px] border-sunny w-full h-full text-white">
+        Register
+      </button>
     </form>
-  );
-};
+  )
+}
 
-export default RegisterForm;
+export default RegisterForm

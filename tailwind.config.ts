@@ -9,9 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        header: "linear-gradient(to bottom, #58cae3 48px, #ffffff 80px)",
-        banner: "linear-gradient(to right, #f7fafe 60%, #58cae3 40%)",
-        bannerMobile: "linear-gradient(to right, #f7fafe 90%, #58cae3 10%)",
+        header: "linear-gradient(to bottom, #3da3bf 48px, #ffffff 80px)",
+        banner: "linear-gradient(to right, #f7fafe 60%, #3da3bf 40%)",
+        bannerMobile: "linear-gradient(to right, #f7fafe 90%, #3da3bf 10%)",
         login: "linear-gradient(to right, #fff 60%, #01559f 40%)",
         logoText: `url('/images/logo-text.webp')`,
         logoYellow: `url('/images/yellow-logo.png')`,
@@ -28,15 +28,25 @@ const config: Config = {
         curvyDottedYellowLine: `url('/images/curvy-yellow.png')`,
         quotations: `url('/images/quotations.png')`,
         footer: `url('/images/footerbg.png')`,
+        loginBG: `url('/images/login-bg.png')`,
+        iconShadow: `linear-gradient(to top, #f1f2f5, rgba(255, 255, 255, 0)), linear-gradient(to bottom, #f6f6f9, #f6f6f9)`,
       },
       colors: {
         royal: "#01559f",
         sunny: "#ffd700",
-        skyAqua: "#58cae3",
+        skyAqua: "#3da3bf",
         paleBlue: "#f7fafe",
         jetBlack: "#0A0A0A",
         espresso: "#332",
         charcoalBlack: "#101010",
+        midnightPlum: "#2e294e",
+        mediumGray: "#686868",
+        lightGray: "#F3F4F7",
+        onyx: "#212529",
+        inputBorder: "#eeeef0",
+        inputText: "#495057",
+        inputPlaceholderText: "#c8c8ca",
+        neonSkyAqua: "#00c5d9",
       },
       fontSize: {
         11: "0.6875rem",
@@ -143,6 +153,15 @@ const config: Config = {
       borderWidth: {
         1: "1px",
         3: "3px",
+      },
+      boxShadow: {
+        neu: "4px 4px 10px 0 rgba(0, 0, 0, 0.08), -5px -6px 10px 0 rgba(253, 253, 253, 0.9)",
+        input: "inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #fff",
+        submit:
+          "0 2px 2px 0 rgba(0, 197, 217, 0.5), 0 3px 1px -2px rgba(0, 197, 217, 0.5), 0 1px 5px 0 rgba(0, 197, 217, 0.5)",
+      },
+      maxWidth: {
+        "1140": "1140px",
       },
     },
   },

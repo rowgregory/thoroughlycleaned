@@ -7,13 +7,13 @@ import { barsIcon, envelopeIcon } from '@/app/icons'
 
 const HeaderTop = () => {
   return (
-    <section className="flex items-center px-4 lg:px-12 xl:px-4 h-16 990:h-12 sticky 990:static">
+    <section className="flex items-center px-4 lg:px-12 xl:px-4 h-16 990:h-12">
       <div className="max-w-screen-md 990:max-w-screen-xl mx-auto w-full flex justify-between items-center">
         <div className="flex items-center">
           <Logo
             className="bg-contain 990:mr-12 aspect-[3/2.5] bg-skyAqua 990:bg-sunny
-            w-20 990:w-40
-            mt-0 990:mt-[72px]"
+            w-20 990:w-40 relative z-10
+            mt-0 990:mt-[74px]"
             src="bg-logoText 990:bg-logoYellow"
           />
           <div className="hidden 990:flex items-center gap-2 text-white group hover:text-sunny duration-200 cursor-pointer">

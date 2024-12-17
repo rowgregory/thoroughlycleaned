@@ -1,11 +1,10 @@
 import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import { GoogleAnalytics } from '@next/third-parties/google'
-import PageWrapper from './page-wrapper'
-import { Roboto } from 'next/font/google'
+import { verifyAuthToken } from './utils/verifyAuthToken'
+import ReduxWrapper from './redux-wrapper'
 import './globals.css'
 import './fonts.css'
-
-const roboto = Roboto({ weight: ['400'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thoroughlycleaned.vercel.app'),
@@ -94,15 +93,24 @@ export const metadata: Metadata = {
     'mobile-web-app-capable': 'yes'
   }
 }
-export default function RootLayout({
+export default async function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const cookieStore = cookies()
+  const authToken = (await cookieStore).get('authToken')
+
+  let isLoggedIn = false
+  if (authToken) {
+    const result = await verifyAuthToken(authToken.value)
+    isLoggedIn = result.isLoggedIn
+  }
+
   return (
     <html lang="en">
-      <body className={roboto.className}>
-        <PageWrapper>{children}</PageWrapper>
+      <body>
+        <ReduxWrapper isLoggedIn={isLoggedIn}>{children}</ReduxWrapper>
       </body>
       <GoogleAnalytics gaId="G-PF464ZYST9" />
     </html>

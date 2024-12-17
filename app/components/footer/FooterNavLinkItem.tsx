@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import React, { FC } from 'react'
+import Link from 'next/link'
 
 interface FooterNavLinkItemProps {
   link: {
@@ -17,7 +17,7 @@ const FooterNavLinkItem: FC<FooterNavLinkItemProps> = ({ link, i }) => {
       data-aos-delay={i * 100}
       href={link.linkKey}
       className={`${
-        link.active ? 'text-white' : 'text-jetBlack'
+        link.active ? 'text-sunny' : 'text-jetBlack'
       } poppins-regular hover:text-sunny duration-200 opacity-0`}
     >
       {link.linkText}

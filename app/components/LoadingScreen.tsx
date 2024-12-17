@@ -2,10 +2,23 @@
 
 import { useEffect, useState } from 'react'
 import useRemoveScroll from '../hooks/useRemoveScroll'
-import { RootState, useAppSelector } from '../redux/store'
+import { RootState, useAppDispatch, useAppSelector } from '../redux/store'
+import useCustomPathname from '../hooks/useCustomPathname'
+import { setIsVideoLoaded } from '../redux/features/appSlice'
 
 const LoadingScreen = () => {
   const { isVideoLoaded } = useAppSelector((state: RootState) => state.app)
+
+  const pathname = useCustomPathname()
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if (pathname !== '/') {
+      setTimeout(() => {
+        dispatch(setIsVideoLoaded())
+      }, 1000)
+    }
+  }, [dispatch, pathname])
 
   useRemoveScroll(isVideoLoaded)
 

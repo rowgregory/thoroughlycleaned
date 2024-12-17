@@ -1,7 +1,7 @@
-import { setIsVideoLoaded } from '@/app/redux/features/appSlice'
-import { useAppDispatch } from '@/app/redux/store'
 import React, { FC } from 'react'
 import ReactPlayer from 'react-player/lazy'
+import { setIsVideoLoaded } from '@/app/redux/features/appSlice'
+import { useAppDispatch } from '@/app/redux/store'
 
 interface VideoProps {
   src: string

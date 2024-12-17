@@ -3,27 +3,24 @@
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { authReducer } from "./features/authSlice";
-import { persistStore, persistReducer } from "redux-persist";
 import { api } from "./services/api";
-import storage from "../utils/createNoopStorage";
+import { imgbbApi } from "./services/imgBBApi";
+import { authReducer } from "./features/authSlice";
 import { homePageReducer } from "./features/homePageSlice";
-import { twilioReducer } from "./features/twilioSlice";
 import { appReducer } from "./features/appSlice";
+import { dashboardReducer } from "./features/dashboardSlice";
+import { serviceReducer } from "./features/serviceSlice";
+import { testimonialReducer } from "./features/testimonialSlice";
 
 const rootReducer = combineReducers({
-  auth: persistReducer(
-    {
-      key: "auth",
-      storage,
-      blacklist: ["success"], // do not persist 'success' within 'auth'
-    },
-    authReducer
-  ),
+  auth: authReducer,
   homePage: homePageReducer,
-  twilio: twilioReducer,
   app: appReducer,
+  dashboard: dashboardReducer,
+  service: serviceReducer,
+  testimonial: testimonialReducer,
   [api.reducerPath]: api.reducer,
+  [imgbbApi.reducerPath]: imgbbApi.reducer,
 });
 
 export const store = configureStore({
@@ -32,10 +29,10 @@ export const store = configureStore({
     getDefaultMiddleware({
       immutableCheck: false,
       serializableCheck: false,
-    }).concat(api.middleware),
+    })
+      .concat(api.middleware)
+      .concat(imgbbApi.middleware),
 });
-
-export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 

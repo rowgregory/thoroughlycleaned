@@ -7,38 +7,37 @@ export const authApi = api.injectEndpoints({
   endpoints: (build: any) => ({
     register: build.mutation({
       query: (body: any) => ({
-        url: `${BASE_URL}?endpoint=REGISTER`,
+        url: `${BASE_URL}/post?endpoint=REGISTER`,
         method: "POST",
         body,
       }),
     }),
-    login: build.mutation({
+    verifyPhoneNumber: build.mutation({
       query: (body: any) => ({
-        url: `${BASE_URL}?endpoint=LOGIN`,
+        url: `${BASE_URL}/post?endpoint=VERIFY_PHONE_NUMBER`,
         method: "POST",
         body,
       }),
     }),
-    verifyRegisterCode: build.mutation({
+    verifyCode: build.mutation({
       query: (body: any) => ({
-        url: `${BASE_URL}?endpoint=VERIFY_REGISTER_CODE`,
-        method: "POST",
+        url: `${BASE_URL}/put?endpoint=VERIFY_CODE`,
+        method: "PUT",
         body,
       }),
     }),
-    verifyPasscode: build.mutation({
-      query: (passcode: any) => ({
-        url: `${BASE_URL}?endpoint=VERIFY_PASSCODE`,
+    logout: build.mutation({
+      query: () => ({
+        url: `${BASE_URL}/post?endpoint=LOGOUT`,
         method: "POST",
-        body: passcode,
       }),
     }),
   }),
 });
 
 export const {
-  useLoginMutation,
   useRegisterMutation,
-  useVerifyRegisterCodeMutation,
-  useVerifyPasscodeMutation,
+  useVerifyPhoneNumberMutation,
+  useVerifyCodeMutation,
+  useLogoutMutation,
 } = authApi;

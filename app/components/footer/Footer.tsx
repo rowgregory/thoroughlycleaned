@@ -1,17 +1,24 @@
 import React from 'react'
 import RequestEstimateForm from '@/app/forms/RequestEstimateForm'
 import { sqyshUrl } from '@/public/data/paths'
-import navigationLinkData from '@/public/data/navigation-link.data'
 import { contactInfo } from '@/public/data/footer-contact.data'
 import ContactInfoItem from './ContactInfoItem'
 import FooterNavLinkItem from './FooterNavLinkItem'
 import useCustomPathname from '@/app/hooks/useCustomPathname'
+import shouldExcludePath from '@/app/utils/shouldExcludePath'
+import { RootState, useAppSelector } from '@/app/redux/store'
+import { headerNavigationLinkData } from '@/public/data/navigation-link.data'
 
 const Footer = () => {
   const pathname = useCustomPathname()
+  const { isLoggedIn } = useAppSelector((state: RootState) => state.auth)
 
   return (
-    <footer className="h-full 990:h-[600px] w-full bg-skyAqua xl:bg-footer bg-cover bg-center bg-no-repeat px-4 relative">
+    <footer
+      className={`${
+        shouldExcludePath(pathname) ? 'hidden' : 'block'
+      } h-full 990:h-[600px] w-full bg-skyAqua xl:bg-footer bg-cover bg-center bg-no-repeat px-4 relative`}
+    >
       <div className="max-w-2xl 990:max-w-screen-xl w-full mx-auto relative z-10 pt-20">
         <div className="grid grid-cols-12 gap-y-12 990:gap-x-16 pb-[162px]">
           <div className="col-span-12 990:col-span-4">
@@ -59,7 +66,7 @@ const Footer = () => {
             </span>
           </div>
           <div className="flex items-center justify-center flex-wrap gap-4 990:gap-x-12 order-1 990:order-2">
-            {navigationLinkData(pathname).map((link, i) => (
+            {headerNavigationLinkData(pathname, isLoggedIn).map((link, i) => (
               <FooterNavLinkItem key={i} link={link} i={i} />
             ))}
           </div>
