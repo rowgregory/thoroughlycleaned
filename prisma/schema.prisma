@@ -14,21 +14,21 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  username  String   @db.VarChar(255)
-  password  String   @db.VarChar(255)
-  isAdmin   Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           Int      @id @default(autoincrement())
+  firstName    String   @db.VarChar(255)
+  lastName     String   @db.VarChar(255)
+  phoneNumber  String   @unique
+  isAdmin      Boolean  @default(true)
+  consentToSMS Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Service {
   id          Int      @id @default(autoincrement())
-  productName String   @db.VarChar(255)
+  name        String   @db.VarChar(255)
   image       String
-  fileName    String
   description String   @db.VarChar(500)
-  isPublished Boolean
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -40,4 +40,29 @@ model HomePage {
   bannerVideoUrl String
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+}
+
+model TwoFactorAuth {
+  id          Int      @id @default(autoincrement())
+  phoneNumber String   @unique
+  userName    String
+  code        String
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Visit {
+  id    Int      @id @default(autoincrement())
+  date  DateTime @unique
+  count Int      @default(1)
+}
+
+model Testimonial {
+  id          Int      @id @default(autoincrement())
+  name        String
+  review      String
+  reviewTitle String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

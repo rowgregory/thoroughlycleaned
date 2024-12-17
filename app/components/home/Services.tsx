@@ -9,8 +9,8 @@ const Services = () => {
         <SectionHeader
           icon="bg-brush"
           header="What We Do"
-          title="Our Most Popular Cleaning Options"
-          titleStyles="text-center 990:text-left"
+          title="Comprehensive Cleaning Solutions Tailored to Your Needs"
+          titleStyles="text-center"
         />
         <ServiceCarousel />
       </div>

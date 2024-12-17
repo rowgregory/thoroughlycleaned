@@ -1,7 +1,8 @@
+import KeyMetrics from '@/app/components/admin/KeyMetrics'
 import React from 'react'
 
 const Dashboard = () => {
-  return <div>Dashboard</div>
+  return <KeyMetrics />
 }
 
 export default Dashboard

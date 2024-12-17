@@ -24,7 +24,7 @@ const WorkingProcess = () => {
     <section>
       <div className="max-w-2xl 990:max-w-screen-xl w-full mx-auto flex flex-col 1200:flex-row">
         <div className="h-auto min-h-[600px] w-full 1200:w-1/2">
-          <div className="bg-workingProcess bg-cover bg-center bg-no-repeat h-full w-full 1200:w-1/2 min-h-[600px] max-h-[600px] 1200:max-h-[860px] absolute left-0" />
+          <div className="bg-workingProcess bg-cover bg-center bg-no-repeat h-full w-full 1200:w-1/2 min-h-[600px] max-h-[600px] 1200:max-h-[876px] absolute left-0" />
         </div>
         <div className="flex-1 px-4 1200:pr-0 1200:pl-20 py-44">
           <SectionHeader

@@ -25,24 +25,9 @@ export const services = [
       "Professional cleaning of office spaces, ensuring a clean and welcoming environment for employees and clients.",
   },
   {
-    name: "Deep Cleaning",
+    name: "Biohazard Cleaning",
     description:
-      "Intensive cleaning that covers hard-to-reach places, detailed scrubbing, and sanitizing of high-touch areas.",
-  },
-  {
-    name: "Move-In/Move-Out Cleaning",
-    description:
-      "Specialized cleaning for when you’re moving into or out of a home, ensuring it’s spotless for new residents.",
-  },
-  {
-    name: "Post-Construction Cleaning",
-    description:
-      "Cleaning after construction or renovation projects, including removal of dust, debris, and finishing touches.",
-  },
-  {
-    name: "Window Cleaning",
-    description:
-      "Exterior and interior window cleaning to ensure clear, streak-free glass that enhances your home or office’s look.",
+      "Specialized cleaning for environments contaminated with hazardous materials, focusing on safe removal.",
   },
 ];
 

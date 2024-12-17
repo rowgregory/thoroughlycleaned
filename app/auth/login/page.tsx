@@ -1,92 +1,109 @@
 'use client'
 
-import AwesomeIcon from '@/app/components/common/AwesomeIcon'
-import useForm from '@/app/hooks/useForm'
-import { lockIcon } from '@/app/icons'
-import { useVerifyPasscodeMutation } from '@/app/redux/services/authApi'
-import { useSendTwilioSMSMessageMutation } from '@/app/redux/services/twilioApi'
 import React, { FormEvent, useState } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { RootState, useAppSelector } from '@/app/redux/store'
+import { useVerifyCodeMutation, useVerifyPhoneNumberMutation } from '@/app/redux/services/authApi'
+import useForm from '@/app/hooks/useForm'
+import useCountdown from '@/app/hooks/useCountdown'
+import Logo from '@/app/components/common/Logo'
+import { inputStyles } from '@/public/data/form.styles'
 
 const Login = () => {
-  const { inputs, handleInput, setInputs } = useForm(['code', 'passcode'])
-  const [verifyCode] = useSendTwilioSMSMessageMutation()
-  const [verifyPasscode] = useVerifyPasscodeMutation()
-  const [showPasscode, setShowPasscode] = useState(false)
+  const navigate = useRouter()
+  const { inputs, handleInput } = useForm(['phoneNumber', 'code'])
+  const [verifyPhoneNumber] = useVerifyPhoneNumberMutation()
+  const [verifyCode] = useVerifyCodeMutation()
+  const auth = useAppSelector((state: RootState) => state.auth)
+  const [error, setError] = useState('')
+  const { formattedTime, isActive } = useCountdown(5 * 60, auth.phoneNumberVerified)
+
+  const submitPhoneNumber = async (e: FormEvent) => {
+    e.preventDefault()
+    try {
+      await verifyPhoneNumber(inputs.phoneNumber).unwrap()
+      setError('')
+    } catch (err: any) {
+      setError(err.data.message)
+    }
+  }
 
   const submitCode = async (e: FormEvent) => {
     e.preventDefault()
-    console.log('CODE SUBMITTED: ', inputs.code)
-
-    await verifyCode(inputs.code)
-      .unwrap()
-      .then((data: any) => {
-        console.log('data: ', data)
-        setShowPasscode(true)
-        setInputs({})
-      })
-      .catch((err: any) => {
-        console.error(err)
-      })
-  }
-
-  const submitPasscode = async (e: FormEvent) => {
-    e.preventDefault()
-    console.log('PASSCODE SUBMITTED: ', inputs.passcode)
-
-    await verifyPasscode(inputs.passcode)
-      .unwrap()
-      .then((data: any) => {
-        console.log('data: ', data)
-      })
-      .catch((err: any) => {
-        console.error(err)
-      })
+    try {
+      await verifyCode(inputs.code).unwrap()
+      navigate.push('/admin/dashboard')
+      setError('')
+    } catch (err: any) {
+      setError(err.data.message)
+    }
   }
 
   return (
-    <div
-      className="px-4 py-20 w-full bg-cover bg-center bg-no-repeat min-h-[calc(100vh-128px)]"
-      style={{ backgroundImage: `url('/images/login-bg.png')` }}
-    >
-      <div className="relative max-w-sm w-full mx-auto">
-        <div className="animate-translateXBackForth bg-sunny w-24 h-24 absolute z-0 -bottom-4 -left-8"></div>
-        <div
-          className={`h-[440px] overflow-hidden bg-skyAqua relative z-20 login-shape flex flex-col p-5`}
-        >
-          <span className="text-4xl text-skyAqua relative z-30 mb-32 poppins-bold">Login</span>
-          <div className="animate-translateYBackForth bg-clearBubbles z-10 bg-contain bg-center bg-no-repeat absolute w-full h-full -bottom-12 left-0 right-0"></div>
-          {showPasscode ? (
-            <form
-              onSubmit={submitPasscode}
-              className="flex items-center gap-x-4 w-full relative z-40"
+    <div className="grid grid-cols-12 min-h-screen w-full bg-[#f3f4f7]">
+      <div className="col-span-12 md:col-span-6 h-full flex items-center justify-center">
+        <div className="max-w-80 w-full">
+          <Logo className="w-40 h-28 bg-contain bg-[#5bcae4]" src="bg-logoText" />
+          <h1 className="rubik-bold text-xl text-midnightPlum mt-6 mb-5">Welcome Back!</h1>
+          <div className="flex flex-col">
+            {auth.phoneNumberVerified ? (
+              <form onSubmit={submitCode} className="flex flex-col w-full">
+                <div className="flex flex-col">
+                  <label htmlFor="code" className="text-13 rubik-regular text-midnightPlum mb-2 ">
+                    Code
+                  </label>
+                  <input
+                    name="code"
+                    onChange={handleInput}
+                    value={(inputs.code as string) || ''}
+                    className={`${inputStyles} mb-7 bg-transparent placeholder:text-[#cccdd1]`}
+                    aria-label="Enter Code"
+                    placeholder="Code"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="rounded-sm shadow-submit h-[50px] w-full content-center uppercase bg-neonSkyAqua text-white text-sm rubik poppins-regular"
+                >
+                  Enter Code
+                </button>
+                {isActive && (
+                  <div className="text-sm poppins-regular text-white my-2">{formattedTime}</div>
+                )}
+                {error && <span className="text-sm poppins-regular text-white">{error}</span>}
+              </form>
+            ) : (
+              <form onSubmit={submitPhoneNumber} className="flex flex-col w-full">
+                <div className="flex flex-col">
+                  <label htmlFor="code" className="text-13 rubik-regular text-midnightPlum mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    name="phoneNumber"
+                    onChange={handleInput}
+                    value={(inputs.phoneNumber as string) || ''}
+                    className={`${inputStyles} mb-7 bg-transparent placeholder:text-[#cccdd1]`}
+                    aria-label="Enter Phone Number"
+                    placeholder="Phone Number"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="rounded-sm shadow-submit h-[50px] w-full content-center uppercase bg-neonSkyAqua text-white text-sm rubik poppins-regular"
+                >
+                  Enter Phone Number
+                </button>
+                {error && <span className="text-sm poppins-regular text-white">{error}</span>}
+              </form>
+            )}
+            <Link
+              href="/auth/register"
+              className="text-sm text-white poppins-regular relative z-10"
             >
-              <input
-                name="passcode"
-                onChange={handleInput}
-                value={(inputs.passcode as string) || ''}
-                className="bg-white p-4 w-full border-[3px] border-sunny focus:border-sunny focus:outline-none"
-                aria-label="Enter Passcode"
-                placeholder="Enter Passcode"
-              />
-              <button className="p-4 border-[3px] border-sunny w-fit h-full">
-                <AwesomeIcon icon={lockIcon} className="w-5 h-5 text-sunny" />
-              </button>
-            </form>
-          ) : (
-            <form onSubmit={submitCode} className="flex items-center gap-x-4 w-full relative z-40">
-              <input
-                name="code"
-                onChange={handleInput}
-                value={(inputs.code as string) || ''}
-                className="bg-white p-4 w-full border-[3px] border-sunny focus:border-sunny focus:outline-none"
-                aria-label="Enter Code"
-                placeholder="Enter Code"
-              />
-              <button className="p-4 border-[3px] border-sunny w-fit h-full">
-                <AwesomeIcon icon={lockIcon} className="w-5 h-5 text-sunny" />
-              </button>
-            </form>
-          )}
+              Register
+            </Link>
+          </div>
         </div>
       </div>
     </div>

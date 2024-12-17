@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import generateRandomString from "./genereateRandomString.js";
+import generateRandomString from "./genereateRandomString";
 
 export const generateToken = (user: any, expiresIn: any) => {
   const secret = process.env.JWT_SECRET;

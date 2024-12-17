@@ -6,11 +6,10 @@ export interface DashboardStatePayload {
   success: boolean;
   error: string | false | null;
   message: string | null;
-  info: {
-    productsCount: number;
-    code: { updatedAt: string; code: string };
-    createdAt: string;
-  } | null;
+  filteredArray: {}[];
+  sortKey: string;
+  sortDirection: string;
+  sortedData: {}[];
 }
 
 export const initialDashboardState: DashboardStatePayload = {
@@ -18,7 +17,10 @@ export const initialDashboardState: DashboardStatePayload = {
   success: false,
   error: null,
   message: null,
-  info: null,
+  sortKey: "",
+  sortDirection: "asc",
+  sortedData: [],
+  filteredArray: [],
 };
 
 export const dashboardSlice = createSlice({
@@ -31,6 +33,46 @@ export const dashboardSlice = createSlice({
     resetDashboardError: (state) => {
       state.error = null;
       state.message = null;
+    },
+    sortTable: (state, action) => {
+      const { key } = action.payload;
+
+      const direction =
+        state.sortKey === key && state.sortDirection === "asc" ? "desc" : "asc";
+
+      state.sortKey = key;
+      state.sortDirection = direction;
+
+      const getValueFromObject = (obj: any, key: any) => {
+        const keys = key.split(".");
+        return keys.reduce((acc: any, curr: any) => acc?.[curr], obj);
+      };
+
+      const sortedData = [...state.filteredArray].sort((a, b) => {
+        let valueA = a;
+        let valueB = b;
+
+        valueA = getValueFromObject(valueA, key);
+        valueB = getValueFromObject(valueB, key);
+
+        if (typeof valueA === "string" && typeof valueB === "string") {
+          if (valueA.toLowerCase() < valueB.toLowerCase())
+            return direction === "asc" ? -1 : 1;
+          if (valueA.toLowerCase() > valueB.toLowerCase())
+            return direction === "asc" ? 1 : -1;
+        }
+
+        if (typeof valueA === "number" && typeof valueB === "number") {
+          return direction === "asc" ? valueA - valueB : valueB - valueA;
+        }
+
+        return 0;
+      });
+
+      state.filteredArray = sortedData;
+    },
+    setInitialArray: (state, { payload }) => {
+      state.filteredArray = payload.arrayToFilter;
     },
   },
   extraReducers: (builder) => {
@@ -56,5 +98,9 @@ export const dashboardSlice = createSlice({
 export const dashboardReducer =
   dashboardSlice.reducer as Reducer<DashboardStatePayload>;
 
-export const { resetDashboardSuccess, resetDashboardError } =
-  dashboardSlice.actions;
+export const {
+  resetDashboardSuccess,
+  resetDashboardError,
+  sortTable,
+  setInitialArray,
+} = dashboardSlice.actions;

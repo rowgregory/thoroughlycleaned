@@ -1,13 +1,10 @@
 "use server";
 
 import { NextRequest, NextResponse } from "next/server.js";
-import { URL } from "url";
 import { updateHomePage } from "./put/updateHomePage";
 
 export async function PUT(req: NextRequest) {
-  const url = new URL(req.url);
-  const query = url.searchParams.get("endpoint");
-  console.log("QUERY ", query);
+  const query = req.nextUrl.searchParams.get("endpoint");
 
   switch (query) {
     case "UPDATE_HOME_PAGE":

@@ -1,45 +1,18 @@
 "use client";
 
 import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
-import { RootState } from "../store";
 
-// const fetchFn = async (
-//   url: RequestInfo,
-//   options?: RequestInit
-// ): Promise<Response> => {
-//   try {
-//     const response = await fetch(url, options);
-//     if (!response.ok) {
-//       throw new Error("Network response was not ok");
-//     }
-//     return response; // Return the response directly
-//   } catch (error) {
-//     console.error("Error in fetchFn:", error);
-//     throw error; // Propagate error
-//   }
-// };
+console.log(process.env.NEXT_PUBLIC_BASE_URL);
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: `http://localhost:3000/api`,
-  // fetchFn,
-  // credentials: "same-origin",
-  prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).auth?.token;
-    if (token) {
-      (headers as Headers).set("Authorization", `Bearer ${token}`);
-      (headers as Headers).set("Content-Type", "application/json");
-      (headers as Headers).set("Access-Control-Allow-Origin", "*");
-      (headers as Headers).set(
-        "Access-Control-Allow-Methods",
-        "DELETE, POST, GET, OPTIONS"
-      );
-      (headers as Headers).set(
-        "Access-Control-Allow-Headers",
-        "Content-Type, Authorization, X-Requested-With"
-      );
-    }
+  baseUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api`,
+  prepareHeaders: (headers) => {
+    headers.set("Content-Type", "application/json");
     return headers;
   },
+  // This ensures that cookies are included in
+  // both the frontend and backend communication.
+  credentials: "include",
 });
 
 export const baseQueryWithRetry = retry(baseQuery, { maxRetries: 0 });
@@ -47,6 +20,6 @@ export const baseQueryWithRetry = retry(baseQuery, { maxRetries: 0 });
 export const api = createApi({
   reducerPath: "splitApi",
   baseQuery: baseQueryWithRetry,
-  tagTypes: ["Twilio"],
+  tagTypes: ["Auth", "Dashboard", "Service", "Testimonial"],
   endpoints: () => ({}),
 }) as any;
