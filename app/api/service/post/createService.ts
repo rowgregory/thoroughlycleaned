@@ -1,7 +1,7 @@
 import prisma from "@/prisma/client";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function createService(req: Request) {
+export async function createService(req: NextRequest) {
   try {
     const { name, image, description } = await req.json();
 

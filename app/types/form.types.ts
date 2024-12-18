@@ -5,7 +5,7 @@ import {
   ReactNode,
   SetStateAction,
 } from "react";
-import { Inputs } from "./common.types";
+import { Errors, Inputs } from "./common.types";
 
 export interface ServiceFormProps {
   handleSubmit: (event: FormEvent<HTMLFormElement>) => void;
@@ -13,6 +13,8 @@ export interface ServiceFormProps {
   inputs: Inputs;
   setInputs: Dispatch<SetStateAction<Inputs>>;
   isCreate?: boolean;
+  errors: Errors;
+  loading: boolean;
 }
 
 export interface TestimonialFormProps {
@@ -20,6 +22,8 @@ export interface TestimonialFormProps {
   handleInput: (event: ChangeEvent<HTMLInputElement>) => void;
   inputs: Inputs;
   isCreate?: boolean;
+  errors: Errors;
+  loading: boolean;
 }
 
 export interface RegisterFormProps {
@@ -39,4 +43,11 @@ export interface FileInputProps {
 export interface DragAndDropUploaderProps {
   inputs: Inputs;
   setInputs: Dispatch<SetStateAction<Inputs>>;
+}
+
+export interface PriceEstimateFormProps {
+  formStyles: string;
+  inputStyles: string;
+  selectStyles: string;
+  buttonStyles?: string;
 }

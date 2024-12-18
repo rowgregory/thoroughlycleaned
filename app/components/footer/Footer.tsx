@@ -1,5 +1,5 @@
 import React from 'react'
-import RequestEstimateForm from '@/app/forms/RequestEstimateForm'
+import PriceEstimateForm from '@/app/forms/PriceEstimateForm'
 import { sqyshUrl } from '@/public/data/paths'
 import { contactInfo } from '@/public/data/footer-contact.data'
 import ContactInfoItem from './ContactInfoItem'
@@ -47,7 +47,7 @@ const Footer = () => {
             >
               Request An Estimate
             </span>
-            <RequestEstimateForm
+            <PriceEstimateForm
               formStyles="flex flex-col gap-y-3.5 mt-6"
               inputStyles="bg-white px-5 py-3.5 border-2 border-sunny focus:outline-none"
               selectStyles="bg-white px-5 py-3.5 text-[#adadb7] border-2 border-sunny focus:outline-none"

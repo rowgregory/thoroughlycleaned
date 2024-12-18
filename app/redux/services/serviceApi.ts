@@ -34,7 +34,6 @@ export const serviceApi = api.injectEndpoints({
       query: () => `${BASE_URL}/get?endpoint=FETCH_SERVICES`,
       providesTags: ["Service"],
       keepUnusedDataFor: 0,
-      suspense: true,
       async onQueryStarted(_: any, { dispatch, queryFulfilled }: any) {
         try {
           const { data } = await queryFulfilled;

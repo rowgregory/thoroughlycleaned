@@ -11,6 +11,7 @@ import { appReducer } from "./features/appSlice";
 import { dashboardReducer } from "./features/dashboardSlice";
 import { serviceReducer } from "./features/serviceSlice";
 import { testimonialReducer } from "./features/testimonialSlice";
+import { priceEstimateReducer } from "./features/priceEstimateSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   dashboard: dashboardReducer,
   service: serviceReducer,
   testimonial: testimonialReducer,
+  priceEstimate: priceEstimateReducer,
   [api.reducerPath]: api.reducer,
   [imgbbApi.reducerPath]: imgbbApi.reducer,
 });

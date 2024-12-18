@@ -7,7 +7,8 @@ const TestimonialForm: FC<TestimonialFormProps> = ({
   handleSubmit,
   handleInput,
   inputs,
-  isCreate
+  isCreate,
+  errors
 }) => {
   return (
     <form onSubmit={handleSubmit}>
@@ -23,6 +24,9 @@ const TestimonialForm: FC<TestimonialFormProps> = ({
           aria-label="Name"
           value={(inputs.name as string) || ''}
         />
+        {errors?.name && (
+          <span className="text-13 mt-0.5 poppins-regular text-red-500">{errors?.name}</span>
+        )}
       </div>
       <div className="flex flex-col mb-6">
         <label htmlFor="review" className="text-sm rubik-regular text-midnightPlum mb-2">
@@ -36,6 +40,9 @@ const TestimonialForm: FC<TestimonialFormProps> = ({
           aria-label="Review"
           value={(inputs.review as string) || ''}
         />
+        {errors?.review && (
+          <span className="text-13 mt-0.5 poppins-regular text-red-500">{errors?.review}</span>
+        )}
       </div>
       <div className="flex flex-col mb-6">
         <label htmlFor="reviewTitle" className="text-sm rubik-regular text-midnightPlum mb-2">
@@ -49,11 +56,14 @@ const TestimonialForm: FC<TestimonialFormProps> = ({
           aria-label="Review Title"
           value={(inputs.reviewTitle as string) || ''}
         />
+        {errors?.reviewTitle && (
+          <span className="text-13 mt-0.5 poppins-regular text-red-500">{errors?.reviewTitle}</span>
+        )}
       </div>
       <div className="flex items-center gap-x-5">
         <button
           type="submit"
-          className="py-3 px-4 rounded-[4px] bg-neonSkyAqua text-white shadow-submit text-sm rubik-thin tracking-wide"
+          className="w-20 py-3 px-4 rounded-[4px] bg-neonSkyAqua text-white shadow-submit text-sm rubik-thin tracking-wide"
         >
           {isCreate ? 'Create' : 'Update'}
         </button>

@@ -49,17 +49,15 @@ export const dashboardSlice = createSlice({
       };
 
       const sortedData = [...state.filteredArray].sort((a, b) => {
-        let valueA = a;
-        let valueB = b;
-
-        valueA = getValueFromObject(valueA, key);
-        valueB = getValueFromObject(valueB, key);
+        let valueA = getValueFromObject(a, key);
+        let valueB = getValueFromObject(b, key);
 
         if (typeof valueA === "string" && typeof valueB === "string") {
-          if (valueA.toLowerCase() < valueB.toLowerCase())
-            return direction === "asc" ? -1 : 1;
-          if (valueA.toLowerCase() > valueB.toLowerCase())
-            return direction === "asc" ? 1 : -1;
+          valueA = valueA.toLowerCase();
+          valueB = valueB.toLowerCase();
+
+          if (valueA < valueB) return direction === "asc" ? -1 : 1;
+          if (valueA > valueB) return direction === "asc" ? 1 : -1;
         }
 
         if (typeof valueA === "number" && typeof valueB === "number") {

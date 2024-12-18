@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 import Logo from '../common/Logo'
 import { FaFacebook, FaPhone, FaInstagram } from 'react-icons/fa'
 import AwesomeIcon from '../common/AwesomeIcon'
@@ -39,12 +38,9 @@ const HeaderTop = () => {
           <a href="https://www.instagram.com" className="w-4 h-4" aria-label="Instagram">
             <FaInstagram className="w-4 h-4" />
           </a>
-          <Link
-            href="/quote"
-            className="h-12 text-zinc-800 hidden sm:flex items-center px-5 text-sm poppins-bold bg-sunny whitespace-nowrap"
-          >
+          <button className="h-12 text-zinc-800 hidden sm:flex items-center px-5 text-sm poppins-bold bg-sunny whitespace-nowrap">
             Get a Quote
-          </Link>
+          </button>
         </nav>
       </div>
     </section>

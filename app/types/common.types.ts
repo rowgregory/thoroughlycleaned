@@ -57,6 +57,19 @@ interface ServerWrapperProps {
   params: Promise<{ id: string }>;
 }
 
+interface PriceEstimateProps {
+  name: string;
+  phoneNumber: string;
+  serviceType: string;
+  createdAt: string;
+}
+
+interface PriceEstimateRowProps {
+  data: PriceEstimateProps;
+  filteredArray: {}[];
+  i: number;
+}
+
 export type {
   VideoProps,
   BannerProps,
@@ -67,4 +80,6 @@ export type {
   RowProps,
   ServerWrapperProps,
   PageWrapperProps,
+  PriceEstimateProps,
+  PriceEstimateRowProps,
 };

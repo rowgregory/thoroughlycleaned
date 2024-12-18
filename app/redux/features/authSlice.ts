@@ -36,6 +36,9 @@ export const authSlice = createSlice({
     setAuthState(state, action: PayloadAction<boolean>) {
       state.isLoggedIn = action.payload;
     },
+    setPhoneNumberNotVerified(state) {
+      state.phoneNumberVerified = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -72,4 +75,4 @@ export const authSlice = createSlice({
 
 export const authReducer = authSlice.reducer as Reducer<AuthStatePayload>;
 
-export const { setAuthState } = authSlice.actions;
+export const { setAuthState, setPhoneNumberNotVerified } = authSlice.actions;

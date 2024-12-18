@@ -63,7 +63,7 @@ export async function verifyPhoneNumber(req: NextRequest) {
     await vonage.sms.send({
       to: `+1${process.env.GREG_PHONE_NUMBER}`,
       from: `+${process.env.VONAGE_PHONE_NUMBER}`,
-      text: `Hello from Sqysh! Here is the code to login: ${code}`,
+      text: `Hello from Thoroughly Cleaned!\n\nHere is the code to login: ${code}\n\n\nPowered by Sqysh`,
     });
 
     return NextResponse.json({

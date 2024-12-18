@@ -33,15 +33,6 @@ model Service {
   updatedAt   DateTime @updatedAt
 }
 
-model HomePage {
-  id             Int      @id @default(autoincrement())
-  bannerSubtitle String   @db.VarChar(255)
-  bannerTitle    String
-  bannerVideoUrl String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-}
-
 model TwoFactorAuth {
   id          Int      @id @default(autoincrement())
   phoneNumber String   @unique
@@ -52,12 +43,6 @@ model TwoFactorAuth {
   updatedAt   DateTime @updatedAt
 }
 
-model Visit {
-  id    Int      @id @default(autoincrement())
-  date  DateTime @unique
-  count Int      @default(1)
-}
-
 model Testimonial {
   id          Int      @id @default(autoincrement())
   name        String
@@ -65,4 +50,28 @@ model Testimonial {
   reviewTitle String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model PriceEstimate {
+  id          Int      @id @default(autoincrement())
+  name        String
+  phoneNumber String
+  serviceType String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model HomePage {
+  id             Int      @id @default(autoincrement())
+  bannerSubtitle String   @db.VarChar(255)
+  bannerTitle    String
+  bannerVideoUrl String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Visit {
+  id    Int      @id @default(autoincrement())
+  date  DateTime @unique
+  count Int      @default(1)
 }

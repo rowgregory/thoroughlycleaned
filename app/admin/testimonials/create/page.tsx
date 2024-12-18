@@ -3,20 +3,25 @@
 import TestimonialsForm from '@/app/forms/TestimonialForm'
 import useForm from '@/app/hooks/useForm'
 import { useCreateTestimonialMutation } from '@/app/redux/services/testimonialApi'
+import validateTestimonialForm from '@/app/validations/validateTestimonialForm'
+import { TESTIMONIAL_INITIAL_FIELDS } from '@/public/data/initial-form-inputs.data'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
 const CreateTestimonial = () => {
-  const navigate = useRouter()
-  const { inputs, handleInput } = useForm(['name', 'review', 'reviewTitle'])
-  const [createTestimonial] = useCreateTestimonialMutation()
+  const { push } = useRouter()
+  const { inputs, handleInput, setErrors, errors } = useForm(TESTIMONIAL_INITIAL_FIELDS)
+  const [createTestimonial, { isLoading: loadingCreate }] = useCreateTestimonialMutation()
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-
-    const response = await createTestimonial(inputs).unwrap()
-
-    if (response.success) navigate.push('/admin/testimonials')
+    const isValid = validateTestimonialForm(inputs, setErrors)
+    if (isValid) {
+      await createTestimonial(inputs)
+        .unwrap()
+        .then(() => push('/admin/testimonials'))
+        .catch((err: any) => console.log(err))
+    }
   }
 
   return (
@@ -28,6 +33,8 @@ const CreateTestimonial = () => {
           handleInput={handleInput}
           inputs={inputs}
           isCreate={true}
+          errors={errors}
+          loading={loadingCreate}
         />
       </div>
     </section>

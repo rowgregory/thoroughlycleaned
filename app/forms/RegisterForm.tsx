@@ -1,48 +1,101 @@
-import React, { FC } from 'react'
-import { RegisterFormProps } from '../types/form.types'
+'use client'
 
-const RegisterForm: FC<RegisterFormProps> = ({
-  handleSubmit,
-  handleInput,
-  handleToggle,
-  inputs
-}) => {
+import React, { FormEvent } from 'react'
+import { useRouter } from 'next/navigation'
+import useForm from '../hooks/useForm'
+import { useRegisterMutation } from '../redux/services/authApi'
+import validateRegisterForm from '../validations/validateRegisterForm'
+import { inputStyles, labelStyles } from '@/public/data/form.styles'
+import { REGISTER_INITIAL_FIELDS } from '@/public/data/initial-form-inputs.data'
+
+const RegisterForm = () => {
+  const { push } = useRouter()
+  const { inputs, handleInput, handleToggle, setErrors, errors } = useForm(REGISTER_INITIAL_FIELDS)
+  const [register] = useRegisterMutation()
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    const isValid = validateRegisterForm(inputs, setErrors)
+    if (isValid) {
+      await register(inputs)
+        .then(() => push('/admin/dashboard'))
+        .catch((err: any) => console.log(err))
+    }
+  }
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col items-center gap-y-4 w-full relative z-40"
-    >
-      <input
-        name="firstName"
-        onChange={handleInput}
-        value={(inputs.firstName as string) || ''}
-        className="bg-white p-4 w-full border-[3px] border-sunny focus:border-sunny focus:outline-none"
-        aria-label="Enter First Name"
-        placeholder="Enter First Name"
-      />
-      <input
-        name="lastName"
-        onChange={handleInput}
-        value={(inputs.lastName as string) || ''}
-        className="bg-white p-4 w-full border-[3px] border-sunny focus:border-sunny focus:outline-none"
-        aria-label="Enter Last Name"
-        placeholder="Enter Last Name"
-      />
-      <input
-        name="phoneNumber"
-        onChange={handleInput}
-        value={(inputs.phoneNumber as string) || ''}
-        className="bg-white p-4 w-full border-[3px] border-sunny focus:border-sunny focus:outline-none"
-        aria-label="Enter Phone Number"
-        placeholder="Enter Phone Number"
-      />
-      <div className="flex justify-start items-center my-6 gap-x-3">
-        <input type="checkbox" name="consentToSMS" onChange={handleToggle} className="" />
-        <label htmlFor="consentToSMS" className="text-white text-sm">
-          By registering, you agree to receive text messages from potential clients.
+    <form onSubmit={handleSubmit} className="flex flex-col w-full">
+      <div className="flex flex-col mb-7">
+        <label htmlFor="code" className={labelStyles}>
+          First Name
         </label>
+        <input
+          name="firstName"
+          onChange={handleInput}
+          value={(inputs.firstName as string) || ''}
+          className={`${inputStyles}  text-inputText`}
+          aria-label="Enter First Name"
+          placeholder="Enter First Name"
+        />
+        {errors.firstName && (
+          <span className="text-13 mt-0.5 poppins-regular text-red-500">{errors.firstName}</span>
+        )}
       </div>
-      <button type="submit" className="p-4 border-[3px] border-sunny w-full h-full text-white">
+      <div className="flex flex-col mb-7">
+        <label htmlFor="code" className={labelStyles}>
+          Last Name
+        </label>
+        <input
+          name="lastName"
+          onChange={handleInput}
+          value={(inputs.lastName as string) || ''}
+          className={`${inputStyles}  text-inputText`}
+          aria-label="Enter Last Name"
+          placeholder="Enter Last Name"
+        />
+        {errors.lastName && (
+          <span className="text-13 mt-0.5 poppins-regular text-red-500">{errors.lastName}</span>
+        )}
+      </div>
+      <div className="flex flex-col mb-7">
+        <label htmlFor="code" className={labelStyles}>
+          Phone Number
+        </label>
+        <input
+          name="phoneNumber"
+          onChange={handleInput}
+          value={(inputs.phoneNumber as string) || ''}
+          className={`${inputStyles} text-inputText`}
+          aria-label="Enter Phone Number"
+          placeholder="Enter Phone Number"
+        />
+        {errors.phoneNumber && (
+          <span className="text-13 mt-0.5 poppins-regular text-red-500">{errors.phoneNumber}</span>
+        )}
+      </div>
+      <div className="flex flex-col my-6">
+        <div className="flex gap-x-6 items-start justify-start">
+          <input
+            type="checkbox"
+            name="consentToSMS"
+            onChange={handleToggle}
+            checked={(inputs.consentToSMS as boolean) || false}
+            className="mt-1"
+          />
+          <label htmlFor="consentToSMS" className={`${labelStyles} mb-0`}>
+            By checking this box, you agree to receive text messages from Thoroughly Cleaned. Reply
+            STOP to opt out; Reply HELP for help. Message frequency varies. Message and data rates
+            may apply.
+          </label>
+        </div>
+        {errors.consentToSMS && (
+          <span className="text-13 mt-0.5 poppins-regular text-red-500">{errors.consentToSMS}</span>
+        )}
+      </div>
+      <button
+        type="submit"
+        className="rounded-sm shadow-submit h-[50px] w-full content-center uppercase bg-neonSkyAqua text-white text-sm rubik poppins-regular"
+      >
         Register
       </button>
     </form>

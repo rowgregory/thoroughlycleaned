@@ -41,18 +41,18 @@ const DragAndDropUploader: FC<DragAndDropUploaderProps> = ({ inputs, setInputs }
   }
 
   return (
-    <div>
+    <>
       <div
         onDragOver={(e) => e.preventDefault()}
         onDrop={handleDrop}
         onClick={() => document.getElementById('file-input')?.click()}
-        className="w-64 h-auto aspect-video rounded-md mb-9 border-dashed border-2 border-gray-200 bg-white flex flex-col items-center justify-center p-4 cursor-pointer"
+        className="w-64 h-auto aspect-video rounded-md border-dashed border-2 border-gray-200 bg-white flex flex-col items-center justify-center p-4 cursor-pointer"
       >
         {inputs?.image ? (
           <Picture
             src={inputs?.image as string}
             alt="Uploaded"
-            className="max-w-full max-h-full"
+            className="max-w-full max-h-full h-28 w-28"
             priority={false}
           />
         ) : (
@@ -69,7 +69,7 @@ const DragAndDropUploader: FC<DragAndDropUploaderProps> = ({ inputs, setInputs }
         accept="image/*"
         onChange={handleFileChange}
       />
-    </div>
+    </>
   )
 }
 

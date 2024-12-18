@@ -3,7 +3,9 @@
 import dynamic from 'next/dynamic'
 
 const Banner = dynamic(() => import('./components/home/Banner'), { ssr: false })
-const RequestEstimate = dynamic(() => import('./components/home/RequestEstimate'), { ssr: false })
+const PriceEstimate = dynamic(() => import('./components/home/PriceEstimate'), {
+  ssr: false
+})
 const About = dynamic(() => import('./components/home/About'), { ssr: false })
 const Services = dynamic(() => import('./components/home/Services'), { ssr: false })
 const WhyChooseUs = dynamic(() => import('./components/home/WhyChooseUs'), { ssr: false })
@@ -18,7 +20,7 @@ const Home = () => {
   return (
     <>
       <Banner />
-      <RequestEstimate />
+      <PriceEstimate />
       <About />
       <Services />
       <WhyChooseUs />

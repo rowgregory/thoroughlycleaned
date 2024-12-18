@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "smartdata.tonytemplates.com",
       },
+      {
+        protocol: "https",
+        hostname: "i.ibb.co",
+      },
     ],
   },
 };

@@ -2,8 +2,6 @@
 
 import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 
-console.log(process.env.NEXT_PUBLIC_BASE_URL);
-
 const baseQuery = fetchBaseQuery({
   baseUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api`,
   prepareHeaders: (headers) => {
@@ -20,6 +18,6 @@ export const baseQueryWithRetry = retry(baseQuery, { maxRetries: 0 });
 export const api = createApi({
   reducerPath: "splitApi",
   baseQuery: baseQueryWithRetry,
-  tagTypes: ["Auth", "Dashboard", "Service", "Testimonial"],
+  tagTypes: ["Auth", "Dashboard", "Service", "Testimonial", "Price-Estimate"],
   endpoints: () => ({}),
 }) as any;

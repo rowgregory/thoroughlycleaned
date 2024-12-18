@@ -1,44 +1,21 @@
-'use client'
-
-import React, { FormEvent } from 'react'
-import useForm from '@/app/hooks/useForm'
+import React from 'react'
 import RegisterForm from '@/app/forms/RegisterForm'
-import { useRegisterMutation } from '@/app/redux/services/authApi'
+import Logo from '@/app/components/common/Logo'
+import Link from 'next/link'
 
 const Register = () => {
-  const { inputs, handleInput, handleToggle } = useForm([
-    'firstName',
-    'lastName',
-    'phoneNumber',
-    'consentToSMS'
-  ])
-  const [register] = useRegisterMutation()
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-
-    await register(inputs)
-      .unwrap()
-      .then(() => console.log('REGISTER COMPLETE'))
-      .catch((err: any) => console.warn(err))
-  }
-
   return (
-    <div
-      className="px-4 py-20 w-full bg-cover bg-center bg-no-repeat min-h-[calc(100vh-128px)]"
-      style={{ backgroundImage: `url('/images/login-bg.png')` }}
-    >
-      <div className="relative max-w-sm w-full mx-auto">
-        <div className="animate-translateXBackForth bg-sunny w-24 h-24 absolute z-0 -bottom-4 -left-8"></div>
-        <div className={`overflow-hidden bg-skyAqua relative z-20 login-shape flex flex-col p-5`}>
-          <span className="text-4xl text-skyAqua relative z-30 mb-32 poppins-bold">Register</span>
-          <div className="animate-translateYBackForth bg-clearBubbles z-10 bg-contain bg-center bg-no-repeat absolute w-full h-full -bottom-12 left-0 right-0"></div>
-          <RegisterForm
-            handleSubmit={handleSubmit}
-            handleInput={handleInput}
-            handleToggle={handleToggle}
-            inputs={inputs}
-          />
+    <div className="grid grid-cols-12 min-h-screen w-full bg-[#f3f4f7]">
+      <div className="col-span-12 md:col-span-6 h-full flex items-center justify-center">
+        <div className="max-w-80 w-full">
+          <Logo className="w-40 h-28 bg-contain bg-[#5bcae4]" src="bg-logoText" />
+          <h1 className="rubik-bold text-xl text-midnightPlum mt-6 mb-5">Welcome!</h1>
+          <div className="flex flex-col">
+            <RegisterForm />
+            <Link href="/auth/login" className="text-sm rubik-regular text-midnightPlum mt-8">
+              Login
+            </Link>
+          </div>
         </div>
       </div>
     </div>

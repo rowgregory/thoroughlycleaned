@@ -9,25 +9,44 @@ import {
 } from '@/app/redux/services/testimonialApi'
 import { RootState, useAppSelector } from '@/app/redux/store'
 import { useRouter } from 'next/navigation'
+import { TESTIMONIAL_INITIAL_FIELDS } from '@/public/data/initial-form-inputs.data'
+import Loading from '../loading'
+import validateTestimonialForm from '@/app/validations/validateTestimonialForm'
 
 const UpdateTestimonial = ({ id }: { id: string }) => {
-  const navigate = useRouter()
-  const [updateTestimonial] = useUpdateTestimonialMutation()
+  const { push } = useRouter()
+  const [updateTestimonial, { isLoading: loadingUpdate }] = useUpdateTestimonialMutation()
   const { testimonial } = useAppSelector((state: RootState) => state.testimonial)
 
-  const { inputs, handleInput } = useForm(['id', 'name', 'review', 'reviewTitle'], testimonial)
+  const { inputs, handleInput, setErrors, errors } = useForm(
+    TESTIMONIAL_INITIAL_FIELDS,
+    testimonial
+  )
 
-  useFetchTestimonialQuery(id, { refetchOnMountOrArgChange: true })
+  const { isLoading } = useFetchTestimonialQuery(id)
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-
-    const response = await updateTestimonial(inputs).unwrap()
-
-    if (response.success) navigate.push('/admin/testimonials')
+    const isValid = validateTestimonialForm(inputs, setErrors)
+    if (isValid) {
+      await updateTestimonial(inputs)
+        .unwrap()
+        .then(() => push('/admin/testimonials'))
+        .catch((err: any) => console.log(err))
+    }
   }
 
-  return <TestimonialsForm handleSubmit={handleSubmit} handleInput={handleInput} inputs={inputs} />
+  if (isLoading) return <Loading />
+
+  return (
+    <TestimonialsForm
+      handleSubmit={handleSubmit}
+      handleInput={handleInput}
+      inputs={inputs}
+      errors={errors}
+      loading={loadingUpdate}
+    />
+  )
 }
 
 export default UpdateTestimonial

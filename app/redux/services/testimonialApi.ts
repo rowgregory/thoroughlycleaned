@@ -47,6 +47,7 @@ export const testimonialApi = api.injectEndpoints({
     fetchTestimonial: build.query({
       query: (id: string) => `${BASE_URL}/get/${id}?endpoint=FETCH_TESTIMONIAL`,
       providesTags: ["Testimonial"],
+      keepUnusedDataFor: 0,
     }),
   }),
 });
