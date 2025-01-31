@@ -16,7 +16,7 @@ const VerifyForgotPasswordCode = () => {
     if (minutes === 0 && seconds === 0 && !isActive) {
       push('/auth/forgot-password')
     }
-  }, [minutes, seconds, isActive])
+  }, [minutes, seconds, isActive, push])
 
   return (
     <>

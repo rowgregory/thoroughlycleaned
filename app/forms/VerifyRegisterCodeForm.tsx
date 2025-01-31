@@ -56,7 +56,7 @@ const VerifyRegisterCodeForm: FC<{ showResetCode: boolean; twoFactorAuthIdtDecod
   return (
     <form className="flex flex-col w-full relative">
       {showResetCode ? (
-        <div className="text-zinc-100 text-sm text-center mb-4 animate-fadeIn">Click 'Resend Code' to receive a new code</div>
+        <div className="text-zinc-100 text-sm text-center mb-4 animate-fadeIn">Click &apos;Resend Code&apos; to receive a new code</div>
       ) : (
         <p className="text-zinc-100 text-sm text-center mb-4 animate-fadeIn">
           To proceed, please check your phone and enter the code that was sent to you via text. Do not go back until this step is completed.

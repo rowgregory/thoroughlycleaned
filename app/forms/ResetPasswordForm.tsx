@@ -23,7 +23,7 @@ const ResetPasswordForm = () => {
     if (!phoneNumber) {
       push('/auth/forgot-password')
     }
-  }, [phoneNumber])
+  }, [phoneNumber, push])
 
   const submitResetPassword = async (e: FormEvent) => {
     e.preventDefault()

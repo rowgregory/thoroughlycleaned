@@ -28,7 +28,7 @@ const PageWrapper: FC<ClientPageProps> = ({ children, data }) => {
 
   useEffect(() => {
     dispatch(setAuthState(data))
-  }, [dispatch])
+  }, [dispatch, data])
 
   return (
     <>
