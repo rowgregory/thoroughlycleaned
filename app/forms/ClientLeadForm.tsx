@@ -38,7 +38,10 @@ const ClientLeadForm: FC<ClientLeadFormProps> = ({ formStyles, inputStyles, sele
 
     await createClientLead(inputs)
       .unwrap()
-      .then(() => dispatch(setOpenModalClientLeadCreated()))
+      .then(() => {
+        setInputs({})
+        dispatch(setOpenModalClientLeadCreated())
+      })
       .catch(() => {})
   }
 
@@ -97,7 +100,9 @@ const ClientLeadForm: FC<ClientLeadFormProps> = ({ formStyles, inputStyles, sele
         </select>
         <button disabled={isLoading} type="submit" className={`${buttonStyles} bg-skyAqua`}>
           {isLoading ? (
-            <Spinner wAndH="w-6 h-6" fill="fill-white" />
+            <div className="w-full h-full flex items-center justify-center">
+              <Spinner fill="fill-sunny" wAndH="w-7 h-7" />
+            </div>
           ) : (
             <BubbleBtn bubbleColor={`${bubbleColor || 'bg-white'}`} text="Submit Now" />
           )}

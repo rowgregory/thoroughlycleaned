@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { TextBlockMap } from '@/app/redux/features/textBlockSlice'
 import EditableImage from './EditableImage'
 import EditableTextArea from './EditableTextArea'
-import PageBannerLoaderSVG from '@/app/icons/PageBannerLoaderSVG'
+import Picture from './Picture'
 
 interface PageBannerProps {
   type: keyof TextBlockMap
@@ -18,7 +18,7 @@ const PageBanner: FC<PageBannerProps> = ({ type, fileNameKey, titleNameKey, subt
 
   return isLoading ? (
     <div className="w-full h-[425px] 990:h-[530px] flex items-center justify-center bg-skyAqua overflow-hidden">
-      <PageBannerLoaderSVG />
+      <Picture src="/images/logo-bubble-transparent.png" className="w-40 h-40 990:w-80 990:h-80 object-contain" priority={true} />
     </div>
   ) : (
     <div className="relative h-[425px] 990:h-[530px] w-full">
