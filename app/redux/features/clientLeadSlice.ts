@@ -1,7 +1,13 @@
 import { Reducer, createSlice } from "@reduxjs/toolkit";
 import { clientLeadApi } from "../services/clientLeadApi";
-import { ClientLeadProps } from "@/app/types/common.types";
 
+interface ClientLeadProps {
+  name: string;
+  phoneNumber: string;
+  serviceType: string;
+  createdAt: string;
+  id: string;
+}
 const ClientLeadState = {
   name: "",
   phoneNumber: "",
