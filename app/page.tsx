@@ -1,33 +1,34 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-
-const Banner = dynamic(() => import('./components/home/Banner'), { ssr: false })
-const PriceEstimate = dynamic(() => import('./components/home/PriceEstimate'), {
-  ssr: false
-})
-const About = dynamic(() => import('./components/home/About'), { ssr: false })
-const Services = dynamic(() => import('./components/home/Services'), { ssr: false })
-const WhyChooseUs = dynamic(() => import('./components/home/WhyChooseUs'), { ssr: false })
-const Stats = dynamic(() => import('./components/home/Stats'), { ssr: false })
-const WorkingProcess = dynamic(() => import('./components/home/WorkingProcess'), { ssr: false })
-const Testimonials = dynamic(() => import('./components/home/Testimonials'), { ssr: false })
-const CompletedProjects = dynamic(() => import('./components/home/CompletedProjects'), {
-  ssr: false
-})
+import { useFetchHomePageDataQuery } from './redux/services/textBlockApi'
+const Banner = dynamic(() => import('./components/home/Banner'))
+const ConnectWithUsBlock = dynamic(() => import('./components/_blocks/ConnectWithUsBlock'))
+const AboutBlock = dynamic(() => import('./components/_blocks/AboutBlock'))
+const ServicesBlock = dynamic(() => import('./components/_blocks/ServicesBlock'))
+const WhyChooseUsBlock = dynamic(() => import('./components/_blocks/WhyChooseUsBlock'))
+const Stats = dynamic(() => import('./components/home/Stats'))
+const WorkingProcess = dynamic(() => import('./components/home/WorkingProcess'))
+const TestimonialsBlock = dynamic(() => import('./components/_blocks/TestimonialsBlock'))
+const PhotoGalleryBlock = dynamic(() => import('./components/_blocks/PhotoGalleryBlock'))
 
 const Home = () => {
+  const { data, isLoading } = useFetchHomePageDataQuery()
   return (
     <>
-      <Banner />
-      <PriceEstimate />
-      <About />
-      <Services />
-      <WhyChooseUs />
-      <Stats />
-      <WorkingProcess />
-      <Testimonials />
-      <CompletedProjects />
+      <Banner textBlockMap={data?.transformedTextBlocks} />
+      <ConnectWithUsBlock textBlockMap={data?.transformedTextBlocks} />
+      <AboutBlock textBlockMap={data?.transformedTextBlocks?.ABOUT_BLOCK} />
+      <ServicesBlock textBlockMap={data?.transformedTextBlocks?.SERVICES_BLOCK} services={data?.services} />
+      <WhyChooseUsBlock textBlockMap={data?.transformedTextBlocks} />
+      <Stats textBlockMap={data?.transformedTextBlocks} />
+      <WorkingProcess textBlockMap={data?.transformedTextBlocks} />
+      <TestimonialsBlock
+        textBlockMap={data?.transformedTextBlocks.TESTIMONIALS_BLOCK}
+        testimonials={data?.testimonials}
+        isLoading={isLoading}
+      />
+      <PhotoGalleryBlock textBlockMap={data?.transformedTextBlocks} photoGalleryImages={data?.photoGalleryImages} />
     </>
   )
 }

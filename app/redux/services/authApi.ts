@@ -7,29 +7,62 @@ export const authApi = api.injectEndpoints({
   endpoints: (build: any) => ({
     register: build.mutation({
       query: (body: any) => ({
-        url: `${BASE_URL}/post?endpoint=REGISTER`,
-        method: "POST",
-        body,
-      }),
-    }),
-    verifyPhoneNumber: build.mutation({
-      query: (body: any) => ({
-        url: `${BASE_URL}/post?endpoint=VERIFY_PHONE_NUMBER`,
+        url: `${BASE_URL}/register`,
         method: "POST",
         body,
       }),
     }),
     verifyCode: build.mutation({
       query: (body: any) => ({
-        url: `${BASE_URL}/put?endpoint=VERIFY_CODE`,
+        url: `${BASE_URL}/verify-code`,
         method: "PUT",
         body,
       }),
     }),
     logout: build.mutation({
       query: () => ({
-        url: `${BASE_URL}/post?endpoint=LOGOUT`,
+        url: `${BASE_URL}/logout`,
         method: "POST",
+      }),
+    }),
+    login: build.mutation({
+      query: (body: any) => ({
+        url: `${BASE_URL}/login`,
+        method: "POST",
+        body,
+      }),
+    }),
+    forgotPassword: build.mutation({
+      query: (body: any) => ({
+        url: `${BASE_URL}/forgot-password`,
+        method: "POST",
+        body,
+      }),
+    }),
+    verifyForgotPasswordCode: build.mutation({
+      query: (body: any) => ({
+        url: `${BASE_URL}/verify-forgot-password-code`,
+        method: "POST",
+        body,
+      }),
+    }),
+    resetPassword: build.mutation({
+      query: (body: any) => ({
+        url: `${BASE_URL}/reset-password`,
+        method: "PATCH",
+        body,
+      }),
+    }),
+    authSystemStatus: build.query({
+      query: () => `${BASE_URL}/system-status`,
+      providesTags: ["Service"],
+      keepUnusedDataFor: 0,
+    }),
+    resendCode: build.mutation({
+      query: (body: any) => ({
+        url: `${BASE_URL}/resend-code`,
+        method: "POST",
+        body,
       }),
     }),
   }),
@@ -37,7 +70,13 @@ export const authApi = api.injectEndpoints({
 
 export const {
   useRegisterMutation,
-  useVerifyPhoneNumberMutation,
   useVerifyCodeMutation,
   useLogoutMutation,
+  useLoginMutation,
+  useForgotPasswordMutation,
+  useFetchForgotPasswordSystemStatusQuery,
+  useVerifyForgotPasswordCodeMutation,
+  useResetPasswordMutation,
+  useAuthSystemStatusQuery,
+  useResendCodeMutation,
 } = authApi;

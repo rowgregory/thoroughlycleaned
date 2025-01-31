@@ -1,15 +1,18 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import EditableTextArea from './EditableTextArea'
 
 const Counter = ({
   targetNumber,
   duration = 2000,
-  className
+  className,
+  name
 }: {
   targetNumber: number
   duration: number
   className?: string
+  name: string
 }) => {
   const [displayedNumber, setDisplayedNumber] = useState(0)
   const [inView, setInView] = useState(false)
@@ -70,8 +73,14 @@ const Counter = ({
   }, [inView, scrollingDown, targetNumber, duration])
 
   return (
-    <div ref={ref} className={`${className} text-4xl sm:text-5xl font-bold`}>
-      {displayedNumber}
+    <div ref={ref}>
+      <EditableTextArea
+        tag="span"
+        initialValue={displayedNumber}
+        type="STATS_BLOCK"
+        textBlockKey={name}
+        className={`${className} text-4xl sm:text-5xl font-bold`}
+      />
     </div>
   )
 }

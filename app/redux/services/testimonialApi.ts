@@ -1,4 +1,3 @@
-import { setInitialArray } from "../features/dashboardSlice";
 import { api } from "./api";
 
 const BASE_URL = "/testimonial";
@@ -8,7 +7,7 @@ export const testimonialApi = api.injectEndpoints({
   endpoints: (build: any) => ({
     createTestimonial: build.mutation({
       query: (body: any) => ({
-        url: `${BASE_URL}/post?endpoint=CREATE_TESTIMONIAL`,
+        url: `${BASE_URL}/create-testimonial`,
         method: "POST",
         body,
       }),
@@ -16,7 +15,7 @@ export const testimonialApi = api.injectEndpoints({
     }),
     updateTestimonial: build.mutation({
       query: (body: any) => ({
-        url: `${BASE_URL}/put?endpoint=UPDATE_TESTIMONIAL`,
+        url: `${BASE_URL}/update-testimonial`,
         method: "PUT",
         body,
       }),
@@ -24,30 +23,21 @@ export const testimonialApi = api.injectEndpoints({
     }),
     deleteTestimonial: build.mutation({
       query: (body: any) => ({
-        url: `${BASE_URL}/delete?endpoint=DELETE_TESTIMONIAL`,
+        url: `${BASE_URL}/delete-testimonial`,
         method: "DELETE",
         body,
       }),
       invalidatesTags: ["Testimonial"],
     }),
     fetchTestimonials: build.query({
-      query: () => `${BASE_URL}/get?endpoint=FETCH_TESTIMONIALS`,
+      query: () => `${BASE_URL}/fetch-testimonials`,
       providesTags: ["Testimonial"],
-      keepUnusedDataFor: 0,
-      async onQueryStarted(_: any, { dispatch, queryFulfilled }: any) {
-        try {
-          const { data } = await queryFulfilled;
-
-          dispatch(setInitialArray({ arrayToFilter: data.testimonials }));
-        } catch (error) {
-          console.error("Failed to fetch testimonials:", error);
-        }
-      },
     }),
-    fetchTestimonial: build.query({
-      query: (id: string) => `${BASE_URL}/get/${id}?endpoint=FETCH_TESTIMONIAL`,
+    testimonialSystemStatus: build.query({
+      query: () => `${BASE_URL}/system-status`,
       providesTags: ["Testimonial"],
-      keepUnusedDataFor: 0,
+      keepUnusedDataFor: 300,
+      refetchOnMountOrArgChange: true,
     }),
   }),
 });
@@ -57,5 +47,5 @@ export const {
   useUpdateTestimonialMutation,
   useDeleteTestimonialMutation,
   useFetchTestimonialsQuery,
-  useFetchTestimonialQuery,
+  useTestimonialSystemStatusQuery,
 } = testimonialApi;

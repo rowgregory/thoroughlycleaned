@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import UIFx from "uifx";
 
-const useSoundEffect = (soundFilePath: string) => {
+const useSoundEffect = (soundFilePath: string, playSound: boolean) => {
   const [soundEffect, setSoundEffect] = useState<UIFx | null>(null);
 
   useEffect(() => {
@@ -10,7 +10,13 @@ const useSoundEffect = (soundFilePath: string) => {
     }
   }, [soundFilePath]);
 
-  return soundEffect;
+  const play = () => {
+    if (playSound && soundEffect) {
+      soundEffect.play();
+    }
+  };
+
+  return { play };
 };
 
 export default useSoundEffect;

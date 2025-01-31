@@ -1,11 +1,8 @@
-const Spinner = ({ fill, wAndH }: { fill?: string; wAndH?: string }) => {
+const Spinner = ({ fill, wAndH, className }: { fill?: string; wAndH?: string; className?: string }) => {
   return (
-    <div role="status">
+    <div className={className}>
       <svg
-        aria-hidden="true"
-        className={`inline ${wAndH ?? 'w-5 h-5'} text-zinc-600 animate-spin ${
-          fill || 'fill-white'
-        }`}
+        className={`inline ${wAndH ?? 'w-5 h-5'} text-white animate-spin ${fill || 'fill-white'}`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

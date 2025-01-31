@@ -1,36 +1,34 @@
-import Image from 'next/image';
-import React, { FC, MouseEventHandler, RefObject } from 'react';
+import Image from 'next/image'
+import React, { FC, memo, MouseEventHandler, RefObject } from 'react'
 
 interface PitureProps {
-  src: string;
-  alt: string;
-  className: string;
-  priority: boolean;
-  imgRef?: RefObject<HTMLImageElement>;
-  onClick?: MouseEventHandler<HTMLImageElement>;
+  src: string
+  alt?: string
+  className: string
+  priority: boolean
+  imgRef?: RefObject<HTMLImageElement>
+  onClick?: MouseEventHandler<HTMLImageElement>
+  width?: number
+  height?: number
 }
 
-const Picture: FC<PitureProps> = ({
-  src,
-  alt,
-  className,
-  priority = false,
-  imgRef,
-  onClick,
-}) => {
+const Picture: FC<PitureProps> = ({ src, alt, className, priority = false, imgRef, onClick, width, height }) => {
+  // const aspectRatio = width && height && width / height
   return (
     <Image
       onClick={onClick}
       ref={imgRef}
       src={src}
-      alt={alt}
-      width="0"
-      height="0"
-      sizes="100vw"
+      alt={alt || 'Thoroughly Cleaned, LLC'}
+      width={width || '0'}
+      height={height || '0'}
       className={className}
       priority={priority}
+      loading={priority ? 'eager' : 'lazy'}
+      sizes="100vw"
+      unoptimized
     />
-  );
-};
+  )
+}
 
-export default Picture;
+export default memo(Picture)

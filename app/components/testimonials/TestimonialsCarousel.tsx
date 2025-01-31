@@ -1,10 +1,13 @@
 import React, { FC, RefObject } from 'react'
 import Slider from 'react-slick'
-import { testimonials } from '@/public/data/home.data'
 import TestimonialCarouselItem from './TestimonialCarouselItem'
+
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 interface TestimonialsCarouselProps {
   slider: RefObject<Slider>
+  testimonials: any
 }
 
 const settings = {
@@ -18,10 +21,10 @@ const settings = {
   autoplaySpeed: 5000
 }
 
-const TestimonialsCarousel: FC<TestimonialsCarouselProps> = ({ slider }) => {
+const TestimonialsCarousel: FC<TestimonialsCarouselProps> = ({ slider, testimonials }) => {
   return (
     <Slider ref={slider} {...settings}>
-      {testimonials.map((testimonial, i) => (
+      {testimonials?.map((testimonial: any, i: number) => (
         <TestimonialCarouselItem key={i} testimonial={testimonial} />
       ))}
     </Slider>

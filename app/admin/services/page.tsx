@@ -1,27 +1,36 @@
 'use client'
 
 import React from 'react'
-import Link from 'next/link'
-import ServicesTable from '@/app/tables/ServicesTable'
-import { useAppDispatch } from '@/app/redux/store'
-import { resetService } from '@/app/redux/features/serviceSlice'
+import { RootState, useAppSelector } from '@/app/redux/store'
+import AdminServiceCard from '@/app/components/admin/AdminServiceCard'
+import AdminServiceUpdateModal from '@/app/modals/AdminServiceUpdateModal'
+import AdminServiceCreateModal from '@/app/modals/AdminServiceCreateModal'
+import { useFetchServicesQuery } from '@/app/redux/services/serviceApi'
+import AdminCommandArea from '@/app/components/admin/AdminCommandArea'
+import AdminErrorText from '@/app/components/admin/AdminErrorText'
+import FullScreenAppleLoader from '@/app/components/common/FullScreenAppleLoader'
 
 const Services = () => {
-  const dispatch = useAppDispatch()
+  const { isLoading, data, error } = useFetchServicesQuery()
+  const { modalOpenServiceUpdate, modalOpenServiceCreate } = useAppSelector((state: RootState) => state.service)
+
   return (
-    <div className="p-6 shadow-neu bg-iconShadow">
-      <div className="mb-5 w-full flex items-center flex-col 990:flex-row 990:justify-between">
-        <h1 className="text-lg rubik-bold text-midnightPlum">Services Table</h1>
-        <Link
-          onClick={() => dispatch(resetService())}
-          href="/admin/services/create"
-          className="py-3 px-4 rounded-[4px] bg-neonSkyAqua text-white shadow-submit text-sm rubik-thin tracking-wide"
-        >
-          Create Service
-        </Link>
-      </div>
-      <ServicesTable />
-    </div>
+    <>
+      {modalOpenServiceUpdate && <AdminServiceUpdateModal />}
+      {modalOpenServiceCreate && <AdminServiceCreateModal />}
+      <AdminCommandArea type="SERVICES" btnText="Create Service" />
+      {isLoading ? (
+        <FullScreenAppleLoader />
+      ) : error ? (
+        <AdminErrorText error={error?.data?.message} />
+      ) : (
+        <div className="grid grid-cols-12 gap-y-8 480:gap-8 animate-fadeIn">
+          {data?.services?.map((service: any) => (
+            <AdminServiceCard key={service.id} service={service} />
+          ))}
+        </div>
+      )}
+    </>
   )
 }
 

@@ -2,13 +2,13 @@ import { Reducer, createSlice } from "@reduxjs/toolkit";
 import { testimonialApi } from "../services/testimonialApi";
 
 interface Testimonial {
-  id: number | null;
+  id: string;
   name: string;
   review: string;
   reviewTitle: string;
 }
-const TestimonialState = {
-  id: null,
+export const TestimonialState = {
+  id: "",
   name: "",
   review: "",
   reviewTitle: "",
@@ -21,6 +21,9 @@ export interface TestimonialStatePayload {
   message: string | null;
   testimonials: Testimonial[];
   testimonial: Testimonial;
+  status: string;
+  openModalTestimonialCreate: boolean;
+  openModalTestimonialUpdate: boolean;
 }
 
 export const initialTestimonialState: TestimonialStatePayload = {
@@ -30,6 +33,9 @@ export const initialTestimonialState: TestimonialStatePayload = {
   message: "",
   testimonials: [],
   testimonial: TestimonialState,
+  status: "",
+  openModalTestimonialCreate: false,
+  openModalTestimonialUpdate: false,
 };
 
 export const testimonialSlice = createSlice({
@@ -38,6 +44,19 @@ export const testimonialSlice = createSlice({
   reducers: {
     resetTestimonial: (state: any) => {
       state.testimonial = null;
+    },
+    setOpenModalTestimonialCreate: (state) => {
+      state.openModalTestimonialCreate = true;
+    },
+    setCloseModalTestimonialCreate: (state) => {
+      state.openModalTestimonialCreate = false;
+    },
+    setOpenModalTestimonialUpdate: (state, { payload }: any) => {
+      state.openModalTestimonialUpdate = true;
+      state.testimonial = payload;
+    },
+    setCloseModalTestimonialUpdate: (state) => {
+      state.openModalTestimonialUpdate = false;
     },
   },
   extraReducers: (builder) => {
@@ -67,9 +86,10 @@ export const testimonialSlice = createSlice({
         }
       )
       .addMatcher(
-        testimonialApi.endpoints.fetchTestimonial.matchFulfilled,
+        testimonialApi.endpoints.testimonialSystemStatus.matchFulfilled,
         (state: any, { payload }: any) => {
-          state.testimonial = payload.testimonial;
+          state.message = payload.message;
+          state.status = payload.status;
         }
       )
       .addMatcher(
@@ -87,4 +107,10 @@ export const testimonialSlice = createSlice({
 export const testimonialReducer =
   testimonialSlice.reducer as Reducer<TestimonialStatePayload>;
 
-export const { resetTestimonial } = testimonialSlice.actions;
+export const {
+  resetTestimonial,
+  setOpenModalTestimonialCreate,
+  setCloseModalTestimonialCreate,
+  setOpenModalTestimonialUpdate,
+  setCloseModalTestimonialUpdate,
+} = testimonialSlice.actions;

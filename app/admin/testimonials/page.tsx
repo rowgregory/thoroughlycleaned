@@ -1,27 +1,36 @@
 'use client'
 
 import React from 'react'
-import Link from 'next/link'
-import TestimonialsTable from '@/app/tables/TestimonialsTable'
-import { useAppDispatch } from '@/app/redux/store'
-import { resetTestimonial } from '@/app/redux/features/testimonialSlice'
+import { RootState, useAppSelector } from '@/app/redux/store'
+import { useFetchTestimonialsQuery } from '@/app/redux/services/testimonialApi'
+import AdminTestimonialRow from '@/app/components/testimonials/AdminTestimonialRow'
+import AdminTestimonialCreateModal from '@/app/modals/AdminTestimonialCreateModal'
+import AdminTestimonialUpdateModal from '@/app/modals/AdminTestimonialUpdateModal'
+import AdminCommandArea from '@/app/components/admin/AdminCommandArea'
+import AdminErrorText from '@/app/components/admin/AdminErrorText'
+import FullScreenAppleLoader from '@/app/components/common/FullScreenAppleLoader'
 
 const Testimonials = () => {
-  const dispatch = useAppDispatch()
+  const { isLoading, error, data } = useFetchTestimonialsQuery()
+  const { openModalTestimonialCreate, openModalTestimonialUpdate } = useAppSelector((state: RootState) => state.testimonial)
+
   return (
-    <div className="p-6 shadow-neu bg-iconShadow">
-      <div className="mb-5 w-full flex items-center flex-row justify-between">
-        <h1 className="text-lg rubik-bold text-midnightPlum">Testimonials Table</h1>
-        <Link
-          onClick={() => dispatch(resetTestimonial())}
-          href="/admin/testimonials/create"
-          className="py-3 px-4 rounded-[4px] bg-neonSkyAqua text-white shadow-submit text-sm rubik-thin tracking-wide"
-        >
-          Create Testimonial
-        </Link>
-      </div>
-      <TestimonialsTable />
-    </div>
+    <>
+      {openModalTestimonialCreate && <AdminTestimonialCreateModal />}
+      {openModalTestimonialUpdate && <AdminTestimonialUpdateModal />}
+      <AdminCommandArea type="TESTIMONIALS" btnText="Create Testimonial" />
+      {isLoading ? (
+        <FullScreenAppleLoader />
+      ) : error ? (
+        <AdminErrorText error={error?.data?.message} />
+      ) : (
+        <div className="max-w-[690px] 1160:max-w-screen-990 w-full flex flex-col gap-y-12 760:gap-y-4 animate-fadeIn">
+          {data?.testimonials?.map((testimonial: any) => (
+            <AdminTestimonialRow key={testimonial.id} testimonial={testimonial} />
+          ))}
+        </div>
+      )}
+    </>
   )
 }
 

@@ -1,15 +1,16 @@
 import { IconDefinition } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { FC, MouseEventHandler } from 'react'
+import React, { FC, memo, MouseEventHandler } from 'react'
 
 interface AwesomeIconProps {
   icon: IconDefinition
   className: string
   onClick?: MouseEventHandler<SVGSVGElement>
+  style?: any
 }
 
-const AwesomeIcon: FC<AwesomeIconProps> = ({ icon, className, onClick }) => {
-  return <FontAwesomeIcon onClick={onClick} icon={icon} className={className} />
+const AwesomeIcon: FC<AwesomeIconProps> = ({ icon, className, onClick, style }) => {
+  return <FontAwesomeIcon onClick={onClick} icon={icon} className={className} style={style} />
 }
 
-export default AwesomeIcon
+export default memo(AwesomeIcon)

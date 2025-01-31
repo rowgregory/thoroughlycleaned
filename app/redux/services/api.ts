@@ -11,6 +11,7 @@ const baseQuery = fetchBaseQuery({
   // This ensures that cookies are included in
   // both the frontend and backend communication.
   credentials: "include",
+  // cache: "no-store",
 });
 
 export const baseQueryWithRetry = retry(baseQuery, { maxRetries: 0 });
@@ -18,6 +19,17 @@ export const baseQueryWithRetry = retry(baseQuery, { maxRetries: 0 });
 export const api = createApi({
   reducerPath: "splitApi",
   baseQuery: baseQueryWithRetry,
-  tagTypes: ["Auth", "Dashboard", "Service", "Testimonial", "Price-Estimate"],
+  tagTypes: [
+    "Auth",
+    "Service",
+    "Testimonial",
+    "Client-Lead",
+    "Photo-Gallery",
+    "Text-Block",
+    "Approved-User",
+    "Profile",
+    "User",
+    "Log",
+  ],
   endpoints: () => ({}),
 }) as any;

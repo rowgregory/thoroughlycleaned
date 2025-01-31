@@ -1,35 +1,49 @@
 import { NextRequest, NextResponse } from "next/server";
-import { jwtVerify } from "jose";
+import { authMiddleware } from "./app/middleware/authMiddleware";
 
 export async function middleware(req: NextRequest) {
-  const tokenCookie = req.cookies.get("authToken");
+  const start = performance.now();
 
-  if (!tokenCookie) {
-    return NextResponse.redirect(new URL("/auth/login", req.url));
-  }
+  // Call authMiddleware
+  const authResponse = await authMiddleware(req, start);
+  if (authResponse) return authResponse;
 
-  try {
-    const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
-    const { payload } = await jwtVerify(tokenCookie.value, secret);
-
-    const requestHeaders = new Headers(req.headers);
-    requestHeaders.set("x-user", JSON.stringify(payload));
-
-    // Continue to the next middleware or endpoint with updated headers
-    return NextResponse.next({
-      request: { headers: requestHeaders },
-    });
-  } catch (error) {
-    console.error("Invalid token:", error);
-
-    // Redirect invalid tokens to login page
-    return NextResponse.redirect(new URL("/auth/login", req.url));
-  }
+  // Default response if no middleware returns a response
+  return NextResponse.next();
 }
 
 export const config = {
   matcher: [
-    "/api/service/:path*", // Protect all API routes under /api/service
-    "/admin/:path*", // Protect all admin pages
+    "/admin/:path*",
+    "/api/approved-user/create-approved-user",
+    "/api/approved-user/delete-approved-user",
+    "/api/approved-user/fetch-approved-users",
+    "/api/approved-user/system-status",
+    "/api/approved-user/update-approved-user",
+    "/api/client-lead/fetch-client-leads",
+    "/api/client-lead/system-status",
+    "/api/client-lead/update-client-lead",
+    "/api/photo-gallery/create-and-attach-photo-gallery-image",
+    "/api/photo-gallery/create-photo-gallery-project",
+    "/api/photo-gallery/delete-photo-gallery-project",
+    "/api/photo-gallery/delete-photo-gallery-project-pair",
+    "/api/photo-gallery/system-status",
+    "/api/photo-gallery/update-photo-gallery-project",
+    "/api/profile/get-profile-from-id/:id",
+    "/api/profile/system-status",
+    "/api/profile/update-profile",
+    "/api/service/create-service",
+    "/api/service/delete-service",
+    "/api/service/system-status",
+    "/api/service/update-service",
+    "/api/testimonial/create-testimonial",
+    "/api/testimonial/delete-testimonial",
+    "/api/testimonial/system-status",
+    "/api/testimonial/update-testimonial",
+    "/api/text-block/system-status",
+    "/api/text-block/update-text-block",
+    "/api/user/fetch-users",
+    "/api/user/system-status",
+    "/api/user/update-user",
   ],
 };

@@ -1,53 +1,34 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  FormEvent,
-  ReactNode,
-  SetStateAction,
-} from "react";
 import { Errors, Inputs } from "./common.types";
-
-export interface ServiceFormProps {
-  handleSubmit: (event: FormEvent<HTMLFormElement>) => void;
-  handleInput: (event: ChangeEvent<HTMLInputElement>) => void;
-  inputs: Inputs;
-  setInputs: Dispatch<SetStateAction<Inputs>>;
-  isCreate?: boolean;
-  errors: Errors;
-  loading: boolean;
-}
-
-export interface TestimonialFormProps {
-  handleSubmit: (event: FormEvent<HTMLFormElement>) => void;
-  handleInput: (event: ChangeEvent<HTMLInputElement>) => void;
-  inputs: Inputs;
-  isCreate?: boolean;
-  errors: Errors;
-  loading: boolean;
-}
-
-export interface RegisterFormProps {
-  handleSubmit: (e: FormEvent) => void;
-  handleInput: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleToggle: (e: ChangeEvent<HTMLInputElement>) => void;
-  inputs: Inputs;
-}
-
-export interface FileInputProps {
-  id: string;
-  label: ReactNode;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  multiple?: boolean;
-}
 
 export interface DragAndDropUploaderProps {
   inputs: Inputs;
-  setInputs: Dispatch<SetStateAction<Inputs>>;
+  handleDrop: (event: React.DragEvent<HTMLDivElement>) => void;
+  handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface PriceEstimateFormProps {
+export interface ClientLeadFormProps {
   formStyles: string;
   inputStyles: string;
   selectStyles: string;
   buttonStyles?: string;
+  errorStyles?: string;
+  bubbleColor?: string;
+}
+
+export interface AdminServiceFormProps {
+  handleSubmit: (event: React.FormEvent) => void;
+  isUpdating: boolean;
+  handleDrop: (event: React.DragEvent<HTMLDivElement>) => void;
+  inputRef: React.RefObject<HTMLInputElement>;
+  inputs: Inputs;
+  handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  errors: Errors;
+  submitted: boolean;
+  handleInput: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  handleSelect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  reset: () => void;
+  loading: boolean;
+  error: string;
 }

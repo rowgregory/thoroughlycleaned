@@ -1,26 +1,18 @@
 'use client'
 
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import { Provider } from 'react-redux'
-import Aos from 'aos'
-import { store } from './redux/store'
-import { PageWrapperProps } from './types/common.types'
+import { ClientPageProps } from './types/common.types'
 import PageWrapper from './page-wrapper'
+import { persistor, store } from './redux/store'
+import { PersistGate } from 'redux-persist/integration/react'
 
-const ReduxWrapper: FC<PageWrapperProps> = ({ children, isLoggedIn }) => {
-  useEffect(() => {
-    Aos.init({
-      offset: 0,
-      duration: 500,
-      easing: 'ease-in-out',
-      once: false,
-      anchorPlacement: 'top-bottom'
-    })
-    Aos.refresh()
-  }, [])
+const ReduxWrapper: FC<ClientPageProps> = ({ children, data }) => {
   return (
     <Provider store={store}>
-      <PageWrapper isLoggedIn={isLoggedIn}>{children}</PageWrapper>
+      <PersistGate loading={null} persistor={persistor}>
+        <PageWrapper data={data}>{children}</PageWrapper>
+      </PersistGate>
     </Provider>
   )
 }

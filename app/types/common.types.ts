@@ -1,42 +1,18 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  LegacyRef,
-  MouseEvent,
-  ReactNode,
-  SetStateAction,
-} from "react";
+import { ChangeEvent, Dispatch, ReactNode, SetStateAction } from "react";
 
-interface VideoProps {
-  videoRef: LegacyRef<HTMLVideoElement>;
-  src: string;
-  className: string;
-}
-
-interface BannerProps {
-  src: string;
-  title: string;
-  breadcrumb: string;
-}
-
-interface ChildrenProps {
+export interface ChildrenProps {
   children: ReactNode;
 }
 
-interface PageWrapperProps {
-  children: ReactNode;
-  isLoggedIn: boolean;
-}
-
-type Inputs = {
+export type Inputs = {
   [key: string]: string | number | boolean | undefined | any;
 };
 
-type Errors = {
+export type Errors = {
   [key: string]: string;
 };
 
-type UseFormHook = {
+export type UseFormHook = {
   inputs: Inputs;
   errors: Errors;
   handleInput: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
@@ -44,42 +20,16 @@ type UseFormHook = {
   handleToggle: (event: ChangeEvent<HTMLInputElement>) => void;
   setInputs: Dispatch<SetStateAction<Inputs>>;
   setErrors: Dispatch<SetStateAction<Errors>>;
+  uploadFileHandler: any;
+  handleUploadProgress: any;
+  uploadProgress: number;
+  handleDrop: any;
+  handleFileChange: any;
+  submitted: boolean;
+  setSubmitted: Dispatch<SetStateAction<boolean>>;
 };
 
-interface RowProps {
-  data: {} | any;
-  onDelete: (e: MouseEvent<HTMLSpanElement>, id: number) => void;
-  filteredArray: {}[];
-  i: number;
+export interface ClientPageProps {
+  children: ReactNode;
+  data: any;
 }
-
-interface ServerWrapperProps {
-  params: Promise<{ id: string }>;
-}
-
-interface PriceEstimateProps {
-  name: string;
-  phoneNumber: string;
-  serviceType: string;
-  createdAt: string;
-}
-
-interface PriceEstimateRowProps {
-  data: PriceEstimateProps;
-  filteredArray: {}[];
-  i: number;
-}
-
-export type {
-  VideoProps,
-  BannerProps,
-  ChildrenProps,
-  Inputs,
-  Errors,
-  UseFormHook,
-  RowProps,
-  ServerWrapperProps,
-  PageWrapperProps,
-  PriceEstimateProps,
-  PriceEstimateRowProps,
-};

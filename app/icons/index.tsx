@@ -49,7 +49,21 @@ import {
   faCamera,
   faSignOutAlt,
   faIdCard,
-  faUpload
+  faUpload,
+  faPaperPlane,
+  faSync,
+  faColumns,
+  faLink,
+  faUnlink,
+  faEllipsis,
+  faCircleRight,
+  faPeopleArrows,
+  faRefresh,
+  faPlay,
+  faEye,
+  faEyeSlash,
+  faRightLong,
+  faLeftLong
 } from '@fortawesome/free-solid-svg-icons'
 import AwesomeIcon from '../components/common/AwesomeIcon'
 
@@ -110,6 +124,21 @@ export const cameraIcon = faCamera
 export const signOutAltIcon = faSignOutAlt
 export const idCardIcon = faIdCard
 export const uploadIcon = faUpload
+export const paperPlaneIcon = faPaperPlane
+export const facebookIcon = faFacebook
+export const syncIcon = faSync
+export const columnsIcon = faColumns
+export const linkIcon = faLink
+export const unlinkIcon = faUnlink
+export const ellipsisIcon = faEllipsis
+export const circleRightIcon = faCircleRight
+export const peopleArrowsIcon = faPeopleArrows
+export const refreshIcon = faRefresh
+export const playIcon = faPlay
+export const eyeIcon = faEye
+export const eyeSlashIcon = faEyeSlash
+export const rightLongIcon = faRightLong
+export const leftLongIcon = faLeftLong
 
-export const Trash = () => <AwesomeIcon icon={trashIcon} className="w-4 h-4 text-red-400" />
+export const Trash = () => <AwesomeIcon icon={trashIcon} className="w-4 h-4 text-sky-800" />
 export const Edit = () => <AwesomeIcon icon={editIcon} className="w-4 h-4" />

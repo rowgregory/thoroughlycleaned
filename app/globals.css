@@ -6,6 +6,8 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @layer utilities {
@@ -14,8 +16,74 @@ body {
   }
 }
 
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+span {
+  font-family: "Poppins", sans-serif;
+}
+
+nav {
+  scroll-behavior: smooth;
+}
+
+li {
+  font-family: "Rubik", sans-serif;
+}
+
+@layer utilities {
+  .home-page-banner-subtitle {
+    @apply uppercase text-skyAqua font-semibold w-full;
+  }
+  .home-page-banner-title {
+    @apply font-bold text-zinc-800 text-[55px] 760:text-[64px] 1200:text-[73px] 1315:text-[80px] mb-10 leading-[92px];
+  }
+}
+
+.dark-input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #202020 inset !important;
+  box-shadow: 0 0 0 1000px #202020 inset !important;
+  -webkit-text-fill-color: #fff !important;
+  color: #fff !important;
+  background-color: #202020 !important;
+  background-clip: border-box !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  font-family: "Rubik", sans-serif !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
+}
+
+.admin-navigation::-webkit-scrollbar {
+  height: 5px;
+}
+
+.admin-navigation::-webkit-scrollbar-thumb {
+  background-color: #3b3b3b;
+  border-radius: 6px;
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+.admin-navigation::-webkit-scrollbar-track {
+  background: #212020;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -25,7 +93,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #3f3f46;
+  background-color: #eaeaeb;
 }
 
 .login-shape:after {
@@ -65,14 +133,13 @@ body {
   content: "" !important;
   background: #58cae3 !important;
   box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.25) !important;
-  width: 40px !important;
+  width: 9px !important;
   height: 9px !important;
   display: inline-block !important;
   margin: 0 6px !important;
   padding: 3px 0 !important;
   border-radius: 50px !important;
   border: none !important;
-  transition: all 0.3s ease !important;
 }
 .slick-dots li button:before {
   content: "" !important;
@@ -85,7 +152,6 @@ body {
   padding: 3px 0 !important;
   border-radius: 50px !important;
   border: none !important;
-  transition: all 0.3s ease !important;
 }
 
 .aos-animate[data-aos="slide-left"],
@@ -130,4 +196,83 @@ body {
     inset: 0;
     transform: rotate(90deg);
   }
+}
+
+video {
+  object-fit: cover !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#adminselect::placeholder {
+  color: #6e6e70;
+}
+#adminselect {
+  color: white;
+}
+
+/* HTML: <div class="loader"></div> */
+.apple-loader {
+  aspect-ratio: 1;
+  display: grid;
+  border-radius: 50%;
+  background: linear-gradient(
+        0deg,
+        rgb(110 110 112/50%) 30%,
+        #0000 0 70%,
+        rgb(110 110 112/100%) 0
+      )
+      50%/8% 100%,
+    linear-gradient(
+        90deg,
+        rgb(110 110 112/25%) 30%,
+        #0000 0 70%,
+        rgb(110 110 112/75%) 0
+      )
+      50%/100% 8%;
+  background-repeat: no-repeat;
+  animation: l23 1s infinite steps(12);
+}
+.apple-loader::before,
+.apple-loader::after {
+  content: "";
+  grid-area: 1/1;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.915;
+  transform: rotate(30deg);
+}
+.apple-loader::after {
+  opacity: 0.83;
+  transform: rotate(60deg);
+}
+@keyframes l23 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+/* globals.css */
+@keyframes growBar {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-loader {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }

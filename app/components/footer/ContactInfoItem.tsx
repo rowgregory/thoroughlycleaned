@@ -1,24 +1,21 @@
 import React, { FC } from 'react'
 import AwesomeIcon from '../common/AwesomeIcon'
-import { IconDefinition } from '@fortawesome/free-brands-svg-icons'
+import { ContactInfoItemProps } from '@/app/types/footer.types'
+import EditableTextArea from '../common/EditableTextArea'
 
-interface ContactInfoItemProps {
-  info: {
-    icon: IconDefinition
-    value: string
-  }
-  i: number
-}
-
-const ContactInfoItem: FC<ContactInfoItemProps> = ({ info, i }) => {
+const ContactInfoItem: FC<ContactInfoItemProps> = ({ icon, value, name }) => {
   return (
-    <div
-      data-aos="fade-up"
-      data-aos-delay={i * 100}
-      className="grid grid-cols-12 gap-x-4 items-center"
-    >
-      <AwesomeIcon icon={info.icon} className="col-span-1 w-4 h-4 text-sunny" />
-      <h4 className="col-span-11 text-white poppins-regular">{info.value}</h4>
+    <div className="grid grid-cols-12 gap-x-4 items-center w-full">
+      <AwesomeIcon icon={icon} className="col-span-1 w-4 h-4 text-sunny pr-3" />
+      <div className="col-span-11 w-full">
+        <EditableTextArea
+          tag="h4"
+          initialValue={value}
+          type={name === 'headerPhoneNumber' || name === 'headerEmail' ? 'HEADER' : 'FOOTER'}
+          textBlockKey={name}
+          className="text-white"
+        />
+      </div>
     </div>
   )
 }

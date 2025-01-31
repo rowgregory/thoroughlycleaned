@@ -1,33 +1,51 @@
 import React, { FC } from 'react'
+import EditableTextArea from './EditableTextArea'
+import SectionHeaderIcon from '@/app/icons/SectionHeaderIcon'
 
 interface SectionHeaderProps {
-  icon: string
-  header: string
+  subtitle: string
+  subtitleName: string
   title: string
+  titleName: string
+  type: string
+  subtitleStyles?: string
   titleStyles?: string
-  headerStyles?: string
+  sectionStyles?: string
+  rows?: number
 }
 
 const SectionHeader: FC<SectionHeaderProps> = ({
-  icon,
-  header,
+  subtitle,
+  subtitleName,
   title,
+  titleName,
+  type,
+  subtitleStyles,
   titleStyles,
-  headerStyles
+  sectionStyles
 }) => {
   return (
-    <>
-      <div data-aos="fade-up" className="flex items-center gap-x-3 mb-5 mt-20 990:mt-0">
-        <div className={`${icon} bg-no-repeat bg-contain bg-center w-12 h-12`} />
-        <h1 className={`${headerStyles} uppercase text-skyAqua poppins-semibold`}>{header}</h1>
+    <section className={sectionStyles}>
+      <div className="flex items-center gap-x-3 mb-1">
+        <SectionHeaderIcon />
+        <EditableTextArea
+          tag="h1"
+          initialValue={subtitle}
+          type={type}
+          textBlockKey={subtitleName}
+          className={`${subtitleStyles} uppercase text-skyAqua font-semibold`}
+        />
       </div>
-      <h2
-        data-aos="fade-up"
-        className={`${titleStyles} poppins-bold text-[26px] md:text-[37px] 990:text-[40px] text-charcoalBlack 990:leading-[50px] mb-9 990:max-w-2xl`}
-      >
-        {title}
-      </h2>
-    </>
+      <div className="mb-9">
+        <EditableTextArea
+          tag="h2"
+          initialValue={title}
+          type={type}
+          textBlockKey={titleName}
+          className={`${titleStyles} font-bold text-[32px] md:text-[37px] 990:text-[40px] text-charcoalBlack 990:leading-[50px] 990:max-w-4xl`}
+        />
+      </div>
+    </section>
   )
 }
 

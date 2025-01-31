@@ -1,20 +1,23 @@
-import {
-  calculatorIcon,
-  cameraIcon,
-  commentsIcon,
-  dashboardIcon,
-  toolsIcon,
-} from "@/app/icons";
+import { isStringInPath } from "@/app/utils/string.functions";
+
+interface SubLink {
+  linkKey: string;
+  linkText: string;
+  active: boolean;
+}
 
 type NavigationLinkData = {
   linkText: string;
   linkKey: string;
   active: boolean;
+  showIcon?: boolean;
+  subLinks?: SubLink[];
+  show?: boolean;
 };
 
 export const headerNavigationLinkData = (
   path: string,
-  isLoggedIn: boolean
+  isAuthenticated: boolean | null
 ): NavigationLinkData[] => {
   const links: NavigationLinkData[] = [
     {
@@ -30,7 +33,35 @@ export const headerNavigationLinkData = (
     {
       linkText: "Services",
       linkKey: "/services",
-      active: path === "/services",
+      active: [
+        "/services",
+        "/services/residential",
+        "/services/commercial",
+        "/services/biohazard",
+      ].includes(path),
+      showIcon: true,
+      subLinks: [
+        {
+          linkText: "All Services",
+          linkKey: "/services",
+          active: path === "/services",
+        },
+        {
+          linkText: "Residential",
+          linkKey: "/services/residential",
+          active: path === "/services/residential",
+        },
+        {
+          linkText: "Commercial",
+          linkKey: "/services/commercial",
+          active: path === "/services/commercial",
+        },
+        {
+          linkText: "Biohazard",
+          linkKey: "/services/biohazard",
+          active: path === "/services/biohazard",
+        },
+      ],
     },
     {
       linkText: "Projects",
@@ -44,11 +75,11 @@ export const headerNavigationLinkData = (
     },
   ];
 
-  if (isLoggedIn) {
+  if (isAuthenticated) {
     links.push({
       linkText: "Dashboard",
-      linkKey: "/admin/dashboard",
-      active: path === "/admin/dashboard",
+      linkKey: "/admin/services",
+      active: path === "/admin/services",
     });
   } else {
     links.push({
@@ -61,30 +92,59 @@ export const headerNavigationLinkData = (
   return links;
 };
 
-export const dashboardNavigationLinkData = [
-  {
-    textKey: "Dashboard",
-    linkKey: "/admin/dashboard",
-    icon: dashboardIcon,
-  },
-  {
-    textKey: "Services",
-    linkKey: "/admin/services",
-    icon: toolsIcon,
-  },
-  {
-    textKey: "Testimonials",
-    linkKey: "/admin/testimonials",
-    icon: commentsIcon,
-  },
-  {
-    textKey: "Price Estimates",
-    linkKey: "/admin/price-estimates",
-    icon: calculatorIcon,
-  },
-  {
-    textKey: "Photos",
-    linkKey: "/admin/photos",
-    icon: cameraIcon,
-  },
-];
+export const adminNavigationLinkData = (path: string, role: string | null) => {
+  const links = [
+    {
+      textKey: "Services",
+      linkKey: "/admin/services",
+      active: isStringInPath(path, "services"),
+    },
+    {
+      textKey: "Testimonials",
+      linkKey: "/admin/testimonials",
+      active: isStringInPath(path, "testimonials"),
+    },
+    {
+      textKey: "Client Leads",
+      linkKey: "/admin/client-leads",
+      active: isStringInPath(path, "client-leads"),
+    },
+    {
+      textKey: "Photo Gallery",
+      linkKey: "/admin/photo-gallery",
+      active: path === "/admin/photo-gallery",
+    },
+    {
+      textKey: "Approved Users",
+      linkKey: "/admin/approved-users",
+      active: path === "/admin/approved-users",
+    },
+    {
+      textKey: "Linked Users",
+      linkKey: "/admin/linked-users",
+      active: path === "/admin/linked-users",
+    },
+    {
+      textKey: "Profile",
+      linkKey: "/admin/profile",
+      active: path === "/admin/profile",
+    },
+  ];
+
+  if (role === "super-user") {
+    links.push(
+      {
+        textKey: "System Status",
+        linkKey: "/admin/system-status",
+        active: path === "/admin/system-status",
+      },
+      {
+        textKey: "Logs",
+        linkKey: "/admin/logs",
+        active: path === "/admin/logs",
+      }
+    );
+  }
+
+  return links;
+};

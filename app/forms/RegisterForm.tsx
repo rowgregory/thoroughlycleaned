@@ -1,102 +1,135 @@
 'use client'
 
-import React, { FormEvent } from 'react'
-import { useRouter } from 'next/navigation'
+import React, { FormEvent, useRef } from 'react'
 import useForm from '../hooks/useForm'
 import { useRegisterMutation } from '../redux/services/authApi'
 import validateRegisterForm from '../validations/validateRegisterForm'
-import { inputStyles, labelStyles } from '@/public/data/form.styles'
+import { errorStyles } from '@/public/data/form.styles'
 import { REGISTER_INITIAL_FIELDS } from '@/public/data/initial-form-inputs.data'
+import AppleLoader from '../components/common/AppleLoader'
+import { Errors, Inputs } from '../types/common.types'
+import { useRouter } from 'next/navigation'
+
+const registerFields = (inputs: Inputs, errors: Errors) => {
+  return [
+    {
+      name: 'firstName',
+      label: 'Enter First Name',
+      value: inputs.firstName,
+      error: errors.firstName
+    },
+    {
+      name: 'lastName',
+      label: 'Enter Last Name',
+      value: inputs.lastName,
+      error: errors.lastName
+    },
+    {
+      name: 'email',
+      label: 'Enter Email',
+      value: inputs.email,
+
+      error: errors.email
+    },
+    {
+      name: 'password',
+      label: 'Enter Password',
+      value: inputs.password,
+      error: errors.password
+    },
+    {
+      name: 'phoneNumber',
+      label: 'Enter Phone Number',
+      value: inputs.phoneNumber,
+      error: errors.phoneNumber
+    },
+    {
+      name: 'consentToSMS',
+      value: inputs.consentToSMS,
+      error: errors.consentToSMS,
+      isCheckbox: true,
+      title: 'SMS Service',
+      details:
+        'By checking this box, you agree to receive text messages from Thoroughly Cleaned. Reply STOP to opt out; Reply HELP for help. Message frequency varies. Message and data rates may apply.'
+    }
+  ]
+}
 
 const RegisterForm = () => {
   const { push } = useRouter()
-  const { inputs, handleInput, handleToggle, setErrors, errors } = useForm(REGISTER_INITIAL_FIELDS)
-  const [register] = useRegisterMutation()
+  const checkBoxRef = useRef<HTMLInputElement>(null)
+  const [register, { isLoading, isFetching, error }] = useRegisterMutation()
+  const { inputs, handleInput, handleToggle, setErrors, errors, submitted, setSubmitted } = useForm(
+    REGISTER_INITIAL_FIELDS,
+    validateRegisterForm
+  )
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+    setSubmitted(true)
+
     const isValid = validateRegisterForm(inputs, setErrors)
-    if (isValid) {
-      await register(inputs)
-        .then(() => push('/admin/dashboard'))
-        .catch((err: any) => console.log(err))
-    }
+    if (!isValid) return
+
+    await register(inputs)
+      .unwrap()
+      .then((data: any) => push(`/auth/verify-register-code/${data.expiresAt}/${data.twoFactorAuthId}`))
+      .catch(() => {})
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col w-full">
-      <div className="flex flex-col mb-7">
-        <label htmlFor="code" className={labelStyles}>
-          First Name
-        </label>
-        <input
-          name="firstName"
-          onChange={handleInput}
-          value={(inputs.firstName as string) || ''}
-          className={`${inputStyles}  text-inputText`}
-          aria-label="Enter First Name"
-          placeholder="Enter First Name"
-        />
-        {errors.firstName && (
-          <span className="text-13 mt-0.5 poppins-regular text-red-500">{errors.firstName}</span>
-        )}
-      </div>
-      <div className="flex flex-col mb-7">
-        <label htmlFor="code" className={labelStyles}>
-          Last Name
-        </label>
-        <input
-          name="lastName"
-          onChange={handleInput}
-          value={(inputs.lastName as string) || ''}
-          className={`${inputStyles}  text-inputText`}
-          aria-label="Enter Last Name"
-          placeholder="Enter Last Name"
-        />
-        {errors.lastName && (
-          <span className="text-13 mt-0.5 poppins-regular text-red-500">{errors.lastName}</span>
-        )}
-      </div>
-      <div className="flex flex-col mb-7">
-        <label htmlFor="code" className={labelStyles}>
-          Phone Number
-        </label>
-        <input
-          name="phoneNumber"
-          onChange={handleInput}
-          value={(inputs.phoneNumber as string) || ''}
-          className={`${inputStyles} text-inputText`}
-          aria-label="Enter Phone Number"
-          placeholder="Enter Phone Number"
-        />
-        {errors.phoneNumber && (
-          <span className="text-13 mt-0.5 poppins-regular text-red-500">{errors.phoneNumber}</span>
-        )}
-      </div>
-      <div className="flex flex-col my-6">
-        <div className="flex gap-x-6 items-start justify-start">
-          <input
-            type="checkbox"
-            name="consentToSMS"
-            onChange={handleToggle}
-            checked={(inputs.consentToSMS as boolean) || false}
-            className="mt-1"
-          />
-          <label htmlFor="consentToSMS" className={`${labelStyles} mb-0`}>
-            By checking this box, you agree to receive text messages from Thoroughly Cleaned. Reply
-            STOP to opt out; Reply HELP for help. Message frequency varies. Message and data rates
-            may apply.
-          </label>
-        </div>
-        {errors.consentToSMS && (
-          <span className="text-13 mt-0.5 poppins-regular text-red-500">{errors.consentToSMS}</span>
-        )}
-      </div>
+    <form className="flex flex-col w-full relative">
+      {registerFields(inputs, errors).map((field, i) =>
+        field.isCheckbox ? (
+          <div key={i} className="grid grid-cols-8 gap-x-4 relative">
+            <button
+              onClick={(e) => {
+                e.preventDefault()
+                checkBoxRef?.current?.click()
+              }}
+              className={`col-span-1 w-full h-auto aspect-square shadow-adminServiceCard active:shadow-none flex items-center justify-center border-1 border-[#6e6e73] rounded-md`}
+            >
+              <div className={`${field.value ? 'bg-skyAqua w-5 h-5 rounded-sm' : ''}`} />
+            </button>
+            <input
+              ref={checkBoxRef}
+              type="checkbox"
+              name={field.name}
+              onChange={handleToggle}
+              checked={field.value || false}
+              className="hidden"
+            />
+            <div className="col-span-7 flex flex-col gap-y-1">
+              <h4 className="text-white">{field.title}</h4>
+              <label htmlFor={field.name} className="mb-0 text-xs text-zinc-500 font-rubik">
+                {field.details}
+              </label>
+            </div>
+            {submitted && (field.error || error?.data?.message) && (
+              <span className={`${errorStyles} -bottom-4 text-[11px]`}>{field.error || error.data.message}</span>
+            )}
+          </div>
+        ) : (
+          <div key={i} className="flex flex-col mb-7 w-full relative">
+            <input
+              name={field.name}
+              onChange={handleInput}
+              value={field.value || ''}
+              className={`p-4 text-white rounded-xl bg-[#202020] border-1 border-[#6e6e73] dark-input focus:outline-none placeholder:text-[#6e6e70]`}
+              aria-label={field.label}
+              placeholder={field.label}
+            />
+            {submitted && field.error && <span className={`${errorStyles} -bottom-5 text-[11px]`}>{field.error}</span>}
+          </div>
+        )
+      )}
       <button
+        onClick={handleSubmit}
+        disabled={isLoading}
         type="submit"
-        className="rounded-sm shadow-submit h-[50px] w-full content-center uppercase bg-neonSkyAqua text-white text-sm rubik poppins-regular"
+        className="mt-8 bg-skyAqua hover:bg-[#008b9c] border-1 border-skyAqua h-12 rounded-lg text-white disabled:cursor-not-allowed flex items-center justify-center"
       >
-        Register
+        {isLoading || isFetching ? <AppleLoader /> : 'Continue'}
       </button>
     </form>
   )

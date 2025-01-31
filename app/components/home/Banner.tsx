@@ -1,69 +1,72 @@
 'use client'
 
-import React from 'react'
-import Video from '../common/Video'
-import BubbleBtn from '../common/BubbleBtn'
-import { RootState, useAppSelector } from '@/app/redux/store'
+import React, { useState } from 'react'
 import Link from 'next/link'
+import BubbleBtn from '../common/BubbleBtn'
+import EditableTextArea from '../common/EditableTextArea'
+import EditableVideo from '../common/EditableVideo'
+import SectionHeaderIcon from '@/app/icons/SectionHeaderIcon'
+import YellowBubbleCornerSVG from '@/app/icons/YellowBubbleCornerSVG'
+import GridSmallYellowCircles from '@/app/icons/GridSmallYellowCircles'
+import YellowDiagonalStripesSVG from '@/app/icons/YellowDiagonalStripesSVG'
+import PlayButtonSVG from '@/app/icons/PlayButtonSVG'
 
-const BannerText = () => {
-  const { isVideoLoaded } = useAppSelector((state: RootState) => state.app)
+const Banner = ({ textBlockMap, openModalEditableVideoPublic }: any) => {
+  const [playVideo, setPlayVideo] = useState(false)
 
   return (
-    <div className="w-full 990:w-2/5 relative z-10">
-      <div
-        className={`${
-          !isVideoLoaded ? 'animate-slideDown' : ''
-        }  flex items-center gap-x-3 mb-8 opacity-0`}
-      >
-        <div className="bg-brush bg-contain bg-center bg-no-repeat w-12 h-12"></div>
-        <h1 className="uppercase text-skyAqua poppins-semibold">Thoroughly Cleaned Provides</h1>
+    <section className="flex flex-col 990:flex-row bg-bannerMobile sm:bg-banner relative overflow-hidden px-4 lg:px-12 xl:px-4 h-auto 990:h-[800px]">
+      <div className="max-w-[520px] 760:max-w-[700px] 990:max-w-[960px] 1200:max-w-[1280px] mx-auto w-full grid grid-cols-12 gap-y-20 990:gap-x-6 py-28 990:py-20">
+        <div className="col-span-12 990:col-span-6 flex flex-col justify-center">
+          <div className="flex items-center gap-x-3 mb-8">
+            <SectionHeaderIcon />
+            <EditableTextArea
+              tag="h1"
+              initialValue={textBlockMap?.HOME_PAGE_BANNER?.homePageBannerSubtitle}
+              type="HOME_PAGE_BANNER"
+              textBlockKey="homePageBannerSubtitle"
+              className="home-page-banner-subtitle"
+            />
+          </div>
+          <EditableTextArea
+            tag="h2"
+            initialValue={textBlockMap?.HOME_PAGE_BANNER?.homePageBannerTitle}
+            type="HOME_PAGE_BANNER"
+            textBlockKey="homePageBannerTitle"
+            className="home-page-banner-title"
+          />
+          <Link href="/services" className="duration-200 hover:shadow-xl w-[215px]">
+            <BubbleBtn bubbleColor="bg-sunny" text="View All Services" />
+          </Link>
+        </div>
+        <div className="col-span-12 990:col-span-6 flex justify-center relative">
+          <div className="w-full flex items-center justify-center h-auto">
+            {!playVideo && (
+              <div className="w-full h-auto aspect-square bg-sunny bg-opacity-50 990:absolute z-30 flex items-center justify-center">
+                <PlayButtonSVG onClick={() => setPlayVideo(true)} />
+              </div>
+            )}
+            {textBlockMap?.HOME_PAGE_BANNER?.homePageBannerFile?.value && (
+              <EditableVideo
+                show={openModalEditableVideoPublic}
+                src={textBlockMap?.HOME_PAGE_BANNER?.homePageBannerFile?.value}
+                type="HOME_PAGE_BANNER"
+                textBlockKey="homePageBannerFile"
+                play={playVideo}
+              />
+            )}
+          </div>
+          <div className="animate-translateXBackForth w-32 h-32 absolute z-0 -top-8 -right-8">
+            <YellowDiagonalStripesSVG />
+          </div>
+          <div className="animate-translateYBackForth w-32 h-32 absolute z-0 -bottom-4 -left-4">
+            <GridSmallYellowCircles />
+          </div>
+        </div>
       </div>
-      <h2
-        className={`${
-          !isVideoLoaded ? 'animate-scaleIn' : ''
-        } poppins-bold text-5xl 990:text-[62px] xl:text-7xl text-[#0B0B0B] mb-12 opacity-0 leading-[55px] 990:leading-[70px] sm:leading-[77px]`}
-      >
-        Qualified Cleaning Experts
-      </h2>
-      <Link
-        href="/services"
-        className={`${
-          !isVideoLoaded ? 'animate-slideUp' : ''
-        } inline-block opacity-0 duration-200 hover:shadow-xl`}
-      >
-        <BubbleBtn bubbleColor="bg-sunny" text="View All Services" />
-      </Link>
-    </div>
-  )
-}
-
-const BannerVideo = () => {
-  const { isVideoLoaded } = useAppSelector((state: RootState) => state.app)
-  return (
-    <div className="w-full 990:w-3/5">
-      <div className="w-full relative">
-        <div className="animate-translateXBackForth bg-yellowStripes bg-cover bg-no-repeat w-32 h-32 absolute z-0 bg-cenver -top-8 -right-8"></div>
-        <Video
-          src="/videos/banner-vid.mp4"
-          className={`flex w-full h-full object-cover relative z-10 ${
-            !isVideoLoaded ? 'animate-slideUp' : ''
-          }`}
-        />
-        <div className="animate-scaleBackForth bg-yellowDots bg-no-repeat bg-contain w-40 h-36 absolute z-0 990:-bottom-28 -left-10 990:left-1/2 990:translate-x-1/2"></div>
+      <div className="hidden sm:block animate-translateYBackForth z-0 w-full h-[400px] object-cover absolute -bottom-6 990:bottom-0 left-0">
+        <YellowBubbleCornerSVG />
       </div>
-    </div>
-  )
-}
-
-const Banner = () => {
-  return (
-    <section className="bg-bannerMobile sm:bg-banner relative overflow-hidden px-4 lg:px-12 xl:px-4">
-      <div className="max-w-2xl 990:max-w-screen-xl mx-auto w-full flex flex-col 990:flex-row lg:items-center gap-y-20 sm:gap-x-20 py-28 990:py-44">
-        <BannerText />
-        <BannerVideo />
-      </div>
-      <div className="hidden sm:block animate-translateYBackForth bg-yellowBubbleCorner z-0 bg-contain bg-no-repeat w-full h-full max-h-[550px] absolute -bottom-6 990:bottom-0 left-0"></div>
     </section>
   )
 }

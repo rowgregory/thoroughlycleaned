@@ -14,28 +14,37 @@ datasource db {
 }
 
 model User {
-  id           Int      @id @default(autoincrement())
-  firstName    String   @db.VarChar(255)
-  lastName     String   @db.VarChar(255)
-  phoneNumber  String   @unique
-  isAdmin      Boolean  @default(true)
-  consentToSMS Boolean  @default(false)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id               String        @id @default(cuid())
+  firstName        String        @db.VarChar(255)
+  lastName         String        @db.VarChar(255)
+  password         String        @db.VarChar(255)
+  email            String        @unique @db.VarChar(255)
+  phoneNumber      String        @unique @db.VarChar(255)
+  isAdmin          Boolean       @default(false)
+  role             String        @db.VarChar(255)
+  consentToSMS     Boolean       @default(false)
+  approvedUser     ApprovedUser?
+  colorCode        String        @db.VarChar(255)
+  isSoundEffectsOn Boolean       @default(true)
+  isPrimaryContact Boolean       @default(false)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
 }
 
 model Service {
-  id          Int      @id @default(autoincrement())
+  id          String   @id @default(cuid())
   name        String   @db.VarChar(255)
-  image       String
+  url         String
+  fileName    String   @db.VarChar(255)
+  serviceType String   @db.VarChar(255)
   description String   @db.VarChar(500)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
 model TwoFactorAuth {
-  id          Int      @id @default(autoincrement())
-  phoneNumber String   @unique
+  id          String   @id @default(cuid())
+  phoneNumber String   @unique @db.VarChar(255)
   userName    String
   code        String
   expiresAt   DateTime
@@ -44,34 +53,71 @@ model TwoFactorAuth {
 }
 
 model Testimonial {
-  id          Int      @id @default(autoincrement())
+  id          String   @id @default(cuid())
   name        String
   review      String
   reviewTitle String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model PriceEstimate {
-  id          Int      @id @default(autoincrement())
-  name        String
-  phoneNumber String
   serviceType String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
-model HomePage {
-  id             Int      @id @default(autoincrement())
-  bannerSubtitle String   @db.VarChar(255)
-  bannerTitle    String
-  bannerVideoUrl String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+model ClientLead {
+  id            String   @id @default(cuid())
+  name          String
+  phoneNumber   String
+  serviceType   String
+  haveContacted Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
-model Visit {
-  id    Int      @id @default(autoincrement())
-  date  DateTime @unique
-  count Int      @default(1)
+model PhotoGalleryImage {
+  id        String   @id @default(cuid())
+  url       String
+  fileName  String   @db.VarChar(255)
+  imageRole String   @db.VarChar(255) // "before" or "after"
+  projectId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Project {
+  id           String   @id @default(cuid())
+  name         String
+  galleryItems Json[]
+  serviceType  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model TextBlock {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  type      String // For distinguishing different kinds of text (e.g., 'HOME_PAGE_BANNER', 'HOME_PAGE_PRICE_ESTIMATE', etc.)
+  mimeType  String   @default("")
+  fileName  String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ApprovedUser {
+  id          String   @id @default(cuid())
+  name        String   @db.VarChar(255)
+  phoneNumber String   @unique @db.VarChar(255)
+  userId      String?  @unique @db.VarChar(255)
+  user        User?    @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Log {
+  id        String   @id @default(cuid())
+  level     String // e.g., 'info', 'error', 'debug'
+  message   String // Description of the event or error
+  metadata  Json? // Optional, store additional context
+  userId    String
+  errorCode Int
+  createdAt DateTime @default(now())
 }

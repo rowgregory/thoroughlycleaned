@@ -1,26 +1,14 @@
 import React, { FC } from 'react'
 import Link from 'next/link'
+import { FooterNavLinkItemProps } from '@/app/types/footer.types'
 
-interface FooterNavLinkItemProps {
-  link: {
-    linkKey: string
-    active: boolean
-    linkText: string
-  }
-  i: number
-}
-
-const FooterNavLinkItem: FC<FooterNavLinkItemProps> = ({ link, i }) => {
+const FooterNavLinkItem: FC<FooterNavLinkItemProps> = ({ linkKey, active, linkText }) => {
   return (
     <Link
-      data-aos="fade-left"
-      data-aos-delay={i * 100}
-      href={link.linkKey}
-      className={`${
-        link.active ? 'text-sunny' : 'text-jetBlack'
-      } poppins-regular hover:text-sunny duration-200 opacity-0`}
+      href={linkKey}
+      className={`${active ? 'text-sunny xl:text-skyAqua' : 'text-white xl:text-jetBlack'} hover:text-sunny xl:hover:text-skyAqua`}
     >
-      {link.linkText}
+      {linkText}
     </Link>
   )
 }
