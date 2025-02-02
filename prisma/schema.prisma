@@ -121,3 +121,13 @@ model Log {
   errorCode Int
   createdAt DateTime @default(now())
 }
+
+model TeamMember {
+  id          String   @id @default(cuid())
+  firstName   String
+  lastName    String
+  position    String
+  yearsWorked String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
