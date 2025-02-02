@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { setOpenModalTestimonialCreate } from '@/app/redux/features/testimonialSlice'
 import { openGalleryDetailsCreateModal } from '@/app/redux/features/photoGallerySlice'
 import { setOpenModalProfileUpdate } from '@/app/redux/features/profileSlice'
+import { setModalOpenTeamMemberCreate } from '@/app/redux/features/teamMemberSlice'
 
 const commandAreaText = {
   APPROVED_USERS: {
@@ -52,6 +53,12 @@ const commandAreaText = {
   SYSTEM_STATUS: {
     title: 'Endpoint Status',
     p1: `This page checks if the key parts of your system are working correctly. It runs a series of tests on different features, like creating and updating records, to make sure everything is functioning as it should. If everything is working properly, it will show that the feature is operational. If there's an issue, it will indicate the failure and provide details on what went wrong. It's a quick way to check that all important components of your system are running smoothly and ready for use.`
+  },
+  TEAM_MEMBERS: {
+    title: 'Team Members',
+    p1: `The Team Members page allows you to view and manage the key individuals who are part of your organization. You can see important details about each team member, like their position, years worked, and contact information.`,
+    func: setModalOpenTeamMemberCreate(),
+    link: '/about'
   }
 } as any
 

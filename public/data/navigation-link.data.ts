@@ -120,6 +120,11 @@ export const adminNavigationLinkData = (path: string, role: string | null) => {
       active: path === "/admin/photo-gallery",
     },
     {
+      textKey: "Team Members",
+      linkKey: "/admin/team-members",
+      active: path === "/admin/team-members",
+    },
+    {
       textKey: "Approved Users",
       linkKey: "/admin/approved-users",
       active: path === "/admin/approved-users",

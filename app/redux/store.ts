@@ -18,6 +18,7 @@ import { lightboxReducer } from "./features/lightboxSlice";
 import { profileReducer } from "./features/profileSlice";
 import { userReducer } from "./features/userSlice";
 import { logReducer } from "./features/logSlice";
+import { teamMemberReducer } from "./features/teamMemberSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   user: userReducer,
   log: logReducer,
+  teamMember: teamMemberReducer,
   [api.reducerPath]: api.reducer,
 });
 

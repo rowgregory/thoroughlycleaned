@@ -11,6 +11,7 @@ const Stats = dynamic(() => import('./components/home/Stats'))
 const WorkingProcess = dynamic(() => import('./components/home/WorkingProcess'))
 const TestimonialsBlock = dynamic(() => import('./components/_blocks/TestimonialsBlock'))
 const PhotoGalleryBlock = dynamic(() => import('./components/_blocks/PhotoGalleryBlock'))
+const TeamMemberBlock = dynamic(() => import('./components/_blocks/TeamMemberBlock'))
 
 const Home = () => {
   const { data, isLoading } = useFetchHomePageDataQuery()
@@ -20,16 +21,21 @@ const Home = () => {
       <Banner textBlockMap={data?.transformedTextBlocks} />
       <ConnectWithUsBlock textBlockMap={data?.transformedTextBlocks} />
       <AboutBlock textBlockMap={data?.transformedTextBlocks?.ABOUT_BLOCK} />
-      <ServicesBlock textBlockMap={data?.transformedTextBlocks?.SERVICES_BLOCK} services={data?.services} />
+      {data?.services?.length > 0 && <ServicesBlock textBlockMap={data?.transformedTextBlocks?.SERVICES_BLOCK} />}
       <WhyChooseUsBlock textBlockMap={data?.transformedTextBlocks} />
       <Stats textBlockMap={data?.transformedTextBlocks} />
       <WorkingProcess textBlockMap={data?.transformedTextBlocks} />
-      <TestimonialsBlock
-        textBlockMap={data?.transformedTextBlocks.TESTIMONIALS_BLOCK}
-        testimonials={data?.testimonials}
-        isLoading={isLoading}
-      />
-      <PhotoGalleryBlock textBlockMap={data?.transformedTextBlocks} photoGalleryImages={data?.photoGalleryImages} />
+      {data?.teamMembers?.length > 0 && <TeamMemberBlock textBlockMap={data?.transformedTextBlocks} />}
+      {data?.photoGalleryImages?.length > 0 && (
+        <PhotoGalleryBlock textBlockMap={data?.transformedTextBlocks} photoGalleryImages={data?.photoGalleryImages} />
+      )}
+      {data?.testimonials?.length > 0 && (
+        <TestimonialsBlock
+          textBlockMap={data?.transformedTextBlocks.TESTIMONIALS_BLOCK}
+          testimonials={data?.testimonials}
+          isLoading={isLoading}
+        />
+      )}
     </>
   )
 }

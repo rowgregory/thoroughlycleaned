@@ -20,6 +20,11 @@ export async function GET() {
         createdAt: "desc",
       },
     });
+    const teamMembers = await prisma.teamMember.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
     const textBlocks = await prisma.textBlock.findMany({
       where: {
@@ -72,6 +77,7 @@ export async function GET() {
         photoGalleryImages,
         testimonials,
         transformedTextBlocks,
+        teamMembers,
       },
       { status: 200 }
     );

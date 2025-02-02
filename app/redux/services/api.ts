@@ -30,6 +30,7 @@ export const api = createApi({
     "Profile",
     "User",
     "Log",
+    "Team-Member",
   ],
   endpoints: () => ({}),
 }) as any;

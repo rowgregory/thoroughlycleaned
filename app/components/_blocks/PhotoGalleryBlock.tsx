@@ -20,7 +20,7 @@ const PhotoGalleryBlock = ({ textBlockMap, photoGalleryImages }: any) => {
           sectionStyles="flex flex-col justify-center items-center"
         />
         <div className="w-full relative">
-          <Slider {...photoGalleryCarouselSettings}>
+          <Slider {...photoGalleryCarouselSettings(photoGalleryImages?.length)}>
             {photoGalleryImages?.map((item: any, i: number) => (
               <div key={i} className="h-96 flex-1">
                 <div className="bg-cover bg-center bg-no-repeat w-full h-full" style={{ backgroundImage: `url(${item?.url})` }} />

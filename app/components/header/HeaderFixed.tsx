@@ -46,11 +46,11 @@ const HeaderFixed = ({ textBlockMap }: any) => {
               <NavLinkWithDot key={i} link={link} i={i} />
             ))}
           </div>
-          <section className="flex items-center gap-x-4 990:hidden">
+          <section className="flex h-full items-center gap-x-4 990:hidden">
             <button
               type="button"
               onClick={() => dispatch(setOpenModalClientLeadPublic())}
-              className="h-12 text-zinc-800 hidden sm:flex items-center px-5 text-sm font-poppins font-semibold bg-sunny whitespace-nowrap connect-with-us"
+              className="h-full text-zinc-800 flex items-center px-5 text-sm font-poppins font-semibold bg-sunny whitespace-nowrap connect-with-us"
             >
               Connect With Us
             </button>

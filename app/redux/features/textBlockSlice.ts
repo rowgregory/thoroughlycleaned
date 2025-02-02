@@ -173,6 +173,11 @@ export interface ContactPage {
   contactPageParagraph: string;
 }
 
+export interface TeamMemberBlockProps {
+  teamMemberBlockSubtitle: string;
+  teamMemberBlockTitle: string;
+}
+
 export interface TextBlockMap {
   ABOUT_BLOCK: AboutBlock;
   HOME_PAGE_CLIENT_LEAD: HomePageClientLeadBlock;
@@ -193,6 +198,7 @@ export interface TextBlockMap {
   HEADER: HeaderProps;
   PHOTO_GALLERY_PAGE: PhotoGalleryPage;
   CONTACT_PAGE: ContactPage;
+  TEAM_MEMBER_BLOCK: TeamMemberBlockProps;
 }
 
 export interface TextBlockStatePayload {
@@ -207,6 +213,7 @@ export interface TextBlockStatePayload {
   services: [];
   testimonials: [];
   photoGalleryImages: [];
+  teamMembers: [];
 }
 
 export const FieldBlock = { value: "", mimeType: "", fileName: "" };
@@ -377,6 +384,11 @@ export const CONTACT_PAGE = {
   contactPageParagraph: "This is a paragraph",
 };
 
+export const TEAM_MEMBER_BLOCK = {
+  teamMemberBlockSubtitle: "",
+  teamMemberBlockTitle: "",
+};
+
 export const transformedTextBlocks: any = {
   ABOUT_BLOCK,
   HOME_PAGE_CLIENT_LEAD,
@@ -397,6 +409,7 @@ export const transformedTextBlocks: any = {
   HEADER,
   PHOTO_GALLERY_PAGE,
   CONTACT_PAGE,
+  TEAM_MEMBER_BLOCK,
 };
 
 export const initialTextBlockState: TextBlockStatePayload = {
@@ -411,6 +424,7 @@ export const initialTextBlockState: TextBlockStatePayload = {
   services: [],
   testimonials: [],
   photoGalleryImages: [],
+  teamMembers: [],
 };
 
 export const textBlockSlice = createSlice({
@@ -452,6 +466,7 @@ export const textBlockSlice = createSlice({
           state.services = payload.services;
           state.testimonials = payload.testimonials;
           state.photoGalleryImages = payload.photoGalleryImages;
+          state.teamMembers = payload.teamMembers;
         }
       )
       .addMatcher(

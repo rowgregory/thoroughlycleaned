@@ -45,5 +45,9 @@ export const config = {
     "/api/user/fetch-users",
     "/api/user/system-status",
     "/api/user/update-user",
+    "/api/team-member/update-team-member",
+    "/api/team-member/create-team-member",
+    "/api/team-member/delete-team-member",
+    "/api/team-member/system-status",
   ],
 };

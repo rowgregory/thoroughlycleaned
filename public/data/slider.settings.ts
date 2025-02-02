@@ -1,13 +1,20 @@
-export const photoGalleryCarouselSettings = {
+export const photoGalleryCarouselSettings = (amount: number) => ({
   dots: true,
-  infinite: true,
+  infinite: amount >= 3 ? true : false,
   speed: 500,
   autoplay: true,
   autoplaySpeed: 3000,
-  slidesToShow: 3,
+  slidesToShow: Math.min(amount || 1, 3),
   slidesToScroll: 1,
   adaptiveHeight: false,
   responsive: [
+    {
+      breakpoint: 5000,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+      },
+    },
     {
       breakpoint: 1200,
       settings: {
@@ -25,18 +32,18 @@ export const photoGalleryCarouselSettings = {
       },
     },
   ],
-};
+});
 
 export const serviceCarouselSettings = (
   services: {}[],
   setCurrentSlide: (slide: any) => void
 ) => ({
   dots: true,
-  infinite: true,
+  infinite: services?.length >= 3 ? true : false,
   speed: 500,
   autoplay: true,
   autoplaySpeed: 3000,
-  // slidesToShow: Math.min(services?.length || 1, 3), // Dynamically set slidesToShow,
+  slidesToShow: Math.min(services?.length || 1, 3), // Dynamically set slidesToShow,
   slidesToScroll: 1,
   adaptiveHeight: false,
   beforeChange: (_: number, newIndex: number) => {
@@ -54,7 +61,7 @@ export const serviceCarouselSettings = (
   },
   responsive: [
     {
-      breakpoint: 3000,
+      breakpoint: 5000,
       settings: {
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -69,6 +76,40 @@ export const serviceCarouselSettings = (
     },
     {
       breakpoint: 990,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+});
+
+export const teamMemberCarouselSettings = (amount: number) => ({
+  dots: true,
+  infinite: amount >= 3 ? true : false,
+  speed: 500,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  slidesToShow: Math.min(amount || 1, 3), // Dynamically set slidesToShow,
+  slidesToScroll: 1,
+  adaptiveHeight: false,
+  responsive: [
+    {
+      breakpoint: 5000,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 760,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,

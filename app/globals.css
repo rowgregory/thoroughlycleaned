@@ -118,8 +118,14 @@ nav {
   bottom: -40px !important;
 }
 
+/* the slides */
+.slick-slide > div {
+  padding: 0 12px !important;
+}
+
+/* the parent */
 .slick-list {
-  margin: 0 -5px;
+  margin: 0 -12px !important;
 }
 
 .slick-dots li.slick-active button:before {

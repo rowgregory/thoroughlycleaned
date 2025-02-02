@@ -7,7 +7,6 @@ export async function GET(req: NextRequest) {
   let user = null;
   try {
     const userHeader = req.headers.get("x-user")!;
-
     user = JSON.parse(userHeader);
 
     const approvedUsers = await prisma.approvedUser.findMany({

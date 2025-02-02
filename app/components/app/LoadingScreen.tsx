@@ -5,10 +5,8 @@ import useRemoveScroll from '../../hooks/useRemoveScroll'
 import PageBannerLoaderSVG from '@/app/icons/PageBannerLoaderSVG'
 import { shouldExcludePath } from '@/app/utils/string.functions'
 import useCustomPathname from '@/app/hooks/useCustomPathname'
-import { RootState, useAppSelector } from '@/app/redux/store'
 
 const LoadingScreen = () => {
-  const { isMediaReady } = useAppSelector((state: RootState) => state.app)
   const [hideLoadingScreen, setHideLoadingScreen] = useState(false)
   const [playAnimation, setPlayAmimation] = useState(false)
   const path = useCustomPathname()
@@ -16,16 +14,16 @@ const LoadingScreen = () => {
 
   useEffect(() => {
     let timeout: any
+    let timeout2: any
 
-    if (isMediaReady || path !== '/') {
-      setPlayAmimation(true)
-      timeout = setTimeout(() => setHideLoadingScreen(true), 1000)
-    }
+    timeout = setTimeout(() => setPlayAmimation(true), 2000)
+    timeout2 = setTimeout(() => setHideLoadingScreen(true), 3000)
 
     return () => {
       clearTimeout(timeout)
+      clearTimeout(timeout2)
     }
-  }, [isMediaReady, path])
+  }, [path])
 
   if (shouldExcludePath(path)) return
 

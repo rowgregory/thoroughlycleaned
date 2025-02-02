@@ -74,6 +74,9 @@ const config: Config = {
         shimmer: "shimmer 1.5s infinite linear",
         slideDownDrawer: "slideDown 0.5s ease-out forwards",
         rotate360: "rotate360 5000ms linear infinite",
+        "bubble-float-1": "bubbleFloat1 20s ease-in-out infinite",
+        "bubble-float-2": "bubbleFloat2 20s ease-in-out infinite",
+        "bubble-float-3": "bubbleFloat3 20s ease-in-out infinite",
       },
       keyframes: {
         "translate-element": {
@@ -205,6 +208,40 @@ const config: Config = {
         rotate360: {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(360deg)" },
+        },
+        bubbleFloat1: {
+          "0%": { transform: "translate(0, 0) scale(1)" },
+          "25%": { transform: "translate(20px, -30px) scale(1.05)" },
+          "50%": { transform: "translate(-15px, -60px) scale(1)" },
+          "75%": { transform: "translate(10px, -90px) scale(1.03)" },
+          "100%": { transform: "translate(0, 0) scale(1)" },
+        },
+        bubbleFloat2: {
+          "0%": { transform: "translate(0, 0) scale(1)" },
+          "20%": { transform: "translate(-25px, -40px) scale(1.02)" },
+          "40%": { transform: "translate(30px, -80px) scale(0.98)" },
+          "60%": { transform: "translate(-20px, -120px) scale(1.04)" },
+          "80%": { transform: "translate(15px, -150px) scale(1)" },
+          "100%": { transform: "translate(0, 0) scale(1)" },
+        },
+        bubbleFloat3: {
+          "0%": { transform: "translate(0, 0) rotate(0deg) scale(1)" },
+          "15%": {
+            transform: "translate(30px, -20px) rotate(5deg) scale(1.03)",
+          },
+          "30%": {
+            transform: "translate(-40px, -70px) rotate(-3deg) scale(0.97)",
+          },
+          "45%": {
+            transform: "translate(20px, -100px) rotate(4deg) scale(1.02)",
+          },
+          "60%": {
+            transform: "translate(-15px, -130px) rotate(-2deg) scale(1)",
+          },
+          "75%": {
+            transform: "translate(10px, -160px) rotate(3deg) scale(1.05)",
+          },
+          "100%": { transform: "translate(0, 0) rotate(0deg) scale(1)" },
         },
       },
       screens: {

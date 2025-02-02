@@ -128,6 +128,8 @@ model TeamMember {
   lastName    String
   position    String
   yearsWorked String
+  url         String
+  fileName    String   @db.VarChar(255)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

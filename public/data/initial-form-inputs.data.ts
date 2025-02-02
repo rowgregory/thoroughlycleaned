@@ -120,3 +120,13 @@ export const ADMIN_APPROVED_USER_INITIAL_FIELDS = {
   name: "",
   phoneNumber: "",
 };
+
+export const ADMIN_TEAM_MEMBER_INITIAL_FIELDS = {
+  id: "",
+  firstName: "",
+  lastName: "",
+  fileName: "",
+  url: "",
+  position: "",
+  yearsWorked: "",
+};

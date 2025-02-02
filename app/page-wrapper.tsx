@@ -16,18 +16,16 @@ import AdminDashboardButton from './components/common/AdminDashboardButton'
 import { useFetchHeaderAndFooterTextBlocksQuery } from './redux/services/textBlockApi'
 import LoadingScreen from './components/app/LoadingScreen'
 import HeaderFixed from './components/header/HeaderFixed'
-import useRemoveScroll from './hooks/useRemoveScroll'
 
 const PageWrapper: FC<ClientPageProps> = ({ children, data }) => {
-  const { isMediaReady, mediaData, openModalImageUploaderPublic, openModalEditableVideoPublic, openModalEditableTextAreaPublic } =
-    useAppSelector((state: RootState) => state.app)
+  const { mediaData, openModalImageUploaderPublic, openModalEditableVideoPublic, openModalEditableTextAreaPublic } = useAppSelector(
+    (state: RootState) => state.app
+  )
   const path = useCustomPathname()
   const dispatch = useAppDispatch()
   const { data: textBlockMap, isLoading } = useFetchHeaderAndFooterTextBlocksQuery(undefined, {
     skip: ['admin', 'auth'].some((keyword) => path.includes(keyword))
   })
-
-  useRemoveScroll(!isMediaReady)
 
   useEffect(() => {
     dispatch(setAuthState(data))
