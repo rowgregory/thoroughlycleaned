@@ -39,27 +39,12 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-a,
-span {
-  font-family: "Poppins", sans-serif;
-}
-
 nextjs-portal {
   display: none;
 }
 
 nav {
   scroll-behavior: smooth;
-}
-
-li {
-  font-family: "Rubik", sans-serif;
 }
 
 @layer utilities {
@@ -117,18 +102,6 @@ li {
 
 ::-webkit-scrollbar-track {
   background-color: #eaeaeb;
-}
-
-.login-shape:after {
-  border-color: #ffd700;
-  position: absolute;
-  height: 220px;
-  width: 100%;
-  clip-path: polygon(0 0, 100% 0, 29% 59%, 0 33%);
-  left: -1px;
-  background-color: #ffd700;
-  top: -1px;
-  content: "";
 }
 
 .slick-slide > div > div {

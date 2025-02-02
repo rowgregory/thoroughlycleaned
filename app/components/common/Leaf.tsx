@@ -27,7 +27,7 @@ const Leaf = ({ textBlockMap }: any) => {
   return (
     <div className="bg-skyAqua px-5 760:px-10 py-5 760:py-7 rounded-tl-[50px] rounded-br-[50px] absolute -bottom-20 480:-bottom-6 -translate-x-1/2 760:translate-x-0 left-1/2 760:left-auto 760:-right-6 z-40 text-white items-center gap-x-4 grid 760:flex grid-cols-12 w-full 480:w-[80%] 760:w-auto">
       <div className="col-span-6">
-        <PieChart onClick={handlePieChart} percentage={textBlockMap?.aboutBlockLeafValue} />
+        <PieChart onClick={handlePieChart} percentage={textBlockMap?.aboutBlockLeafValue || '100%'} />
       </div>
       <EditableTextArea
         tag="h5"

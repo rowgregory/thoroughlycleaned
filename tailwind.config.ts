@@ -73,6 +73,7 @@ const config: Config = {
         translateXFromLeft: "translateXFromLeft 500ms ease-out forwards",
         shimmer: "shimmer 1.5s infinite linear",
         slideDownDrawer: "slideDown 0.5s ease-out forwards",
+        rotate360: "rotate360 5000ms linear infinite",
       },
       keyframes: {
         "translate-element": {
@@ -200,6 +201,10 @@ const config: Config = {
         slideDownDrawer: {
           "0%": { transform: "translateY(-100%)" },
           "100%": { transform: "translateY(0)" },
+        },
+        rotate360: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
         },
       },
       screens: {

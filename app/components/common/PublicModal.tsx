@@ -20,7 +20,7 @@ const PublicModal: FC<{ show: boolean; children: ReactNode; onClose: any; zIndex
       }`}
     >
       <div
-        className="public-modal bg-white transform transition-all duration-300 ease-out overflow-y-auto"
+        className="public-modal bg-white transform transition-all duration-300 ease-out overflow-y-auto no-scrollbar"
         onClick={(e) => e.stopPropagation()}
       >
         <AwesomeIcon icon={timesIcon} onClick={reset} className="w-5 h-5 text-jetBlack absolute top-5 left-5 z-10 cursor-pointer" />

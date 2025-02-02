@@ -32,7 +32,7 @@ const Banner = ({ textBlockMap, openModalEditableVideoPublic }: any) => {
             textBlockKey="homePageBannerTitle"
             className="home-page-banner-title animate-scaleIn"
           />
-          <Link href="/services" className="duration-200 hover:shadow-xl 480:w-[215px] animate-slideUp">
+          <Link href="/services" className="duration-200 hover:shadow-xl 480:w-[215px] animate-slideUp whitespace-nowrap">
             <BubbleBtn bubbleColor="bg-sunny" text="View All Services" />
           </Link>
         </div>
