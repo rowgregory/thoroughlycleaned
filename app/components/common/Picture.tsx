@@ -13,7 +13,6 @@ interface PitureProps {
 }
 
 const Picture: FC<PitureProps> = ({ src, alt, className, priority = false, imgRef, onClick, width, height }) => {
-  // const aspectRatio = width && height && width / height
   return (
     <Image
       onClick={onClick}

@@ -32,12 +32,12 @@ const Header = ({ textBlockMap, isLoading }: any) => {
             src={imgSrc}
             type="HEADER"
             textBlockKey={isBiohazard ? 'headerBiohazardLogoFile' : 'headerLogoFile'}
-            className="cursor-pointer bg-sunny w-full h-full max-h-[74px] 990:max-h-32 990:w-32 aspect-square object-contain 990:mr-12 animate-fadeIn"
+            className="cursor-pointer bg-sunny w-[74px] h-full max-h-[74px] 990:max-h-32 990:w-32 aspect-square object-contain 990:mr-12 animate-fadeIn"
             priority={true}
           />
         ) : (
           <Logo
-            className="cursor-pointer bg-sunny w-full h-full max-h-[74px] 990:max-h-32 990:w-32 aspect-square object-contain 990:mr-12 animate-fadeIn"
+            className="cursor-pointer bg-sunny w-[74px] h-full max-h-[74px] 990:max-h-32 990:w-32 aspect-square object-contain 990:mr-12 animate-fadeIn"
             priority={false}
             src={imgSrc}
           />

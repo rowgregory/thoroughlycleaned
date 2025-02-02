@@ -13,7 +13,7 @@ const ContactInfoItem: FC<ContactInfoItemProps> = ({ icon, value, name }) => {
           initialValue={value}
           type={name === 'headerPhoneNumber' || name === 'headerEmail' ? 'HEADER' : 'FOOTER'}
           textBlockKey={name}
-          className="text-white"
+          className="text-white text-sm 480:text-base"
         />
       </div>
     </div>

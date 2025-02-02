@@ -14,6 +14,7 @@ const PhotoGalleryBlock = dynamic(() => import('./components/_blocks/PhotoGaller
 
 const Home = () => {
   const { data, isLoading } = useFetchHomePageDataQuery()
+
   return (
     <>
       <Banner textBlockMap={data?.transformedTextBlocks} />

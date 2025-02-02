@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import React, { FC } from 'react'
 import Picture from '../common/Picture'
 import AwesomeIcon from '../common/AwesomeIcon'
@@ -17,22 +16,17 @@ const ServiceCarouselSlide: FC<ServiceCarouselSlideProps> = ({ currentSlide, ind
   }
 
   return (
-    <Link
-      href="/services"
-      className={`${getSlideClass(
-        index
-      )} cursor-pointer flex flex-col items-center justify-between py-10 px-7 h-[475px] border-1 border-gray-200`}
-    >
+    <div inert className={`${getSlideClass(index)} cursor-pointer flex flex-1 flex-col items-center justify-between py-10 px-7 480:h-96`}>
       <div className="flex flex-col justify-center items-center">
         <span
           className={`border-4 ${
             index === currentSlide ? 'border-sunny' : 'border-skyAqua'
-          } p-1 h-44 w-44 rounded-full flex items-center justify-center mb-7`}
+          } p-1 h-24 w-24 rounded-full flex items-center justify-center mb-7`}
         >
           <Picture
             src={item.url}
             alt="Thoroughlycleanedma@gmail.com"
-            className="object-cover rounded-full aspect-square w-40 h-40"
+            className="object-cover rounded-full aspect-square w-20 h-20"
             priority={false}
           />
         </span>
@@ -45,7 +39,7 @@ const ServiceCarouselSlide: FC<ServiceCarouselSlideProps> = ({ currentSlide, ind
           <AwesomeIcon icon={arrowRightIcon} className="text-skyAqua w-4 h-4" />
         </span>
       </div>
-    </Link>
+    </div>
   )
 }
 

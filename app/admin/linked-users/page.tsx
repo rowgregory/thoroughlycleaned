@@ -34,16 +34,18 @@ const LinkedUsers = () => {
           {data?.users?.map((user: any) => (
             <div
               key={user.id}
-              className="grid grid-cols-10 w-full gap-x-4 items-center hover:bg-[#2C2C2E] px-2 py-1 -ml-2 rounded-md relative after:absolute after:content-[''] after:w-full after:z-10 after:h-[0.5px] after:bg-[#2c2c2e] after:-bottom-6 after:left-0 760:after:hidden"
+              className="grid grid-cols-12 w-full gap-y-7 480:gap-x-4 items-center hover:bg-[#2C2C2E] px-2 py-1 -ml-2 rounded-md relative after:absolute after:content-[''] after:w-full after:z-10 after:h-[0.5px] after:bg-[#2c2c2e] after:-bottom-6 after:left-0 760:after:hidden"
             >
-              <h1 className="col-span-3 rubik-light text-white text-17">{user?.firstName}</h1>
-              <h1 className="col-span-3 rubik-light text-white text-17">{user?.lastName}</h1>
+              <h1 className="col-span-6 480:col-span-3 rubik-light text-white text-17">{user?.firstName}</h1>
+              <h1 className="col-span-6 480:col-span-3 rubik-light text-white text-17 flex justify-end 480:justify-normal">
+                {user?.lastName}
+              </h1>
               {updateError ? (
                 <AdminErrorText error={updateError?.data?.message} />
               ) : (
-                <h1 className="col-span-3 rubik-light text-white text-17">{user?.phoneNumber}</h1>
+                <h1 className="col-span-6 480:col-span-4 rubik-light text-white text-17">{user?.phoneNumber}</h1>
               )}
-              <div className="col-span-1 flex justify-end">
+              <div className="col-span-6 480:col-span-2 flex justify-end">
                 <div className="rounded-md w-8 h-8 flex items-center justify-center aspect-square cursor-pointer bg-zinc-700">
                   {loading[user.id] ? (
                     <AppleLoader />
@@ -52,10 +54,10 @@ const LinkedUsers = () => {
                       <button
                         onClick={() => handleUserUpdate(user.id)}
                         className={`w-full h-auto aspect-square flex items-center justify-center rounded-full border-2`}
-                        style={{ borderColor: user?.isPrimaryContact ? profile.colorCode : '' }}
+                        style={{ borderColor: profile.colorCode }}
                       >
                         <div
-                          className={`${user?.isPrimaryContact ? `w-4 h-4 rounded-full` : ''}`}
+                          className={`w-4 h-4 rounded-full`}
                           style={{ backgroundColor: user?.isPrimaryContact ? profile.colorCode : '' }}
                         />
                       </button>

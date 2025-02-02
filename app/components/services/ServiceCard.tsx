@@ -24,9 +24,11 @@ const ServiceCard: FC<ServiceCardProps> = ({ url, name, description, serviceType
           <ServiceIconSelector serviceType={serviceType} />
         </div>
       </div>
-      <div className="bg-white p-6 relative flex flex-col">
-        <h1 className="font-bold text-[18px] mb-4 truncate">{name}</h1>
-        <p>{truncateString(description, 70)}</p>
+      <div className="bg-white p-6 relative flex flex-col justify-betwween h-[227px]">
+        <div>
+          <h1 className="font-bold text-[18px] mb-4 truncate">{name}</h1>
+          <p>{truncateString(description, 70)}</p>
+        </div>
         <div className="flex items-center gap-x-2 mt-10">
           <h3 className="font-semibold group-hover:text-skyAqua">Read More</h3>
           <div className="w-6 h-6 rounded-full bg-sunny flex items-center justify-center group-hover:translate-x-2 duration-500 ease-in-out transform transition-all">

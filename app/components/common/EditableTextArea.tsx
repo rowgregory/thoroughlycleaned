@@ -33,11 +33,7 @@ const EditableTextArea: FC<EditableTextAreaProps> = ({ tag: Tag, initialValue, t
   }
 
   return (
-    <Tag
-      onClick={handleClick}
-      className={`${className} ${isAuthenticated ? 'cursor-pointer' : 'cursor-default'} pointer-events-auto`}
-      // style={{ pointerEvents: 'auto' }}
-    >
+    <Tag onClick={handleClick} className={`${className} ${isAuthenticated ? 'cursor-pointer' : 'cursor-default'} pointer-events-auto`}>
       {textBlockKey?.includes?.('PhoneNumber') ? formatPhoneNumber(String(initialValue)) : initialValue}
     </Tag>
   )

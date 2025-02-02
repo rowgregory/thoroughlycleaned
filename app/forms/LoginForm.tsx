@@ -19,7 +19,7 @@ const LoginForm = () => {
   const { inputs, handleInput, setErrors, errors, submitted, setSubmitted } = useForm(LOGIN_INITIAL_FIELDS, validateLoginForm)
   const [login, { isLoading, error }] = useLoginMutation()
   const { profile } = useAppSelector((state: RootState) => state.profile)
-  const { play: playSuccess } = useSoundEffect('/sound-effects/ui-alert-1.mp3', profile.isSoundEffectsOn)
+  const { play: playSuccess } = useSoundEffect('/sound-effects/notification-sound.mp3', profile.isSoundEffectsOn)
   const { play: playError } = useSoundEffect('/sound-effects/notification-3.mp3', profile.isSoundEffectsOn)
 
   const submitLoginCredentials = async (e: FormEvent) => {

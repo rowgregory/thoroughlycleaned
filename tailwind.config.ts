@@ -68,9 +68,11 @@ const config: Config = {
         scaleIn: "scaleIn 500ms ease-in-out forwards",
         scaleBackForth: "scaleBackForth 5s ease-in-out infinite",
         translateXBackForth: "translateXBackForth 5s ease-in-out infinite",
+        translateXForthBack: "translateXForthBack 5s ease-in-out infinite",
         translateYBackForth: "translateYBackForth 5s ease-in-out infinite",
         translateXFromLeft: "translateXFromLeft 500ms ease-out forwards",
         shimmer: "shimmer 1.5s infinite linear",
+        slideDownDrawer: "slideDown 0.5s ease-out forwards",
       },
       keyframes: {
         "translate-element": {
@@ -145,6 +147,17 @@ const config: Config = {
             transform: "translateX(0)",
           },
         },
+        translateXForthBack: {
+          "0%": {
+            transform: "translateX(0)",
+          },
+          "50%": {
+            transform: "translateX(-20px)",
+          },
+          "100%": {
+            transform: "translateX(0)",
+          },
+        },
         translateYBackForth: {
           "0%": {
             transform: "translateY(0)",
@@ -183,6 +196,10 @@ const config: Config = {
         shimmer: {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
+        },
+        slideDownDrawer: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(0)" },
         },
       },
       screens: {

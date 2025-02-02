@@ -25,15 +25,16 @@ const WorkingProcess = ({ textBlockMap }: any) => {
             titleName="workingProcessBlockTitle"
             type="WORKING_PROCESS_BLOCK"
             rows={1}
+            titleStyles="text-center 480:text-left"
           />
           <div className="flex flex-col relative gap-y-14">
             <div className="hidden sm:block bg-curvyDottedYellowLine bg-cover bg-center bg-no-repeat absolute -left-20 rotate-12 top-10 h-60 w-60 aspect-square" />
             {workingProcesses(textBlockMap).map((process, i) => (
-              <div data-aos="fade-up" data-aos-delay={i * 100} key={i} className="grid grid-cols-12 gap-x-4 relative z-10">
-                <span className="col-span-2 xl:col-span-3 shadow-lg bg-sunny text-skyAqua w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center modern-antiqua-regular justify-center text-2xl sm:text-4xl">
+              <div key={i} className="grid grid-cols-12 gap-x-4 relative z-10">
+                <span className="col-span-12 480:col-span-2 xl:col-span-3 shadow-lg bg-sunny text-skyAqua w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center modern-antiqua-regular justify-center text-2xl sm:text-4xl mb-2 480:mb-0">
                   {process.step}
                 </span>
-                <div className="flex flex-col col-span-10 xl:col-span-9">
+                <div className="flex flex-col col-span-12 480:col-span-10 xl:col-span-9">
                   <EditableTextArea
                     tag="h1"
                     initialValue={process?.title}

@@ -14,7 +14,9 @@ import { navigationDrawerData } from '@/public/data/app.data'
 const WhitePageOverlay = ({ open }: { open: boolean }) => {
   return (
     <div
-      className={`${open ? 'translate-x-0' : 'translate-x-full'} duration-1000 fixed top-0 left-0 h-screen w-screen bg-white/80 z-50`}
+      className={`${
+        open ? 'translate-x-0 duration-1000' : 'translate-x-full'
+      } fixed top-0 left-0 h-screen w-screen bg-white/80 z-50 will-change-transform`}
     ></div>
   )
 }
@@ -37,7 +39,7 @@ const NavigationDrawer = ({ textBlockMap }: any) => {
         ref={overlayRef}
         className={`${
           openNavigationDrawer ? 'translate-x-0 ' : 'translate-x-full 480:translate-x-[480px]'
-        } duration-700 no-scrollbar overflow-hidden w-full 480:w-[480px] h-full fixed top-0 bottom-0 right-0 z-[60] transition-all bg-navigationDrawer pt-10 pb-16 px-4 480:pl-12 480:pr-14 overflow-y-auto`}
+        } duration-700 no-scrollbar overflow-hidden w-full 480:w-[480px] h-full fixed top-0 bottom-0 right-0 z-[80] transition-all bg-navigationDrawer pt-10 pb-16 px-4 480:pl-12 480:pr-14 overflow-y-auto`}
       >
         <div className="flex items-center relative justify-end">
           <AwesomeIcon

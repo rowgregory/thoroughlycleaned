@@ -10,6 +10,7 @@ const PageBannerLoaderSVG = () => {
       height="400"
       preserveAspectRatio="xMidYMid meet"
       version="1.0"
+      className="relative z-60"
     >
       <defs>
         <filter x="0%" y="0%" width="100%" height="100%" id="632bd10ec1">

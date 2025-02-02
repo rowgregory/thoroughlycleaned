@@ -9,4 +9,5 @@ export const publicUrls = [
   "/services/biohazard",
   "/projects",
   "/testimonials",
+  "/contact",
 ];

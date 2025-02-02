@@ -4,7 +4,7 @@ import EditableTextArea from '../common/EditableTextArea'
 
 const ConnectWithUsBlock = ({ textBlockMap }: any) => {
   return (
-    <section className="bg-sunny px-4 990:px-12 xl:px-4 py-20">
+    <section className="bg-sunny px-4 990:px-12 xl:px-4 py-20 relative z-10">
       <div className="max-w-[520px] 760:max-w-[700px] 990:max-w-[960px] 1200:max-w-[1280px] w-full mx-auto">
         <EditableTextArea
           tag="h1"

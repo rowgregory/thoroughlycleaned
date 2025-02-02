@@ -40,9 +40,9 @@ const FooterTop: FC<{ textBlockMap: any; isLoading: boolean }> = ({ textBlockMap
             initialValue={textBlockMap?.FOOTER?.footerJingle}
             type="FOOTER"
             textBlockKey="footerJingle"
-            className="text-white mb-5"
+            className="text-white mb-5 text-sm 480:text-base"
           />
-          <div className="flex items-center gap-x-1">
+          <div className="flex items-center gap-x-1 text-sm 480:text-base">
             <span className="text-white">Built by </span>
             <div className="relative group bg-skyAqua w-fit">
               <span className="relative z-10 text-white cursor-pointer" onClick={() => window.open(sqyshUrl, '_blank')}>

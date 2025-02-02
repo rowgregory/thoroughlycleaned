@@ -7,6 +7,7 @@ import AdminModal from '../components/common/AdminModal'
 import { RootState, useAppDispatch, useAppSelector } from '../redux/store'
 import { setCloseModalTestimonialCreate } from '../redux/features/testimonialSlice'
 import AdminITestimonialForm from '../forms/AdminTestimonialForm'
+import AdminModalClostBtn from '../components/admin/AdminModalClostBtn'
 
 const AdminTestimonialCreateModal = () => {
   const dispatch = useAppDispatch()
@@ -39,6 +40,7 @@ const AdminTestimonialCreateModal = () => {
 
   return (
     <AdminModal show={openModalTestimonialCreate}>
+      <AdminModalClostBtn reset={reset} />
       <AdminITestimonialForm
         handleSubmit={handleSubmitCreateTestimonial}
         reset={reset}

@@ -18,6 +18,7 @@ export interface AppStatePayload {
   mediaData: ModalUploaderPayload;
   openNavigationDrawer: boolean;
   openModalClientLeadCreated: boolean;
+  openDrawerAdminNav: boolean;
 }
 
 const mediaDataInitialState = {
@@ -29,7 +30,7 @@ const mediaDataInitialState = {
 };
 
 export const initialAppState: AppStatePayload = {
-  isMediaReady: true,
+  isMediaReady: false,
   openModalClientLeadPublic: false,
   openModalMediaUploaderPublic: false,
   openModalImageUploaderPublic: false,
@@ -38,6 +39,7 @@ export const initialAppState: AppStatePayload = {
   mediaData: mediaDataInitialState,
   openNavigationDrawer: false,
   openModalClientLeadCreated: false,
+  openDrawerAdminNav: false,
 };
 
 export const appSlice = createSlice({
@@ -45,7 +47,7 @@ export const appSlice = createSlice({
   initialState: initialAppState,
   reducers: {
     setIsMediaReady: (state) => {
-      state.isMediaReady = false;
+      state.isMediaReady = true;
     },
     setOpenModalClientLeadPublic: (state) => {
       state.openModalClientLeadPublic = true;
@@ -95,6 +97,12 @@ export const appSlice = createSlice({
     setCloseNavigationDrawer: (state) => {
       state.openNavigationDrawer = false;
     },
+    setOpenDrawerAdminNav: (state) => {
+      state.openDrawerAdminNav = true;
+    },
+    setCloseDrawerAdminNav: (state) => {
+      state.openDrawerAdminNav = false;
+    },
   },
   extraReducers: () => {},
 });
@@ -117,4 +125,6 @@ export const {
   setCloseNavigationDrawer,
   setCloseModalClientLeadCreated,
   setOpenModalClientLeadCreated,
+  setOpenDrawerAdminNav,
+  setCloseDrawerAdminNav,
 } = appSlice.actions;

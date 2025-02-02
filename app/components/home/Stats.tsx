@@ -34,13 +34,8 @@ const Stats = ({ textBlockMap }: any) => {
       <div className="max-w-[520px] 760:max-w-[700px] 990:max-w-[960px] 1200:max-w-[1280px] w-full mx-auto grid grid-cols-12 gap-y-20 990:gap-x-20">
         {stats(textBlockMap).map((stat, i) => (
           <div key={i} className="col-span-12 990:col-span-4 relative z-10">
-            <div
-              data-aos="fade-up"
-              data-aos-delay={i * 100}
-              className="bg-cover by-center bg-no-repeat w-16 h-16 mb-4"
-              style={{ backgroundImage: `url(${stat?.img})` }}
-            />
-            <div data-aos="fade-up" data-aos-delay={i * 100} className="flex items-center gap-x-2">
+            <div className="bg-cover by-center bg-no-repeat w-16 h-16 mb-4" style={{ backgroundImage: `url(${stat?.img})` }} />
+            <div className="flex items-center gap-x-2">
               <Counter targetNumber={stat?.value} duration={2000} className="text-white text-5xl font-bold mb-2" name={stat?.nameValue} />
 
               <EditableTextArea

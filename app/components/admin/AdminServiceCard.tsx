@@ -51,7 +51,7 @@ const AdminServiceCard: FC<{ service: any }> = ({ service }) => {
         </div>
       </div>
       <div className="p-5 flex flex-col gap-y-3">
-        <p className="text-zinc-400">{truncateString(service?.description, 75)}</p>
+        <p className="text-zinc-400 h-[72px]">{truncateString(service?.description, 75)}</p>
         <div className="flex items-center justify-end gap-x-2">
           {error && <AdminErrorText error={error?.data?.message} />}
           <AdminDeleteButton handleDelete={handleDelete} item={service} loading={loading[service?.id]} />

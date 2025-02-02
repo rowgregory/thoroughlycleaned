@@ -70,9 +70,8 @@ const PublicEditableTextAreaModal: FC<PublicEditableTextAreaModalProps> = ({ sho
   }
 
   return (
-    <PublicModal show={show} onClose={() => {}} zIndex="z-[70]">
+    <PublicModal show={show} onClose={reset} reset={reset}>
       <div className="py-20 max-w-md mx-auto flex flex-col items-center justify-center w-full">
-        <AwesomeIcon icon={timesIcon} onClick={reset} className="w-5 h-5 text-jetBlack absolute top-5 left-5 z-10 cursor-pointer" />
         <Picture
           src="/images/edit-text-modal-icon.png"
           alt="Edit Text"

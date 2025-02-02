@@ -10,7 +10,7 @@ import SkeletonLoader from '../components/app/SkeleonLoader'
 
 const Services = () => {
   const { isLoading: loadingServices, data: service } = useFetchServicesQuery()
-  let { isLoading: loadingTextBlocks, data } = useFetchPageSpecificTextBlocksQuery(['SERVICES_PAGE', 'SERVICES_BLOCK'])
+  const { isLoading: loadingTextBlocks, data } = useFetchPageSpecificTextBlocksQuery(['SERVICES_PAGE', 'SERVICES_BLOCK'])
 
   return (
     <>
@@ -27,7 +27,7 @@ const Services = () => {
           <div className="grid grid-cols-12 gap-y-10 sm:gap-10">
             {loadingServices
               ? Array.from({ length: 3 }).map((_, i) => (
-                  <SkeletonLoader key={i} className="col-span-12 760:col-span-6 990:col-span-4 shadow-serviceCard" />
+                  <SkeletonLoader key={i} className="col-span-12 760:col-span-6 990:col-span-4 w-full h-full shadow-serviceCard" />
                 ))
               : service?.services?.map((service: JSX.IntrinsicAttributes & ServiceCardProps, i: number) => (
                   <ServiceCard key={i} {...service} />

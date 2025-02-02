@@ -18,6 +18,8 @@ export interface AboutBlock {
   aboutBlockServiceCategoryThreeDesc: string;
   aboutBlockTitle: string;
   aboutBlockFile: FileBlockTypes;
+  aboutBlockLeafValue: string;
+  aboutBlockLeafText: string;
 }
 
 export interface HomePageClientLeadBlock {
@@ -33,6 +35,7 @@ export interface HomePageBannerBlock {
 export interface ServicesBlock {
   servicesBlockTitle: string;
   servicesBlockSubtitle: string;
+  servicesBlockLinkText: string;
 }
 
 export interface WhyChooseUsBlock {
@@ -160,6 +163,15 @@ export interface HeaderProps {
   clientLeadModalFile: FileBlockTypes;
 }
 
+export interface ContactPage {
+  contactPageBannerFile: FileBlockTypes;
+  contactPageBannerTitle: string;
+  contactPageBannerSubtitle: string;
+  contactPageTitle: string;
+  contactPageSubtitle: string;
+  contactPageParagraph: string;
+}
+
 export interface TextBlockMap {
   ABOUT_BLOCK: AboutBlock;
   HOME_PAGE_CLIENT_LEAD: HomePageClientLeadBlock;
@@ -179,6 +191,7 @@ export interface TextBlockMap {
   TESTIMONIALS_PAGE: TestimonialsPage;
   HEADER: HeaderProps;
   PHOTO_GALLERY_PAGE: PhotoGalleryPage;
+  CONTACT_PAGE: ContactPage;
 }
 
 export interface TextBlockStatePayload {
@@ -208,6 +221,8 @@ export const ABOUT_BLOCK = {
   aboutBlockServiceCategoryTwoDesc: "",
   aboutBlockServiceCategoryThreeDesc: "",
   aboutBlockFile: FieldBlock,
+  aboutBlockLeafValue: "",
+  aboutBlockLeafText: "",
 };
 
 export const HOME_PAGE_CLIENT_LEAD = {
@@ -223,6 +238,7 @@ export const HOME_PAGE_BANNER = {
 export const SERVICES_BLOCK = {
   servicesBlockTitle: "",
   servicesBlockSubtitle: "",
+  servicesBlockLinkText: "",
 };
 
 export const WHY_CHOOSE_US_BLOCK = {
@@ -350,6 +366,15 @@ export const HEADER = {
   clientLeadModalFile: FieldBlock,
 };
 
+export const CONTACT_PAGE = {
+  contactPageBannerFile: FieldBlock,
+  contactPageBannerTitle: "Contact Us",
+  contactPageBannerSubtitle: "Subtitle",
+  contactPageTitle: "Get In Touch",
+  contactPageSubtitle: "Contact Us",
+  contactPageParagraph: "This is a paragraph",
+};
+
 export const transformedTextBlocks: any = {
   ABOUT_BLOCK,
   HOME_PAGE_CLIENT_LEAD,
@@ -369,6 +394,7 @@ export const transformedTextBlocks: any = {
   TESTIMONIALS_PAGE,
   HEADER,
   PHOTO_GALLERY_PAGE,
+  CONTACT_PAGE,
 };
 
 export const initialTextBlockState: TextBlockStatePayload = {

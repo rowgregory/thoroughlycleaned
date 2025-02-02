@@ -1,5 +1,4 @@
 import { ApprovedUserErrorCodes, AuthErrorCodes } from "@/app/utils/errorCodes";
-import { generateToken } from "@/app/utils/generateToken";
 import { createLog } from "@/app/utils/logHelper";
 import parseErrorStack from "@/app/utils/parseErrorStack";
 import prisma from "@/prisma/client";
@@ -33,39 +32,16 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    const user = await prisma.user.findUnique({
-      where: {
-        phoneNumber: twoFactorRecord.phoneNumber,
-      },
-    });
-
-    if (!user) {
-      return NextResponse.json({ message: "User not found" }, { status: 404 });
-    }
-
     await prisma.twoFactorAuth.delete({
       where: {
         id: twoFactorRecord.id,
       },
     });
 
-    const token = generateToken(
-      { id: user.id, isAdmin: user.isAdmin, role: user.role },
-      "3d"
+    return NextResponse.json(
+      { message: "Verify register password success" },
+      { status: 200 }
     );
-
-    const response = NextResponse.json({
-      codeVerified: true,
-    });
-
-    response.cookies.set("authToken", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 3 * 24 * 60 * 60, // 3 days
-    });
-
-    return response;
   } catch (error: any) {
     await createLog(
       "error",

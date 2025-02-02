@@ -21,7 +21,7 @@ const PageBanner: FC<PageBannerProps> = ({ type, fileNameKey, titleNameKey, subt
       <Picture src="/images/logo-bubble-transparent.png" className="w-40 h-40 990:w-80 990:h-80 object-contain" priority={true} />
     </div>
   ) : (
-    <div className="relative h-[425px] 990:h-[530px] w-full">
+    <div className="relative h-[425px] 990:h-[530px] w-full bg-skyAqua">
       <EditableImage
         src={blockData?.[fileNameKey]?.value}
         type={type}

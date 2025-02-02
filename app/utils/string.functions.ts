@@ -12,6 +12,7 @@ export const shouldExcludePath = (pathname: string) => {
     "/services/biohazard",
     "/projects",
     "/testimonials",
+    "/contact",
   ];
 
   const isValidPath = validPaths.some((path) => pathname === path);

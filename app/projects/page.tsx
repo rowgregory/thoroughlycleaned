@@ -33,7 +33,10 @@ const Projects = () => {
           <div className="grid grid-cols-12 gap-y-6 400:gap-3 990:gap-6">
             {loadingPhotoGalleryProjects
               ? Array.from({ length: 3 }).map((_, i) => (
-                  <SkeletonLoader key={i} className="col-span-12 760:col-span-6 1160:col-span-4 1690:col-span-4" />
+                  <SkeletonLoader
+                    key={i}
+                    className="col-span-12 760:col-span-6 1160:col-span-4 1690:col-span-4 max-w-full aspect-square max-h-full"
+                  />
                 ))
               : photoGallery?.projects?.map((project: ProjectProps) => <PublicAlbum key={project.id} {...project} />)}
           </div>

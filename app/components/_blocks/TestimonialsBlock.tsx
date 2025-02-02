@@ -25,14 +25,14 @@ const TestimonialsBlock: FC<{ textBlockMap: any; testimonials: any; isLoading: b
             titleName="testimonialsBlockTitle"
             type="TESTIMONIALS_BLOCK"
             subtitleStyles="text-white"
-            titleStyles="text-white"
+            titleStyles="text-white text-center 480:text-left"
           />
           <EditableTextArea
             initialValue={textBlockMap?.testimonialsBlockDesc}
             tag="p"
             textBlockKey="testimonialsBlockDesc"
             type="TESTIMONIALS_BLOCK"
-            className="text-white mb-7"
+            className="text-white mb-7 text-center 480:text-left"
           />
           <div className="hidden 990:flex items-center gap-x-2.5">
             <div

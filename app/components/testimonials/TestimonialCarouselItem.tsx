@@ -6,7 +6,7 @@ interface TestimonialCarouselItemProps {
 
 const TestimonialCarouselItem: FC<TestimonialCarouselItemProps> = ({ testimonial }) => {
   return (
-    <div className="bg-white px-5 h-[450px] 990:px-10 py-8 sm:py-16 flex flex-col relative justify-between">
+    <div className="bg-white px-5 480:h-[450px] 990:px-10 py-8 sm:py-16 flex flex-col relative justify-between">
       <div>
         <h3 className="font-bold text-2xl text-jetBlack mb-3 tracking-wider">{testimonial?.reviewTitle}</h3>
         <h4 className="text-17 text-gray-700 leading-7 mb-6">&quot;{testimonial?.review}&quot;</h4>

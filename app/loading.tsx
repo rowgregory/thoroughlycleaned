@@ -1,8 +1,8 @@
 import React from 'react'
 import FullScreenAppleLoader from './components/common/FullScreenAppleLoader'
 
-const AdminLoading = () => {
+const MainLoading = () => {
   return <FullScreenAppleLoader />
 }
 
-export default AdminLoading
+export default MainLoading

@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     const code = generate2FA();
 
     // Calculate an expiration time for the code (e.g., 30 minutes)
-    const expiresAt = new Date(Date.now() + 1 * 60 * 1000);
+    const expiresAt = new Date(Date.now() + 30 * 60 * 1000);
 
     const { phoneNumber, userName } = existingTwoFactorAuth;
 

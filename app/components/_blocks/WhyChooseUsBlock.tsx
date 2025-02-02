@@ -16,15 +16,11 @@ const WhyChooseUsBlock = ({ textBlockMap }: any) => {
             titleName="whyChooseUsBlockTitle"
             type="WHY_CHOOSE_US_BLOCK"
             rows={1}
+            titleStyles="text-center 480:text-left"
           />
           <div className="grid grid-cols-12 gap-y-7 sm:gap-7">
             {whyChooseUs(textBlockMap).map((why, i) => (
-              <div
-                data-aos="fade-up"
-                data-aos-delay={i * 100}
-                key={i}
-                className="col-span-12 md:col-span-6 px-5 py-10 border-1 border-gray-200 min-w-60"
-              >
+              <div key={i} className="col-span-12 md:col-span-6 px-5 py-10 border-1 border-gray-200 min-w-60">
                 <div className="flex items-center justify-between mb-8">
                   {why.icon}
                   <span className="text-skyAqua font-rubik text-5xl">{why.num}</span>

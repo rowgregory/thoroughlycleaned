@@ -73,6 +73,11 @@ export const headerNavigationLinkData = (
       linkKey: "/testimonials",
       active: path === "/testimonials",
     },
+    {
+      linkText: "Contact",
+      linkKey: "/contact",
+      active: path === "/contact",
+    },
   ];
 
   if (isAuthenticated) {

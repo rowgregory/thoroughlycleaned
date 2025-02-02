@@ -18,16 +18,16 @@ const PhotoGalleryBlock = ({ textBlockMap, photoGalleryImages }: any) => {
           titleStyles="text-center"
           sectionStyles="flex flex-col justify-center items-center"
         />
-        <div className="slider-container w-full relative">
+        <div className="w-full relative">
           <Slider {...photoGalleryCarouselSettings}>
             {photoGalleryImages?.map((item: any, i: number) => (
-              <div data-aos="fade-up" data-aos-delay={i * 100} key={i} className="h-96 flex-1">
+              <div key={i} className="h-96 flex-1">
                 <div className="bg-cover bg-center bg-no-repeat w-full h-full" style={{ backgroundImage: `url(${item?.url})` }} />
               </div>
             ))}
           </Slider>
         </div>
-        <div className="flex items-center justify-center gap-x-2 mt-16">
+        <div className="flex flex-col 480:flex-row items-center justify-center gap-y-2 480:gap-y-0 480:gap-x-2 mt-16">
           <h5 className="text-gray-600 text-15">Explore our Cleaning Projects.</h5>
           <Link href="/services" className="text-skyAqua font-semibold hover:underline">
             Browse All Projects

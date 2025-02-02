@@ -28,7 +28,7 @@ const HeaderTop: FC<HeaderTopProps> = ({ text }) => {
         <button
           type="button"
           onClick={() => dispatch(setOpenModalClientLeadPublic())}
-          className="h-12 text-zinc-800 hidden sm:flex items-center px-5 text-sm font-poppins font-semibold bg-sunny whitespace-nowrap"
+          className="h-12 text-zinc-800 hidden sm:flex items-center px-5 text-sm font-poppins font-semibold bg-sunny whitespace-nowrap connect-with-us"
         >
           Connect With Us
         </button>

@@ -36,7 +36,7 @@ const VerifyRegisterCodeForm: FC<{ showResetCode: boolean; twoFactorAuthIdtDecod
       .unwrap()
       .then(() => {
         playSuccess()
-        push('/admin/services')
+        push('/auth/login')
       })
       .catch(() => playError())
   }

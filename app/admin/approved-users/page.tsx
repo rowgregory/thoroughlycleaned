@@ -11,7 +11,7 @@ import AdminErrorText from '@/app/components/admin/AdminErrorText'
 import FullScreenAppleLoader from '@/app/components/common/FullScreenAppleLoader'
 
 const ApprovedUsers = () => {
-  const { isLoading, data: approvedUser, error } = useFetchApprovedUsersQuery()
+  const { isLoading, data: approvedUser, error } = useFetchApprovedUsersQuery(undefined, { refetchOnMountOrArgChange: true })
   const { openModalCreateApprovedUser, openModalUpdateApprovedUser } = useAppSelector((state: RootState) => state.approvedUser)
 
   return (
