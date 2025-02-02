@@ -92,10 +92,7 @@ const PublicEditableTextAreaModal: FC<PublicEditableTextAreaModalProps> = ({ sho
           )}
         </form>
       </div>
-      <div
-        className="bg-[#cfcfcf] mx-auto max-w-md 990:max-w-full p-3 480:py-6 480:px-5 fixed bottom-0 left-0 right-0 480:block w-full"
-        style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 16px)' }}
-      >
+      <div className="bg-[#cfcfcf] mx-auto max-w-md 990:max-w-full p-3 480:py-6 480:px-5 fixed bottom-0 left-0 right-0 480:block w-full">
         <div className="flex items-center justify-between">
           <button
             onClick={reset}

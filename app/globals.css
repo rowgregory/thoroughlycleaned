@@ -16,7 +16,7 @@ body {
   }
 
   .public-modal {
-    height: 100vh;
+    height: 100dvh;
     width: 100vw;
   }
 
@@ -29,7 +29,7 @@ body {
 
   @media (max-height: 890px) and (min-width: 1000px) {
     .public-modal {
-      height: 100vh;
+      height: 100dvh;
       width: 100vw;
     }
   }
