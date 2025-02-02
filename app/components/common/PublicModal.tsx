@@ -15,7 +15,7 @@ const PublicModal: FC<{ show: boolean; children: ReactNode; onClose: any; zIndex
   return (
     <div
       onClick={onClose}
-      className={`fixed inset-0 bg-black/80 flex ${zIndex || 'z-[70]'} items-center justify-center transition-opacity ease-out ${
+      className={`fixed inset-0 bg-black/80 flex ${zIndex || 'z-[90]'} items-center justify-center transition-opacity ease-out ${
         show ? 'block' : 'hidden'
       }`}
     >

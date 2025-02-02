@@ -15,16 +15,22 @@ const HeaderFixed = ({ textBlockMap }: any) => {
   const isBiohazard = path?.split?.('/')?.[2] === 'biohazard'
   const { isAuthenticated } = useAppSelector((state: RootState) => state.auth)
 
+  const { openModalEditableTextAreaPublic, openModalEditableVideoPublic, openModalImageUploaderPublic } = useAppSelector(
+    (state: RootState) => state.app
+  )
+
   const staticImgPath = '/images/logo-bubble-transparent.png'
   const imgSrc = isBiohazard
     ? textBlockMap?.HEADER?.headerBiohazardLogoFile?.value || staticImgPath
     : textBlockMap?.HEADER?.headerLogoFile?.value || staticImgPath
 
+  const modalIsOpen = openModalEditableTextAreaPublic || openModalEditableVideoPublic || openModalImageUploaderPublic
+
   return (
     <div className="overflow-hidden">
       <div
         className={`fixed z-[70] top-0 left-0 w-full h-[74px] bg-white transition-transform duration-500 px-4 lg:px-12 xl:px-4 ${
-          hasScrolled ? 'translate-y-0' : '-translate-y-[74px]'
+          hasScrolled && !modalIsOpen ? 'translate-y-0' : '-translate-y-[74px]'
         }`}
       >
         <div className="max-w-[520px] 760:max-w-[700px] 990:max-w-[960px] 1200:max-w-[1280px] mx-auto w-full h-full flex justify-between items-center">
