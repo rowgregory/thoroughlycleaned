@@ -75,7 +75,7 @@ const PublicEditableTextAreaModal: FC<PublicEditableTextAreaModalProps> = ({ sho
 
   return (
     <PublicModal show={show} onClose={reset} reset={reset}>
-      <div className="px-4 py-5 480:py-20 480:mb-20 max-w-md mx-auto flex flex-col items-center justify-center w-full">
+      <div className="px-4 pt-12 480:py-20 480:mb-20 max-w-md mx-auto flex flex-col items-center justify-center w-full">
         <EditableTextAreaIcon className={`${loading ? 'animate-rotate360' : ''}`} />
         <h1 className="font-medium text-jetBlack text-xl mt-2 mb-4">Edit Text Area</h1>
         <form onSubmit={handleUpdate} className="w-full grid grid-cols-12 items-end relative">
@@ -92,7 +92,10 @@ const PublicEditableTextAreaModal: FC<PublicEditableTextAreaModalProps> = ({ sho
           )}
         </form>
       </div>
-      <div className="bg-[#cfcfcf] mx-auto max-w-md 990:max-w-full p-3 480:py-6 480:px-5 fixed bottom-0 left-0 right-0 480:block w-full">
+      <div
+        className="bg-[#cfcfcf] mx-auto max-w-md 990:max-w-full p-3 480:py-6 480:px-5 fixed bottom-0 left-0 right-0 480:block w-full"
+        style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 16px)' }}
+      >
         <div className="flex items-center justify-between">
           <button
             onClick={reset}
