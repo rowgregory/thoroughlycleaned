@@ -12,7 +12,7 @@ const TestimonialCarouselItem: FC<TestimonialCarouselItemProps> = ({ testimonial
         <h4 className="text-17 text-gray-700 leading-7 mb-6">&quot;{testimonial?.review}&quot;</h4>
       </div>
       <h5 className="font-bold text-jetBlack">{testimonial?.name}</h5>
-      <div className="bg-quotations bg-cover bg-center bg-no-repeat w-16 h-16 absolute bottom-2 right-3" />
+      <div className="bg-quotations bg-cover bg-center bg-no-repeat w-16 h-16 flex self-end" />
     </div>
   )
 }

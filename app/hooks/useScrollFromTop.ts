@@ -1,21 +1,29 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from "react";
 
 const useScrollFromTop = (threshold = 100) => {
-  const [hasScrolled, setHasScrolled] = useState(false)
+  const [showHeader, setShowHeader] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setHasScrolled(window.scrollY >= threshold)
-    }
+      const currentScrollY = window.scrollY;
 
-    window.addEventListener('scroll', handleScroll)
+      if (currentScrollY < threshold) {
+        setShowHeader(false); // Hide header when near the top
+      } else if (currentScrollY < lastScrollY.current) {
+        setShowHeader(true); // Show when scrolling up
+      } else {
+        setShowHeader(false); // Hide when scrolling down
+      }
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [threshold])
+      lastScrollY.current = currentScrollY; // Update last scroll position
+    };
 
-  return hasScrolled
-}
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [threshold]);
 
-export default useScrollFromTop
+  return showHeader;
+};
+
+export default useScrollFromTop;

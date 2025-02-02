@@ -66,7 +66,7 @@ const config: Config = {
         slideLeft: "slideLeft 500ms ease-in-out forwards",
         slideRight: "slideRight 500ms ease-in-out forwards",
         scaleIn: "scaleIn 500ms ease-in-out forwards",
-        scaleBackForth: "scaleBackForth 5s ease-in-out infinite",
+        scaleBackForth: "scaleBackForth 3s ease-in-out infinite",
         translateXBackForth: "translateXBackForth 5s ease-in-out infinite",
         translateXForthBack: "translateXForthBack 5s ease-in-out infinite",
         translateYBackForth: "translateYBackForth 5s ease-in-out infinite",
@@ -133,7 +133,7 @@ const config: Config = {
             transform: "scale(0.8)",
           },
           "50%": {
-            transform: "scale(0.6)",
+            transform: "scale(0.7)",
           },
         },
         translateXBackForth: {

@@ -3,6 +3,7 @@ import Slider from 'react-slick'
 import SectionHeader from '../common/SectionHeader'
 import { photoGalleryCarouselSettings } from '@/public/data/slider.settings'
 import Link from 'next/link'
+import EditableTextArea from '../common/EditableTextArea'
 
 const PhotoGalleryBlock = ({ textBlockMap, photoGalleryImages }: any) => {
   return (
@@ -28,7 +29,13 @@ const PhotoGalleryBlock = ({ textBlockMap, photoGalleryImages }: any) => {
           </Slider>
         </div>
         <div className="flex flex-col 480:flex-row items-center justify-center gap-y-2 480:gap-y-0 480:gap-x-2 mt-16">
-          <h5 className="text-gray-600 text-15">Explore our Cleaning Projects.</h5>
+          <EditableTextArea
+            tag="h5"
+            initialValue={textBlockMap?.PHOTO_GALLERY_BLOCK?.photoGalleryBlockText}
+            type="PHOTO_GALLERY_BLOCK"
+            textBlockKey="photoGalleryBlockText"
+            className="text-gray-600 text-15"
+          />
           <Link href="/services" className="text-skyAqua font-semibold hover:underline">
             Browse All Projects
           </Link>

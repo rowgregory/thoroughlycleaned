@@ -111,6 +111,7 @@ export interface ServiceBiohazardPage {
 export interface PhotoGalleryBlock {
   photoGalleryBlockSubtitle: string;
   photoGalleryBlockTitle: string;
+  photoGalleryBlockText: string;
 }
 
 export interface FooterBlock {
@@ -314,6 +315,7 @@ export const SERVICE_BIOHAZARD_PAGE = {
 export const PHOTO_GALLERY_BLOCK = {
   photoGalleryBlockSubtitle: "",
   photoGalleryBlockTitle: "",
+  photoGalleryBlockText: "",
 };
 
 export const FOOTER = {

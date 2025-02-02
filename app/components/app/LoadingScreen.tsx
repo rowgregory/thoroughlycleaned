@@ -36,7 +36,7 @@ const LoadingScreen = () => {
           playAnimation ? 'opacity-0 scale-[100]' : 'opacity-100'
         } ${hideLoadingScreen ? 'hidden' : ''}`}
       >
-        <div className="animate-fadeIn">
+        <div className="animate-scaleBackForth">
           <PageBannerLoaderSVG />
         </div>
       </div>
