@@ -10,7 +10,7 @@ import validateClientLeadForm from '../validations/validateClientLeadForm'
 import Spinner from '../components/common/Spinner'
 import CreateClientLeadModal from '../modals/CreateClientLeadModal'
 import { RootState, useAppDispatch, useAppSelector } from '../redux/store'
-import { setCloseModalClientLeadCreated, setOpenModalClientLeadCreated } from '../redux/features/appSlice'
+import { setCloseModalClientLeadCreated, setCloseModalClientLeadPublic, setOpenModalClientLeadCreated } from '../redux/features/appSlice'
 
 const ClientLeadForm: FC<ClientLeadFormProps> = ({ formStyles, inputStyles, selectStyles, buttonStyles, errorStyles, bubbleColor }) => {
   const dispatch = useAppDispatch()
@@ -24,6 +24,7 @@ const ClientLeadForm: FC<ClientLeadFormProps> = ({ formStyles, inputStyles, sele
 
   const reset = () => {
     dispatch(setCloseModalClientLeadCreated())
+    dispatch(setCloseModalClientLeadPublic())
     setErrors({})
     setInputs({})
     setSubmitted(false)
@@ -39,7 +40,6 @@ const ClientLeadForm: FC<ClientLeadFormProps> = ({ formStyles, inputStyles, sele
     await createClientLead(inputs)
       .unwrap()
       .then(() => {
-        setInputs({})
         dispatch(setOpenModalClientLeadCreated())
       })
       .catch(() => {})
@@ -58,18 +58,22 @@ const ClientLeadForm: FC<ClientLeadFormProps> = ({ formStyles, inputStyles, sele
       <form onSubmit={handleSubmit} className={formStyles}>
         <div className="col-span-12 md:col-span-6 990:col-span-3 flex flex-col">
           <input
+            disabled={isLoading}
             autoComplete="on"
             name="name"
             onChange={handleInput}
-            className={`${inputStyles}`}
+            className={`${inputStyles} border-2 ${
+              submitted && errors.name ? 'border-frostbite hover:border-frostbite' : 'border-neonIce hover:border-iceberg'
+            }`}
             aria-label="name"
-            placeholder="Your Name"
+            placeholder="Name"
             value={inputs.name || ''}
           />
           {submitted && errors.name && <span className={`${errorStyles} text-13 mt-0.5`}>{errors.name}</span>}
         </div>
         <div className="col-span-12 md:col-span-6 990:col-span-3 flex flex-col">
           <input
+            disabled={isLoading}
             autoComplete="on"
             type="tel"
             name="phoneNumber"
@@ -77,14 +81,17 @@ const ClientLeadForm: FC<ClientLeadFormProps> = ({ formStyles, inputStyles, sele
               const input = e.target as HTMLInputElement
               setInputs((prev) => ({ ...prev, phoneNumber: input.value.replace(/[^0-9()+-\s]/g, '') }))
             }}
-            className={`${inputStyles}`}
+            className={`${inputStyles} border-2 ${
+              submitted && errors.phoneNumber ? 'border-frostbite hover:border-frostbite' : 'border-neonIce hover:border-iceberg'
+            }`}
             aria-label="phoneNumber"
-            placeholder="Your Phone Number"
+            placeholder="Phone Number"
             value={(inputs.phoneNumber as string) || ''}
           />
           {submitted && errors.phoneNumber && <span className={`${errorStyles} text-13 mt-0.5`}>{errors.phoneNumber}</span>}
         </div>
         <select
+          disabled={isLoading}
           autoComplete="on"
           name="serviceType"
           onChange={handleSelect}
@@ -98,10 +105,10 @@ const ClientLeadForm: FC<ClientLeadFormProps> = ({ formStyles, inputStyles, sele
             </option>
           ))}
         </select>
-        <button disabled={isLoading} type="submit" className={`${buttonStyles} bg-skyAqua`}>
+        <button disabled={isLoading} type="submit" className={`${buttonStyles}`}>
           {isLoading ? (
             <div className="w-full h-full flex items-center justify-center">
-              <Spinner fill="fill-sunny" wAndH="w-7 h-7" />
+              <Spinner fill="fill-neonIce" wAndH="w-7 h-7" />
             </div>
           ) : (
             <BubbleBtn bubbleColor={`${bubbleColor || 'bg-white'}`} text="Submit Now" />

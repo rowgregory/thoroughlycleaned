@@ -7,13 +7,6 @@ export async function GET(req: NextRequest) {
   try {
     const teamMembers = await prisma.teamMember.findMany();
 
-    await createLog(
-      "info",
-      `Successfully fetched all team members`,
-      "Public Access",
-      2000
-    );
-
     return NextResponse.json(
       {
         success: true,

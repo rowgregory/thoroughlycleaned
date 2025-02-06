@@ -57,7 +57,7 @@ const PhotoDropZone: FC<PhotoDropZoneProps> = ({ setInputs, inputRef, url, name,
           <>
             <AwesomeIcon icon={uploadIcon} className="w-3.5 h-3.5 mb-1.5 text-[#7e7e7e]" />
             <p className="text-sm rubik-regular text-[#7e7e7e]">Drag & Drop or Click</p>
-            <span className="text-skyAqua rubik-regular text-11">{role}</span>
+            <span className="text-neonIce rubik-regular text-11">{role}</span>
           </>
         )}
       </div>

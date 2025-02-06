@@ -9,11 +9,11 @@ interface TestimonialsCarouselProps {
   testimonials: any
 }
 
-const settings = (amount: number) => ({
+const settings = () => ({
   dots: false,
-  infinite: amount >= 3 ? true : false,
+  infinite: true,
   speed: 500,
-  slidesToShow: Math.min(amount || 1, 3), // Dynamically set slidesToShow,
+  slidesToShow: 1,
   slidesToScroll: 1,
   adaptiveHeight: false,
   autoplay: true,
@@ -22,7 +22,7 @@ const settings = (amount: number) => ({
 
 const TestimonialsCarousel: FC<TestimonialsCarouselProps> = ({ slider, testimonials }) => {
   return (
-    <Slider ref={slider} {...settings(testimonials?.length)}>
+    <Slider ref={slider} {...settings()}>
       {testimonials?.map((testimonial: any, i: number) => (
         <TestimonialCarouselItem key={i} testimonial={testimonial} />
       ))}

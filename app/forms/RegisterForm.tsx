@@ -89,7 +89,7 @@ const RegisterForm = () => {
               }}
               className={`col-span-1 w-full h-auto aspect-square shadow-adminServiceCard active:shadow-none flex items-center justify-center border-1 border-[#6e6e73] rounded-md`}
             >
-              <div className={`${field.value ? 'bg-skyAqua w-5 h-5 rounded-sm' : ''}`} />
+              <div className={`${field.value ? 'bg-neonIce w-5 h-5 rounded-sm' : ''}`} />
             </button>
             <input
               ref={checkBoxRef}
@@ -127,7 +127,7 @@ const RegisterForm = () => {
         onClick={handleSubmit}
         disabled={isLoading}
         type="submit"
-        className="mt-8 bg-skyAqua hover:bg-[#008b9c] border-1 border-skyAqua h-12 rounded-lg text-white disabled:cursor-not-allowed flex items-center justify-center"
+        className="mt-8 bg-neonIce hover:bg-[#008b9c] border-1 border-neonIce h-12 rounded-lg text-white disabled:cursor-not-allowed flex items-center justify-center"
       >
         {isLoading || isFetching ? <AppleLoader /> : 'Continue'}
       </button>

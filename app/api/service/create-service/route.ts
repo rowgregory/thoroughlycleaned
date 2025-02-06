@@ -32,8 +32,6 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    await createLog("info", `Service created successfully`, user?.id, 2000);
-
     return NextResponse.json(
       {
         success: true,

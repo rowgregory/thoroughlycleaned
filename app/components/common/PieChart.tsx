@@ -32,7 +32,7 @@ const PieChart: React.FC<PieChartProps> = ({ percentage, onClick }) => {
         cy={center}
         r={radius}
         fill="transparent"
-        stroke="#ffd700"
+        stroke="#00b8d9"
         strokeWidth="5" // Half of the original 10
         strokeDasharray={circumference}
         strokeDashoffset={offset}

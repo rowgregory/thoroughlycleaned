@@ -45,14 +45,6 @@ export async function DELETE(req: NextRequest) {
       where: { id },
     });
 
-    // Success log
-    await createLog(
-      "info",
-      `Approved user with ID ${id} successfully deleted`,
-      user?.id,
-      2000
-    );
-
     return NextResponse.json(
       {
         success: true,

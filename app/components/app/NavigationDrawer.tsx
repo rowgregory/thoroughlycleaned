@@ -45,7 +45,7 @@ const NavigationDrawer = ({ textBlockMap }: any) => {
           <AwesomeIcon
             onClick={() => dispatch(setCloseNavigationDrawer())}
             icon={timesIcon}
-            className="w-6 h-6 text-skyAqua cursor-pointer hover:rotate-90 duration-300 mb-5"
+            className="w-6 h-6 text-neonIce cursor-pointer hover:rotate-90 duration-300 mb-5"
           />
         </div>
         <div className="flex flex-col mb-10">
@@ -54,8 +54,8 @@ const NavigationDrawer = ({ textBlockMap }: any) => {
               <Link
                 href={link.linkText !== 'Services' ? link.linkKey : '#'}
                 onClick={() => (link.subLinks ? setToggleSublinks(!toggleSublinks) : dispatch(setCloseNavigationDrawer()))}
-                className={`flex items-center py-2.5 justify-between group border-b-1 border-b-black border-opacity-10 text-lg group hover:text-skyAqua ${
-                  link.active ? 'text-skyAqua font-bold' : 'text-gray-800 font-medium'
+                className={`flex items-center py-2.5 justify-between group border-b-1 border-b-black border-opacity-10 text-lg group hover:text-neonIce ${
+                  link.active ? 'text-neonIce font-bold' : 'text-gray-800 font-medium'
                 }`}
               >
                 {link.linkText}
@@ -67,8 +67,8 @@ const NavigationDrawer = ({ textBlockMap }: any) => {
                     key={j}
                     href={sublink.linkKey}
                     onClick={() => dispatch(setCloseNavigationDrawer())}
-                    className={`flex items-center pl-8 py-2.5 justify-between group border-b-1 border-b-black border-opacity-10 text-lg group ${
-                      sublink.active ? 'text-skyAqua font-bold' : 'text-gray-800 font-medium'
+                    className={`flex items-center pl-8 py-2.5 justify-between group border-b-1 border-b-black border-opacity-10 text-lg group hover:text-neonIce ${
+                      sublink.active ? 'text-neonIce font-bold' : 'text-gray-800 font-medium'
                     }`}
                   >
                     {sublink.linkText}
@@ -82,7 +82,7 @@ const NavigationDrawer = ({ textBlockMap }: any) => {
             <div key={i} className="grid grid-cols-12 group gap-x-3">
               <AwesomeIcon
                 icon={item.icon}
-                className="col-span-1 480:col-span-2 w-4 h-4 480:w-6 480:h-6 text-skyAqua group-hover:rotate-[360deg] duration-1000"
+                className="col-span-1 480:col-span-2 w-4 h-4 480:w-6 480:h-6 text-neonIce group-hover:rotate-[360deg] duration-1000"
               />
               <div className="col-span-11 480:col-span-10 flex flex-col justify-between">
                 <h1 className="font-bold mb-1.5 text-gray-800">{item.h1}</h1>

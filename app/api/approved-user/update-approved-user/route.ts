@@ -52,13 +52,6 @@ export async function PATCH(req: NextRequest) {
       });
     }
 
-    await createLog(
-      "info",
-      `Approved user with ID ${id} successfully updated`,
-      user?.id,
-      2000
-    );
-
     return NextResponse.json(
       {
         success: true,

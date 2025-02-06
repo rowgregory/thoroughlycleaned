@@ -44,7 +44,7 @@ const PublicAuthInput: FC<PublicAuthInputProps> = ({ handleInput, inputValue, lo
         <AwesomeIcon
           onClick={onClick}
           icon={circleRightIcon}
-          className="absolute right-2 top-[18px] w-6 h-6 text-[#424245] z-20 cursor-pointer duration-100 hover:text-neonSkyAqua"
+          className="absolute right-2 top-[18px] w-6 h-6 text-[#424245] z-20 cursor-pointer duration-100 hover:text-iceberg"
         />
       )}
       {name === 'password' && (

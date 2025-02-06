@@ -40,14 +40,6 @@ export async function POST(req: NextRequest) {
       createdAt: new Date(),
     });
 
-    await createLog(
-      "info",
-      `Approved user successfully created`,
-      user?.id,
-      2000,
-      { name }
-    );
-
     return NextResponse.json(
       {
         success: true,

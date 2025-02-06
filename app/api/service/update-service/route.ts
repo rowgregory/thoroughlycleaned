@@ -66,13 +66,6 @@ export async function PUT(req: NextRequest) {
       },
     });
 
-    await createLog(
-      "info",
-      `Service with ID ${id} successfully updated`,
-      user?.id,
-      2000
-    );
-
     return NextResponse.json(
       {
         success: true,

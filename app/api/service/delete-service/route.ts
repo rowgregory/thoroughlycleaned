@@ -46,13 +46,6 @@ export async function DELETE(req: NextRequest) {
       where: { id },
     });
 
-    await createLog(
-      "info",
-      `Service with ID ${id} successfully deleted`,
-      user?.id,
-      2000
-    );
-
     return NextResponse.json(
       {
         success: true,

@@ -15,22 +15,31 @@ const WhyChooseUsBlock = ({ textBlockMap }: any) => {
             title={textBlockMap?.WHY_CHOOSE_US_BLOCK?.whyChooseUsBlockTitle}
             titleName="whyChooseUsBlockTitle"
             type="WHY_CHOOSE_US_BLOCK"
-            rows={1}
             titleStyles="text-center 480:text-left"
+            sectionStyles="flex flex-col justify-center items-center 1200:items-start"
           />
           <div className="grid grid-cols-12 gap-y-7 sm:gap-7">
             {whyChooseUs(textBlockMap).map((why, i) => (
-              <div key={i} className="col-span-12 md:col-span-6 px-5 py-10 border-1 border-gray-200 min-w-60">
+              <div
+                key={i}
+                className="col-span-12 md:col-span-6 px-5 py-10 border-1 border-gray-200 min-w-60 group relative overflow-hidden"
+              >
                 <div className="flex items-center justify-between mb-8">
                   {why.icon}
-                  <span className="text-skyAqua font-rubik text-5xl">{why.num}</span>
+                  <span className="text-iceberg group-hover:text-white text-5xl relaltive z-10">{why.num}</span>
                 </div>
+                <div
+                  className="group-hover:translate-y-0 transform translate-y-full transition-all duration-300 w-full bg-neonIce h-0 group-hover:h-full absolute bottom-0 left-0"
+                  style={{
+                    clipPath: 'polygon(0% 65%, 100% 7%, 100% 100%, 0% 100%)'
+                  }}
+                />
                 <EditableTextArea
                   tag="span"
                   initialValue={why.text}
                   type="WHY_CHOOSE_US_BLOCK"
                   textBlockKey={why.name}
-                  className="text-[17px] font-semibold text-espresso"
+                  className="text-[17px] font-semibold text-espresso group-hover:text-white relative z-10"
                 />
               </div>
             ))}

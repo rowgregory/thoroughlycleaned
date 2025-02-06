@@ -3,7 +3,7 @@
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { persistStore, persistReducer } from "redux-persist";
+import { persistStore, persistReducer, createTransform } from "redux-persist";
 import { api } from "./services/api";
 import { authReducer } from "./features/authSlice";
 import { appReducer } from "./features/appSlice";
@@ -19,6 +19,16 @@ import { profileReducer } from "./features/profileSlice";
 import { userReducer } from "./features/userSlice";
 import { logReducer } from "./features/logSlice";
 import { teamMemberReducer } from "./features/teamMemberSlice";
+
+// Custom transform to remove `someAttribute` from service state before persisting
+const serviceTransform = createTransform(
+  (inboundState: any) => {
+    const { openModalServiceDetails, ...rest } = inboundState; // Remove `someAttribute`
+    return rest;
+  },
+  (outboundState) => outboundState, // No changes needed on rehydration
+  { whitelist: ["service"] } // Apply only to "service"
+);
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -37,10 +47,11 @@ const rootReducer = combineReducers({
   [api.reducerPath]: api.reducer,
 });
 
-const persistConfig = {
+const persistConfig: any = {
   key: "root",
   storage,
-  whitelist: ["service", "profile", "textBlock"],
+  whitelist: ["service", "profile"],
+  transforms: [serviceTransform],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

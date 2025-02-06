@@ -52,15 +52,6 @@ export async function DELETE(req: NextRequest) {
       where: { id },
     });
 
-    // Log the successful deletion
-    await createLog(
-      "info",
-      `TeamMember with ID ${id} successfully deleted`,
-      user?.id,
-      2000
-    );
-
-    // Return success response
     return NextResponse.json(
       {
         success: true,

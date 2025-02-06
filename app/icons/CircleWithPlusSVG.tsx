@@ -31,12 +31,12 @@ const YellowCircleBluePlusSVG = ({ className }: any) => {
       </defs>
       <g clipPath="url(#59591492d9)">
         <g clipPath="url(#69b53696c3)">
-          <path fill="#ffd700" d="M 0 0 L 52.003906 0 L 52.003906 52.003906 L 0 52.003906 Z M 0 0 " fillOpacity="1" fillRule="nonzero" />
+          <path fill="#c0c0c0" d="M 0 0 L 52.003906 0 L 52.003906 52.003906 L 0 52.003906 Z M 0 0 " fillOpacity="1" fillRule="nonzero" />
         </g>
       </g>
       <g clipPath="url(#b74d4242ef)">
         <path
-          fill="#007a8f"
+          fill="#323235"
           d="M 38.605469 26.96875 L 26.96875 26.96875 L 26.96875 38.605469 L 25.027344 38.605469 L 25.027344 26.96875 L 13.390625 26.96875 L 13.390625 25.027344 L 25.027344 25.027344 L 25.027344 13.390625 L 26.96875 13.390625 L 26.96875 25.027344 L 38.605469 25.027344 Z M 38.605469 26.96875 "
           fillOpacity="1"
           fillRule="nonzero"

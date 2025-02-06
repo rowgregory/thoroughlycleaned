@@ -118,7 +118,7 @@ const AdminProfileForm = () => {
               className={`col-span-2 w-8 h-8 shadow-adminServiceCard flex items-center justify-center border-1 border-[#6e6e73] rounded-md`}
             >
               <div
-                style={{ background: profile.colorCode || 'bg-skyAqua' }}
+                style={{ background: profile.colorCode || 'bg-neonIce' }}
                 className={`${inputs.isSoundEffectsOn ? 'w-5 h-5 rounded-sm' : ''}`}
               />
             </button>

@@ -7,8 +7,8 @@ const FooterNavLinkItem: FC<FooterNavLinkItemProps> = ({ linkKey, active, linkTe
     <Link
       href={linkKey}
       className={`${
-        active ? 'text-sunny xl:text-skyAqua' : 'text-white xl:text-jetBlack'
-      } hover:text-sunny xl:hover:text-skyAqua text-sm 480:text-base`}
+        active ? 'text-frostbite white xl:text-iceberg' : 'text-white xl:text-stealthGray'
+      } hover:text-stealthGray xl:hover:text-white font-medium text-sm 480:text-base`}
     >
       {linkText}
     </Link>

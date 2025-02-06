@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import useRemoveScroll from '../../hooks/useRemoveScroll'
-import PageBannerLoaderSVG from '@/app/icons/PageBannerLoaderSVG'
 import { shouldExcludePath } from '@/app/utils/string.functions'
 import useCustomPathname from '@/app/hooks/useCustomPathname'
+import LogoSVG from '@/app/icons/LogoSVG'
 
 const LoadingScreen = () => {
   const [hideLoadingScreen, setHideLoadingScreen] = useState(false)
@@ -30,12 +30,12 @@ const LoadingScreen = () => {
   return (
     <div className="overflow-hidden">
       <div
-        className={`fixed bg-white min-h-screen w-full top-0 left-0 flex items-center justify-center z-[70] transition-all duration-1000 ${
+        className={`fixed bg-iceMist min-h-screen w-full top-0 left-0 flex items-center justify-center z-[70] transition-all duration-1000 ${
           playAnimation ? 'opacity-0 scale-[100]' : 'opacity-100'
         } ${hideLoadingScreen ? 'hidden' : ''}`}
       >
         <div className="animate-scaleBackForth">
-          <PageBannerLoaderSVG />
+          <LogoSVG />
         </div>
       </div>
     </div>

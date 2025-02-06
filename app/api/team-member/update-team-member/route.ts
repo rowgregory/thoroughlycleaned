@@ -72,13 +72,6 @@ export async function PUT(req: NextRequest) {
       },
     });
 
-    await createLog(
-      "info",
-      `Successfully updated team member with ID ${id}`,
-      user?.id,
-      2000
-    );
-
     return NextResponse.json(
       {
         success: true,

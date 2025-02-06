@@ -7,6 +7,8 @@ import { setCloseModalEditableTextAreaPublic } from '../redux/features/appSlice'
 import useSoundEffect from '../hooks/useSoundEffect'
 import EditableTextAreaIcon from '../icons/EditableTextAreaIcon'
 import Spinner from '../components/common/Spinner'
+import { fetchTextBlocks } from '../actions/fetch-text-blocks'
+import { setTextBlocks } from '../redux/features/textBlockSlice'
 
 interface PublicEditableTextAreaModalProps {
   show: boolean
@@ -59,11 +61,14 @@ const PublicEditableTextAreaModal: FC<PublicEditableTextAreaModalProps> = ({ sho
 
     await updateText({ ...changedValues, type })
       .unwrap()
-      .then(() => {
+      .then(async () => {
         play()
         dispatch(setCloseModalEditableTextAreaPublic())
+        const data = await fetchTextBlocks([type])
+        dispatch(setTextBlocks(data?.transformedTextBlocks))
       })
       .catch(() => {})
+
     setLoading(false)
   }
 
@@ -74,10 +79,10 @@ const PublicEditableTextAreaModal: FC<PublicEditableTextAreaModalProps> = ({ sho
   }
 
   return (
-    <PublicModal show={show} onClose={reset} reset={reset}>
+    <PublicModal show={show} reset={reset}>
       <div className="px-4 pt-12 480:py-20 480:mb-20 max-w-md mx-auto flex flex-col items-center justify-center w-full">
         <EditableTextAreaIcon className={`${loading ? 'animate-rotate360' : ''}`} />
-        <h1 className="font-medium text-jetBlack text-xl mt-2 mb-4">Edit Text Area</h1>
+        <h1 className="font-medium text-stealthGray text-xl mt-2 mb-4">Edit Text Area</h1>
         <form onSubmit={handleUpdate} className="w-full grid grid-cols-12 items-end relative">
           <textarea
             ref={inputRef}
@@ -88,17 +93,19 @@ const PublicEditableTextAreaModal: FC<PublicEditableTextAreaModalProps> = ({ sho
             className={`col-span-12 p-3 border-1 border-gray-300 bg-transparent relative focus:outline-none w-full break-words`}
           />
           {(errors?.textBlock || error?.data?.message) && (
-            <div className={`text-xs absolute -bottom-6 text-red-500 col-span-12`}>{errors?.textBlock || error?.data?.message}</div>
+            <div className={`text-xs absolute -bottom-6 text-frostbite font-medium col-span-12`}>
+              {errors?.textBlock || error?.data?.message}
+            </div>
           )}
         </form>
       </div>
-      <div className="bg-[#cfcfcf] mx-auto max-w-md 990:max-w-full p-3 480:py-6 480:px-5 fixed bottom-0 left-0 right-0 480:block w-full">
+      <div className="bg-silver mx-auto max-w-md 990:max-w-full p-3 480:py-6 480:px-5 fixed bottom-0 left-0 right-0 480:block w-full">
         <div className="flex items-center justify-between">
           <button
             onClick={reset}
             disabled={loading}
             type="button"
-            className="bg-[#333336] hover:bg-[#38383c] py-1.5  w-36  text-white disabled:cursor-not-allowed"
+            className="bg-stealthGray py-1.5  w-36  text-white disabled:cursor-not-allowed"
           >
             Back
           </button>
@@ -106,9 +113,9 @@ const PublicEditableTextAreaModal: FC<PublicEditableTextAreaModalProps> = ({ sho
             <button
               onClick={handleUpdate}
               disabled={loading}
-              className="min-w-36 bg-skyAqua py-1.5 w-36 text-white disabled:cursor-not-allowed"
+              className="min-w-36 bg-neonIce py-1.5 w-36 text-white disabled:cursor-not-allowed"
             >
-              {loading ? <Spinner wAndH="w-4 h-4" fill="fill-sunny" /> : 'Update'}
+              {loading ? <Spinner wAndH="w-4 h-4" fill="fill-neonSky" /> : 'Update'}
             </button>
           </div>
         </div>

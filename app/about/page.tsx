@@ -3,12 +3,12 @@
 import React from 'react'
 import PageBanner from '../components/common/PageBanner'
 import AboutBlock from '../components/_blocks/AboutBlock'
-import { useFetchPageSpecificTextBlocksQuery } from '../redux/services/textBlockApi'
 import ServicesBlock from '../components/_blocks/ServicesBlock'
 import TeamMemberBlock from '../components/_blocks/TeamMemberBlock'
+import { RootState, useAppSelector } from '../redux/store'
 
 const About = () => {
-  let { isLoading, data } = useFetchPageSpecificTextBlocksQuery(['ABOUT_PAGE', 'ABOUT_BLOCK', 'SERVICES_BLOCK', 'TEAM_MEMBER_BLOCK'])
+  const { textBlockMap } = useAppSelector((state: RootState) => state.textBlock)
 
   return (
     <>
@@ -17,12 +17,11 @@ const About = () => {
         fileNameKey="aboutPageFile"
         titleNameKey="aboutPageTitle"
         subtitleNameKey="aboutPageSubtitle"
-        textBlockMap={data?.transformedTextBlocks}
-        isLoading={isLoading}
+        textBlockMap={textBlockMap}
       />
-      <AboutBlock textBlockMap={data?.transformedTextBlocks?.ABOUT_BLOCK} isLoading={isLoading} />
-      <TeamMemberBlock textBlockMap={data?.transformedTextBlocks?.TEAM_MEMBER_BLOCK} />
-      <ServicesBlock textBlockMap={data?.transformedTextBlocks?.SERVICES_BLOCK} />
+      <AboutBlock textBlockMap={textBlockMap?.ABOUT_BLOCK} />
+      <TeamMemberBlock textBlockMap={textBlockMap?.TEAM_MEMBER_BLOCK} />
+      <ServicesBlock textBlockMap={textBlockMap?.SERVICES_BLOCK} />
     </>
   )
 }

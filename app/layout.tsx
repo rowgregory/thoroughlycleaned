@@ -3,6 +3,10 @@ import ReduxWrapper from './redux-wrapper'
 import './globals.css'
 import { metadata } from './config/metadata'
 import { Poppins, Rubik } from 'next/font/google'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import { createLog } from './utils/logHelper'
+import parseErrorStack from './utils/parseErrorStack'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -33,6 +37,21 @@ export default async function RootLayout({
     parsedUserData = JSON.parse(userData?.value)
   }
 
+  let data
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/text-block/fetch-home-page-data`)
+    data = await response.json()
+  } catch (error: any) {
+    await createLog('error', `Failed to application data: ${error.message}`, 'Unknown', 12001, {
+      errorLocation: parseErrorStack(error),
+      errorMessage: error.message,
+      errorName: error.name || 'UnknownError',
+      timestamp: new Date().toISOString(),
+      url: '/api/text-block/fetch-home-page-data',
+      method: 'GET'
+    })
+  }
+
   return (
     <html lang="en">
       <body className={`${poppins.className} ${rubik.className}`}>
@@ -41,7 +60,8 @@ export default async function RootLayout({
             isAuthenticated: parsedUserData?.isAuthenticated,
             userId: parsedUserData?.id,
             role: parsedUserData?.role,
-            colorCode: parsedUserData?.colorCode
+            colorCode: parsedUserData?.colorCode,
+            data
           }}
         >
           {children}

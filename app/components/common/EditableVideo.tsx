@@ -1,6 +1,7 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { setIsMediaReady, setOpenModalEditableVideoPublic } from '@/app/redux/features/appSlice'
 import { RootState, useAppDispatch, useAppSelector } from '@/app/redux/store'
+import PlayButtonSVG from '@/app/icons/PlayButtonSVG'
 
 type EditableVideoProps = {
   show: boolean
@@ -13,6 +14,7 @@ const EditableVideo = forwardRef<HTMLVideoElement, EditableVideoProps>(({ src, s
   const videoRef = useRef<HTMLVideoElement>(null)
   const dispatch = useAppDispatch()
   const { isAuthenticated } = useAppSelector((state: RootState) => state.auth)
+  const { isMediaReady } = useAppSelector((state: RootState) => state.app)
 
   // Expose the videoRef if a forwarded ref is provided.
   useImperativeHandle(ref, () => videoRef.current!)
@@ -79,7 +81,7 @@ const EditableVideo = forwardRef<HTMLVideoElement, EditableVideoProps>(({ src, s
   }
 
   return (
-    <div className="w-full h-full" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div className="w-full h-full z-10 relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <video
         onLoadedData={() => dispatch(setIsMediaReady())}
         onClick={handleUpdateVideo}
@@ -88,7 +90,7 @@ const EditableVideo = forwardRef<HTMLVideoElement, EditableVideoProps>(({ src, s
         style={{ width: size, height: size }}
         className="object-cover w-full h-full"
         controls={false}
-        autoPlay={true}
+        autoPlay={false}
         loop
         muted
         playsInline
@@ -99,14 +101,12 @@ const EditableVideo = forwardRef<HTMLVideoElement, EditableVideoProps>(({ src, s
         <source src={src} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      {isHovered && (
-        <button
-          onClick={handlePlayPause}
-          className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-            bg-black bg-opacity-50 text-white w-20 h-20 text-lg flex items-center justify-center transition-opacity duration-200`}
+      {(isHovered || !isPlaying) && isMediaReady && (
+        <div
+          className={`absolute bg-silver bg-opacity-70 w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center animate-fadeIn`}
         >
-          {isPlaying ? 'Pause' : 'Play'}
-        </button>
+          <PlayButtonSVG onClick={handlePlayPause} />
+        </div>
       )}
     </div>
   )

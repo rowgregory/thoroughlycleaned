@@ -43,15 +43,6 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // Log the successful team member creation
-    await createLog(
-      "info",
-      `Team member ${firstName} ${lastName} created successfully`,
-      user?.id,
-      2000
-    );
-
-    // Return the success response
     return NextResponse.json(
       {
         success: true,

@@ -108,11 +108,11 @@ const AdminGalleryPhotosModal = () => {
                   dispatch(openGalleryDetailsUpdateModal(project))
                   dispatch(closeGalleryPhotosModal())
                 }}
-                className="text-neonSkyAqua rubik-regular text-left w-fit"
+                className="text-iceberg rubik-regular text-left w-fit"
               >
                 Edit Album Title & Service Type
               </button>
-              <AwesomeIcon icon={arrowRightIcon} className="w-4 h-4 text-neonSkyAqua -rotate-45" />
+              <AwesomeIcon icon={arrowRightIcon} className="w-4 h-4 text-iceberg -rotate-45" />
             </div>
           </div>
           <div className="flex flex-col 990:flex-row gap-y-7">

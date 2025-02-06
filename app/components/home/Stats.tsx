@@ -1,40 +1,18 @@
 import React from 'react'
 import Counter from '../common/Counter'
-import { stats } from '@/public/data/home.data'
-import Picture from '../common/Picture'
 import EditableTextArea from '../common/EditableTextArea'
+import { stats } from '@/public/data/home.data'
 
 const Stats = ({ textBlockMap }: any) => {
   return (
-    <section className="px-4 py-32 bg-skyAqua relative overflow-hidden">
-      <Picture
-        src="/images/clear-bubbles.png"
-        alt="Thoroughly Cleaned, LLC"
-        className="animate-translateYBackForth w-auto h-auto object-cover absolute top-20 left-20 z-0"
-        priority={false}
-        width={40}
-        height={40}
-      />
-      <Picture
-        src="/images/clear-bubbles.png"
-        alt="Thoroughly Cleaned, LLC"
-        className="animate-translateYBackForth w-auto h-auto object-cover absolute top-0 left-1/2 z-0"
-        priority={false}
-        width={96}
-        height={96}
-      />
-      <Picture
-        src="/images/clear-bubbles.png"
-        alt="Thoroughly Cleaned, LLC"
-        className="animate-translateYBackForth w-auto h-auto object-cover absolute top-0 right-20 z-0"
-        priority={false}
-        width={32}
-        height={32}
-      />
+    <section
+      className="px-4 py-32 bg-neonIce relative overflow-hidden bg-repeat bg-center"
+      style={{ backgroundImage: `url('/images/pattern3.png')` }}
+    >
       <div className="max-w-[520px] 760:max-w-[700px] 990:max-w-[960px] 1200:max-w-[1280px] w-full mx-auto grid grid-cols-12 gap-y-20 990:gap-x-20">
         {stats(textBlockMap).map((stat, i) => (
           <div key={i} className="col-span-12 990:col-span-4 relative z-10">
-            <div className="bg-cover by-center bg-no-repeat w-16 h-16 mb-4" style={{ backgroundImage: `url(${stat?.img})` }} />
+            <div className="mb-3.5">{stat.icon}</div>
             <div className="flex items-center gap-x-2">
               <Counter targetNumber={stat?.value} duration={2000} className="text-white text-5xl font-bold mb-2" name={stat?.nameValue} />
 

@@ -5,6 +5,9 @@ import ReasonFourSVG from '@/app/icons/ReasonFourSVG'
 import ReasonOneSVG from '@/app/icons/ReasonOneSVG'
 import ReasonThreeSVG from '@/app/icons/ReasonThreeSVG'
 import ReasonTwoSVG from '@/app/icons/ReasonTwoSVG'
+import Stat1 from '@/app/icons/Stat1'
+import Stat2 from '@/app/icons/Stat2'
+import Stat3 from '@/app/icons/Stat3'
 
 export const about = (textBlockMap: any) => [
   {
@@ -59,7 +62,7 @@ export const whyChooseUs = (textBlockMap: any) => [
 
 export const stats = (textBlockMap: any) => [
   {
-    img: '/images/s1.png',
+    icon: <Stat1 />,
     value: textBlockMap?.STATS_BLOCK?.statOneValue,
     text: textBlockMap?.STATS_BLOCK?.statOneText,
     symbol: textBlockMap?.STATS_BLOCK?.statOneSymbol,
@@ -69,7 +72,7 @@ export const stats = (textBlockMap: any) => [
     rows: 1
   },
   {
-    img: '/images/s2.png',
+    icon: <Stat2 />,
     value: textBlockMap?.STATS_BLOCK?.statTwoValue,
     text: textBlockMap?.STATS_BLOCK?.statTwoText,
     symbol: textBlockMap?.STATS_BLOCK?.statTwoSymbol,
@@ -79,7 +82,7 @@ export const stats = (textBlockMap: any) => [
     rows: 2
   },
   {
-    img: '/images/s3.png',
+    icon: <Stat3 />,
     value: textBlockMap?.STATS_BLOCK?.statThreeValue,
     text: textBlockMap?.STATS_BLOCK?.statThreeText,
     symbol: textBlockMap?.STATS_BLOCK?.statThreeSymbol,

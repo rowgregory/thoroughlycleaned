@@ -3,12 +3,10 @@
 import React from 'react'
 import PageBanner from '../components/common/PageBanner'
 import TestimonialsBlock from '../components/_blocks/TestimonialsBlock'
-import { useFetchTestimonialsQuery } from '../redux/services/testimonialApi'
-import { useFetchPageSpecificTextBlocksQuery } from '../redux/services/textBlockApi'
+import { RootState, useAppSelector } from '../redux/store'
 
 const Testimonials = () => {
-  const { isLoading: loadingTestimonials, data: testimonial } = useFetchTestimonialsQuery()
-  const { isLoading: loadingTextBlocks, data: textBlock } = useFetchPageSpecificTextBlocksQuery(['TESTIMONIALS_PAGE', 'TESTIMONIALS_BLOCK'])
+  const { textBlockMap } = useAppSelector((state: RootState) => state.textBlock)
 
   return (
     <>
@@ -17,14 +15,9 @@ const Testimonials = () => {
         fileNameKey="testimonialsBannerFile"
         titleNameKey="testimonialsBannerTitle"
         subtitleNameKey="testimonialsBannerSubtitle"
-        textBlockMap={textBlock?.transformedTextBlocks}
-        isLoading={loadingTextBlocks}
+        textBlockMap={textBlockMap}
       />
-      <TestimonialsBlock
-        textBlockMap={textBlock?.transformedTextBlocks?.TESTIMONIALS_BLOCK}
-        testimonials={testimonial?.testimonials}
-        isLoading={loadingTestimonials}
-      />
+      <TestimonialsBlock textBlockMap={textBlockMap?.TESTIMONIALS_BLOCK} />
     </>
   )
 }

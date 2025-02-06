@@ -31,15 +31,15 @@ const AuthLayout: FC<ChildrenProps> = ({ children }) => {
         </div>
         {path === '/auth/login' ? (
           <div className="flex flex-col items-center gap-y-4">
-            <Link href="/auth/forgot-password" className="text-sm font-rubik text-neonSkyAqua">
+            <Link href="/auth/forgot-password" className="text-sm font-rubik text-neonIce">
               Forgot Password
             </Link>
-            <Link href="/auth/register" className="text-sm font-rubik text-neonSkyAqua">
+            <Link href="/auth/register" className="text-sm font-rubik text-neonIce">
               Register
             </Link>
           </div>
         ) : (
-          <Link href="/auth/login" className="text-sm font-rubik text-neonSkyAqua mt-6">
+          <Link href="/auth/login" className="text-sm font-rubik text-neonIce mt-6">
             Login
           </Link>
         )}

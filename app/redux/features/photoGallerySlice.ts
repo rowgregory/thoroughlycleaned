@@ -81,6 +81,12 @@ export const photoGallerySlice = createSlice({
       state.project = undefined;
       state.openModalGalleryCreateDetails = true;
     },
+    setPhotoGalleryImages: (state, { payload }: any) => {
+      state.photoGalleryImages = payload;
+    },
+    setProjects: (state, { payload }: any) => {
+      state.projects = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -172,4 +178,6 @@ export const {
   closeGalleryPhotosModal,
   resetGallery,
   resetActiveProject,
+  setPhotoGalleryImages,
+  setProjects,
 } = photoGallerySlice.actions;

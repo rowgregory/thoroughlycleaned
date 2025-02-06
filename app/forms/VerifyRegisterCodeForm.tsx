@@ -74,7 +74,7 @@ const VerifyRegisterCodeForm: FC<{ showResetCode: boolean; twoFactorAuthIdtDecod
       />
       {showResetCode && (
         <button
-          className="text-sm text-neonSkyAqua text-center flex items-center justify-center duration-200 hover:text-[#45cbda] mt-8"
+          className="text-sm text-iceberg text-center flex items-center justify-center duration-200 hover:text-[#45cbda] mt-8"
           onClick={handleResendCode}
         >
           {loadingResend ? <AppleLoader /> : 'Resend Code'}

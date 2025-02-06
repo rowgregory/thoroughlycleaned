@@ -1,5 +1,5 @@
 export const inputStyles = `w-full shadow-input font-rubik placeholder:text-inputPlaceholderText bg-transparent 
-   text-sm h-12 text-inputText rounded-sm px-4 border-1 border-inputBorder focus:border-skyAqua focus:outline-none`;
+   text-sm h-12 text-inputText rounded-sm px-4 border-1 border-inputBorder focus:border-neonIce focus:outline-none`;
 
 export const labelStyles = `text-13 font-rubik text-midnightPlum mb-2`;
 export const errorStyles = `text-13 text-red-500 absolute`;

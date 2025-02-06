@@ -12,6 +12,8 @@ import AppleLoader from '../components/common/AppleLoader'
 import Picture from '../components/common/Picture'
 import AwesomeIcon from '../components/common/AwesomeIcon'
 import { arrowRightIcon } from '../icons'
+import { fetchTextBlocks } from '../actions/fetch-text-blocks'
+import { setTextBlocks } from '../redux/features/textBlockSlice'
 
 interface PublicImageUploaderModalProps {
   show: boolean
@@ -49,7 +51,12 @@ const PublicImageUploaderModal: FC<PublicImageUploaderModalProps> = ({ show, src
       .unwrap()
       .then(async () => {
         play()
+        const data = await fetchTextBlocks([type])
+        dispatch(setTextBlocks(data?.transformedTextBlocks))
         setInputs({ src: url, mimeType: 'image' })
+        if (mediaInputRef.current) {
+          mediaInputRef.current.value = ''
+        }
       })
       .catch(() => {})
     setLoading(false)
@@ -67,8 +74,8 @@ const PublicImageUploaderModal: FC<PublicImageUploaderModalProps> = ({ show, src
     <PublicModal show={show} onClose={reset} reset={reset}>
       <div className="px-4 pt-12 480:py-20 480:mb-20 max-w-md mx-auto flex flex-col items-center justify-center w-full">
         <EditableTextAreaIcon className={`${loading ? 'animate-rotate360' : ''}`} />
-        <h1 className="font-medium text-jetBlack text-xl mt-2 mb-4">Upload image</h1>
-        <p className="hidden 480:block text-sm text-[#7e7e7e] text-center">
+        <h1 className="font-bold text-stealthGray text-xl mt-2 mb-4">Upload image</h1>
+        <p className="hidden 480:block text-sm text-coolGray font-medium text-center">
           Please note that uploading a new image will automatically delete the previous one and immediately replace it with the new one.
         </p>
         <Link
@@ -76,10 +83,10 @@ const PublicImageUploaderModal: FC<PublicImageUploaderModalProps> = ({ show, src
           href="https://console.firebase.google.com/u/0/project/thoroughly-cleaned-66710/storage/thoroughly-cleaned-66710.firebasestorage.app/files/~2Fimages"
           target="_blank"
         >
-          <span className="text-skyAqua w-fit text-sm">View All Media Stored on Firebase</span>
-          <AwesomeIcon icon={arrowRightIcon} className="w-4 h-4 text-skyAqua -rotate-45" />
+          <span className="text-neonIce font-medium w-fit text-sm">View All Media Stored on Firebase</span>
+          <AwesomeIcon icon={arrowRightIcon} className="w-4 h-4 text-neonIce -rotate-45" />
         </Link>
-        <div className="border-1 border-dashed border-zinc-700 w-full p-5 h-44 flex flex-col items-center justify-center cursor-pointer hover:border-skyAqua bg-zinc-50">
+        <div className="border-1 border-dashed border-zinc-700 w-full p-5 h-44 flex flex-col items-center justify-center cursor-pointer hover:border-neonIce bg-zinc-50">
           {!loading ? (
             <>
               <Picture
@@ -100,12 +107,12 @@ const PublicImageUploaderModal: FC<PublicImageUploaderModalProps> = ({ show, src
           )}
         </div>
       </div>
-      <div className="bg-[#cfcfcf] mx-auto max-w-md 990:max-w-full p-3 480:py-6 480:px-5 fixed bottom-0 left-0 right-0 480:block w-full">
+      <div className="bg-silver mx-auto max-w-md 990:max-w-full p-3 480:py-6 480:px-5 fixed bottom-0 left-0 right-0 480:block w-full">
         <div className="flex items-center justify-between">
           <button
             onClick={() => reset()}
             type="button"
-            className="bg-[#333336] hover:bg-[#38383c] py-1.5 w-36 text-white disabled:cursor-not-allowed"
+            className="bg-stealthGray hover:bg-[#38383c] py-1.5 w-36 text-white disabled:cursor-not-allowed"
           >
             Back
           </button>
@@ -113,7 +120,7 @@ const PublicImageUploaderModal: FC<PublicImageUploaderModalProps> = ({ show, src
             <button
               onClick={() => reset()}
               type="button"
-              className="min-w-36 bg-skyAqua py-1.5 w-36 text-white disabled:cursor-not-allowed"
+              className="min-w-36 bg-neonIce py-1.5 w-36 text-white disabled:cursor-not-allowed"
             >
               Done
             </button>

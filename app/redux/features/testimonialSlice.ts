@@ -58,6 +58,9 @@ export const testimonialSlice = createSlice({
     setCloseModalTestimonialUpdate: (state) => {
       state.openModalTestimonialUpdate = false;
     },
+    setTestimonials: (state, { payload }: any) => {
+      state.testimonials = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -113,4 +116,5 @@ export const {
   setCloseModalTestimonialCreate,
   setOpenModalTestimonialUpdate,
   setCloseModalTestimonialUpdate,
+  setTestimonials,
 } = testimonialSlice.actions;

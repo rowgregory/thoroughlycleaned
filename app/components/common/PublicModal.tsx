@@ -3,12 +3,13 @@ import React, { FC, ReactNode } from 'react'
 import AwesomeIcon from './AwesomeIcon'
 import { timesIcon } from '@/app/icons'
 
-const PublicModal: FC<{ show: boolean; children: ReactNode; onClose: any; zIndex?: string; reset?: any }> = ({
+const PublicModal: FC<{ show: boolean; children: ReactNode; onClose?: any; zIndex?: string; reset?: any; modalBg?: string }> = ({
   show,
   children,
   onClose,
   zIndex,
-  reset
+  reset,
+  modalBg
 }) => {
   useRemoveScroll(true)
 
@@ -20,10 +21,10 @@ const PublicModal: FC<{ show: boolean; children: ReactNode; onClose: any; zIndex
       }`}
     >
       <div
-        className="public-modal bg-white transform transition-all duration-300 ease-out overflow-y-auto no-scrollbar"
+        className={`public-modal ${modalBg || 'bg-white'} transform transition-all duration-300 ease-out overflow-y-auto no-scrollbar`}
         onClick={(e) => e.stopPropagation()}
       >
-        <AwesomeIcon icon={timesIcon} onClick={reset} className="w-5 h-5 text-jetBlack absolute top-5 left-5 z-10 cursor-pointer" />
+        <AwesomeIcon icon={timesIcon} onClick={reset} className="w-5 h-5 text-stealthGray absolute top-5 left-5 z-10 cursor-pointer" />
         {children}
       </div>
     </div>

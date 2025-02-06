@@ -30,6 +30,7 @@ export interface HomePageBannerBlock {
   homePageBannerSubtitle: string;
   homePageBannerTitle: string;
   homePageBannerFile: FileBlockTypes;
+  homePageBannerImageFile: FileBlockTypes;
 }
 
 export interface ServicesBlock {
@@ -96,6 +97,7 @@ export interface ServiceCommercialPage {
   serviceCommercialTitle: string;
   serviceCommercialDescription: string;
   serviceCommercialFile: FileBlockTypes;
+  serviceCommercialBannerLogoFile: FileBlockTypes;
 }
 
 export interface ServiceBiohazardPage {
@@ -214,6 +216,7 @@ export interface TextBlockStatePayload {
   testimonials: [];
   photoGalleryImages: [];
   teamMembers: [];
+  projects: [];
 }
 
 export const FieldBlock = { value: "", mimeType: "", fileName: "" };
@@ -241,6 +244,7 @@ export const HOME_PAGE_BANNER = {
   homePageBannerSubtitle: "",
   homePageBannerTitle: "",
   homePageBannerFile: FieldBlock,
+  homePageBannerImageFile: FieldBlock,
 };
 
 export const SERVICES_BLOCK = {
@@ -307,6 +311,7 @@ export const SERVICE_COMMERCIAL_PAGE = {
   serviceCommercialTitle: "",
   serviceCommercialDescription: "",
   serviceCommercialFile: FieldBlock,
+  serviceCommercialBannerLogoFile: FieldBlock,
 };
 
 export const SERVICE_BIOHAZARD_PAGE = {
@@ -416,7 +421,7 @@ export const initialTextBlockState: TextBlockStatePayload = {
   textBlockMap: transformedTextBlocks,
   textBlockDeleted: false,
   success: false,
-  loading: false,
+  loading: true,
   error: null,
   message: null,
   status: "",
@@ -425,23 +430,36 @@ export const initialTextBlockState: TextBlockStatePayload = {
   testimonials: [],
   photoGalleryImages: [],
   teamMembers: [],
+  projects: [],
 };
 
 export const textBlockSlice = createSlice({
   name: "textBlock",
   initialState: initialTextBlockState,
-  reducers: {},
+  reducers: {
+    setTextBlocks: (state, { payload }: any) => {
+      state.loading = false;
+      const combinedTextBlocks = {
+        ...state.textBlockMap,
+        ...payload,
+      };
+
+      state.textBlockMap = combinedTextBlocks;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addMatcher(
         textBlockApi.endpoints.updateTextBlock.matchFulfilled,
         (state) => {
           state.success = true;
+          state.loading = false;
         }
       )
       .addMatcher(
         textBlockApi.endpoints.textBlockSystemStatus.matchFulfilled,
         (state, { payload }: any) => {
+          state.loading = false;
           state.message = payload.message;
           state.status = payload.status;
           state.systemStatus = payload.systemStatus;
@@ -459,6 +477,7 @@ export const textBlockSlice = createSlice({
       .addMatcher(
         textBlockApi.endpoints.fetchHomePageData.matchFulfilled,
         (state, { payload }: any) => {
+          state.loading = false;
           state.textBlockMap = {
             ...state.textBlockMap,
             ...payload.transformedTextBlocks,
@@ -467,28 +486,21 @@ export const textBlockSlice = createSlice({
           state.testimonials = payload.testimonials;
           state.photoGalleryImages = payload.photoGalleryImages;
           state.teamMembers = payload.teamMembers;
-        }
-      )
-      .addMatcher(
-        textBlockApi.endpoints.fetchPageSpecificTextBlocks.matchPending,
-        (state) => {
-          state.loading = true;
+          state.projects = payload.projects;
         }
       )
       .addMatcher(
         textBlockApi.endpoints.fetchPageSpecificTextBlocks.matchFulfilled,
         (state, { payload }: any) => {
+          state.loading = false;
           state.textBlockMap = {
             ...state.textBlockMap,
             ...payload.transformedTextBlocks,
           };
-          state.loading = false;
         }
       )
       .addMatcher(
-        (action: any) =>
-          action.type.endsWith("/rejected") &&
-          action.payload?.data?.sliceName === "textBlockApi",
+        (action: any) => action.type.endsWith("/rejected"),
         (state, action: any) => {
           state.loading = false;
           state.error = action.payload?.data || "An error occurred.";
@@ -500,4 +512,4 @@ export const textBlockSlice = createSlice({
 export const textBlockReducer =
   textBlockSlice.reducer as Reducer<TextBlockStatePayload>;
 
-export const {} = textBlockSlice.actions;
+export const { setTextBlocks } = textBlockSlice.actions;

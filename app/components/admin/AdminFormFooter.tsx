@@ -12,7 +12,7 @@ const AdminFormFooter = ({ reset, isUpdating, type, loading, error }: any) => (
       <button
         disabled={loading}
         type="submit"
-        className="bg-neonSkyAqua hover:bg-skyAqua px-5 py-1.5 rounded-lg text-white disabled:cursor-not-allowed disabled:bg-sky-700 flex gap-x-2 items-center w-full 480:w-fit justify-center"
+        className="bg-neonIce hover:bg-iceberg px-5 py-1.5 rounded-lg text-white disabled:cursor-not-allowed flex gap-x-2 items-center w-full 480:w-fit justify-center"
       >
         {isUpdating ? 'Update' : 'Create'} {type}
       </button>

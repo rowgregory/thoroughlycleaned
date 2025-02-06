@@ -9,7 +9,7 @@ const FooterBottom = () => {
 
   return (
     <div className="flex items-center">
-      <span className="text-11 text-jetBlack">Copyright &copy; {currentYear}</span>
+      <span className="text-11 text-white">Copyright &copy; {currentYear}</span>
     </div>
   )
 }

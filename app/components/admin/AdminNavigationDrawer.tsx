@@ -32,9 +32,7 @@ const AdminNavigationDrawer = () => {
             key={i}
             onClick={() => dispatch(setCloseDrawerAdminNav())}
             href={link.linkKey}
-            className={`${link.active ? 'text-neonSkyAqua' : 'text-white'} ${
-              i !== arr.length - 1 ? 'border-b-1 border-b-[#323235]' : ''
-            } pb-2`}
+            className={`${link.active ? 'text-neonIce' : 'text-white'} ${i !== arr.length - 1 ? 'border-b-1 border-b-[#323235]' : ''} pb-2`}
           >
             {link.textKey}
           </Link>

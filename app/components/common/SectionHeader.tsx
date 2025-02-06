@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import EditableTextArea from './EditableTextArea'
-import SectionHeaderIcon from '@/app/icons/SectionHeaderIcon'
+import Picture from './Picture'
 
 interface SectionHeaderProps {
   subtitle: string
@@ -11,7 +11,6 @@ interface SectionHeaderProps {
   subtitleStyles?: string
   titleStyles?: string
   sectionStyles?: string
-  rows?: number
 }
 
 const SectionHeader: FC<SectionHeaderProps> = ({
@@ -26,17 +25,17 @@ const SectionHeader: FC<SectionHeaderProps> = ({
 }) => {
   return (
     <section className={sectionStyles}>
-      <div className="flex items-center gap-x-3 mb-1">
-        <SectionHeaderIcon />
+      <div className="flex flex-col 400:flex-row items-start 400:items-center gap-x-3 mb-1">
+        <Picture src="/images/logo-bubble-transparent.png" priority={false} className="w-20 h-20 object-contain animate-scaleBackForth" />
         <EditableTextArea
           tag="h1"
           initialValue={subtitle}
           type={type}
           textBlockKey={subtitleName}
-          className={`${subtitleStyles} uppercase text-skyAqua font-semibold`}
+          className={`${subtitleStyles} uppercase font-semibold text-iceberg`}
         />
       </div>
-      <div className="mb-9">
+      <div className="mb-7">
         <EditableTextArea
           tag="h2"
           initialValue={title}

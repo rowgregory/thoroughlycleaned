@@ -31,10 +31,10 @@ const AdminGalleryDetailsForm: FC<AdminGalleryDetailsFormProps> = ({
           </p>
           {isUpdating && (
             <div className="flex items-center gap-x-2 mb-10 mt-1.5">
-              <button type="button" onClick={handleOpenGalleryPhotosModal} className="text-neonSkyAqua font-rubik text-left w-fit">
+              <button type="button" onClick={handleOpenGalleryPhotosModal} className="text-iceberg font-rubik text-left w-fit">
                 Edit photo pairs
               </button>
-              <AwesomeIcon icon={arrowRightIcon} className="w-4 h-4 text-neonSkyAqua -rotate-45" />
+              <AwesomeIcon icon={arrowRightIcon} className="w-4 h-4 text-iceberg -rotate-45" />
             </div>
           )}
           <div className="flex flex-col w-full my-7">

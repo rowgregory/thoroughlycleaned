@@ -4,16 +4,11 @@ import React, { useRef, useState } from 'react'
 import Slider from 'react-slick'
 import ServiceCarouselSlide from './ServiceCarouselSlide'
 import { ServiceNextArrow, ServicePrevArrow } from './CarouselButtons'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import { useFetchServicesQuery } from '@/app/redux/services/serviceApi'
 import { serviceCarouselSettings } from '@/public/data/slider.settings'
 
-const ServiceCarousel = () => {
+const ServiceCarousel = ({ services }: any) => {
   const [currentSlide, setCurrentSlide] = useState(1)
   const slider = useRef<Slider | null>(null)
-  const { data } = useFetchServicesQuery()
-  const services = data?.services
 
   return (
     <div className="w-full relative">

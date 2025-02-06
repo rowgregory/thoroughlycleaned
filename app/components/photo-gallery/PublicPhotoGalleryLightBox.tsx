@@ -17,12 +17,12 @@ const PublicPhotoGalleryLightBox = () => {
       <AwesomeIcon
         onClick={() => dispatch(closeLightbox())}
         icon={timesIcon}
-        className="absolute top-4 right-4 text-white text-3xl font-bold z-50 cursor-pointer hover:text-sunny duration-300"
+        className="absolute top-4 right-4 text-white text-3xl font-bold z-50 cursor-pointer hover:text-neonIce duration-300"
       />
       <AwesomeIcon
         onClick={() => setToggleOrientation(!toggleOrientation)}
         icon={columnsIcon}
-        className="absolute top-16 right-4 text-2xl text-white z-50 cursor-pointer hover:text-sunny duration-300"
+        className="absolute top-16 right-4 text-2xl text-white z-50 cursor-pointer hover:text-neonIce duration-300"
       />
       <div className={`relative w-full h-full flex ${toggleOrientation ? 'flex-col' : 'flex-row'}`}>
         <div className={`${toggleOrientation ? 'h-1/2' : 'h-full'}`}>

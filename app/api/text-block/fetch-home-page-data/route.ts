@@ -1,6 +1,21 @@
 import prisma from "@/prisma/client";
 import { NextResponse } from "next/server";
 
+async function getImageDetails(id: string) {
+  const image = await prisma.photoGalleryImage.findUnique({
+    where: { id },
+  });
+
+  return image
+    ? {
+        id: image.id,
+        url: image.url,
+        fileName: image.fileName,
+        imageRole: image.imageRole,
+      }
+    : null;
+}
+
 export async function GET() {
   try {
     const services = await prisma.service.findMany({
@@ -15,6 +30,29 @@ export async function GET() {
       },
     });
 
+    const projects = await prisma.project.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    // Populate beforeImages and afterImages for each project
+    const populatedProjects = await Promise.all(
+      projects.map(async (project) => {
+        // Populate before and after images based on the galleryItems array
+        const populatedGalleryItems = await Promise.all(
+          project.galleryItems.map(async (galleryItem: any) => {
+            const before = await getImageDetails(galleryItem.before);
+            const after = await getImageDetails(galleryItem.after);
+
+            return { id: galleryItem.id, before, after };
+          })
+        );
+
+        return { ...project, galleryItems: populatedGalleryItems };
+      })
+    );
+
     const testimonials = await prisma.testimonial.findMany({
       orderBy: {
         createdAt: "desc",
@@ -26,23 +64,7 @@ export async function GET() {
       },
     });
 
-    const textBlocks = await prisma.textBlock.findMany({
-      where: {
-        type: {
-          in: [
-            "ABOUT_BLOCK",
-            "HOME_PAGE_CLIENT_LEAD",
-            "HOME_PAGE_BANNER",
-            "SERVICES_BLOCK",
-            "WHY_CHOOSE_US_BLOCK",
-            "STATS_BLOCK",
-            "WORKING_PROCESS_BLOCK",
-            "TESTIMONIALS_BLOCK",
-            "PHOTO_GALLERY_BLOCK",
-          ],
-        },
-      },
-    });
+    const textBlocks = await prisma.textBlock.findMany();
 
     if (textBlocks.length === 0) {
       return NextResponse.json(
@@ -78,6 +100,7 @@ export async function GET() {
         testimonials,
         transformedTextBlocks,
         teamMembers,
+        projects: populatedProjects,
       },
       { status: 200 }
     );

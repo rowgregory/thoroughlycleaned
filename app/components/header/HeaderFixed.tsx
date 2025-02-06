@@ -38,7 +38,7 @@ const HeaderFixed = ({ textBlockMap }: any) => {
             src={imgSrc}
             type="HEADER"
             textBlockKey={isBiohazard ? 'headerBiohazardLogoFile' : 'headerLogoFile'}
-            className="cursor-pointer bg-sunny w-[74px] h-full max-h-[74px] 990:max-h-32 990:w-32 aspect-square object-contain 990:mr-12 animate-fadeIn"
+            className="cursor-pointer w-[74px] h-full max-h-[74px] 990:max-h-32 990:w-32 aspect-square object-contain 990:mr-12 animate-fadeIn"
             priority={true}
           />
           <div className="hidden 990:flex items-center">
@@ -50,14 +50,14 @@ const HeaderFixed = ({ textBlockMap }: any) => {
             <button
               type="button"
               onClick={() => dispatch(setOpenModalClientLeadPublic())}
-              className="h-full text-zinc-800 flex items-center px-5 text-sm font-poppins font-semibold bg-sunny whitespace-nowrap connect-with-us"
+              className="h-12 text-white 990:text-stealthGray flex items-center px-5 text-sm font-poppins font-semibold bg-neonIce whitespace-nowrap connect-with-us"
             >
               Connect With Us
             </button>
             <AwesomeIcon
               onClick={() => dispatch(setOpenNavigationDrawer())}
               icon={barsIcon}
-              className="text-zinc-800 w-7 h-7 cursor-pointer"
+              className="text-stealthGray w-7 h-7 cursor-pointer"
             />
           </section>
         </div>

@@ -23,11 +23,11 @@ body {
   @media (min-width: 990px) {
     .public-modal {
       height: auto;
-      width: 690px;
+      width: 512px;
     }
   }
 
-  @media (max-height: 890px) and (min-width: 1000px) {
+  @media (max-height: 1000px) and (min-width: 1000px) {
     .public-modal {
       height: 100dvh;
       width: 100vw;
@@ -37,6 +37,7 @@ body {
 
 body {
   font-family: "Poppins", sans-serif;
+  color: #323235;
 }
 
 nextjs-portal {
@@ -49,10 +50,10 @@ nav {
 
 @layer utilities {
   .home-page-banner-subtitle {
-    @apply uppercase text-skyAqua font-semibold w-full;
+    @apply uppercase text-iceberg font-bold w-full text-xl;
   }
   .home-page-banner-title {
-    @apply font-bold text-zinc-800 text-[42px] 480:text-[64px] 1160:text-[80px] mb-10 leading-[50px] 480:leading-[75px];
+    @apply font-bold text-stealthGray text-[42px] 480:text-[64px] 1160:text-[80px] leading-[50px] 480:leading-[75px];
   }
 }
 
@@ -65,6 +66,16 @@ nav {
   background-clip: border-box !important;
   transition: background-color 5000s ease-in-out 0s !important;
   font-family: "Rubik", sans-serif !important;
+}
+
+.connect-with-us-input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #54cae8 inset !important;
+  box-shadow: 0 0 0 1000px #54cae8 inset !important;
+  -webkit-text-fill-color: #fff !important;
+  color: #fff !important;
+  background-color: #54cae8 !important;
+  background-clip: border-box !important;
+  transition: background-color 5000s ease-in-out 0s !important;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -95,7 +106,7 @@ nav {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ffd600;
+  background-color: #323235;
   border-radius: 6px;
   border: 3px solid rgba(0, 0, 0, 0);
 }
@@ -130,7 +141,7 @@ nav {
 
 .slick-dots li.slick-active button:before {
   content: "" !important;
-  background: #58cae3 !important;
+  background: #55cae8 !important;
   box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.25) !important;
   width: 9px !important;
   height: 9px !important;
@@ -142,7 +153,7 @@ nav {
 }
 .slick-dots li button:before {
   content: "" !important;
-  background: #58cae3 !important;
+  background: #55cae8 !important;
   box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.25) !important;
   width: 9px !important;
   height: 9px !important;
@@ -154,22 +165,22 @@ nav {
 }
 
 .the-shape {
-  width: 40px;
+  width: 30px;
   aspect-ratio: 1;
-  color: #3da3bf;
+  color: #55cae8;
   position: relative;
-  background: radial-gradient(10px, currentColor 94%, #0000);
+  background: radial-gradient(10px, currentColor 94%, #323235);
 }
 .the-shape:before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: radial-gradient(9px at bottom right, #0000 94%, currentColor) top
-      left,
-    radial-gradient(9px at bottom left, #0000 94%, currentColor) top right,
-    radial-gradient(9px at top right, #0000 94%, currentColor) bottom left,
-    radial-gradient(9px at top left, #0000 94%, currentColor) bottom right;
+  background: radial-gradient(9px at bottom right, #323235 94%, currentColor)
+      top left,
+    radial-gradient(9px at bottom left, #323235 94%, currentColor) top right,
+    radial-gradient(9px at top right, #323235 94%, currentColor) bottom left,
+    radial-gradient(9px at top left, #323235 94%, currentColor) bottom right;
   background-size: 20px 20px;
   background-repeat: no-repeat;
   animation: l18 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
@@ -246,21 +257,6 @@ nav {
   100% {
     width: 100%;
   }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-.skeleton-loader {
-  background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
 }
 
 video {
