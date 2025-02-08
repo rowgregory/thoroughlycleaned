@@ -28,7 +28,7 @@ const Header = () => {
             src={imgSrc}
             type="HEADER"
             textBlockKey={isBiohazard ? 'headerBiohazardLogoFile' : 'headerLogoFile'}
-            className="cursor-pointer w-[74px] h-full max-h-[74px] 990:max-h-32 990:w-32 aspect-square object-contain 990:mr-12 animate-fadeIn"
+            className="cursor-pointer w-[74px] h-full max-h-[74px] 990:max-h-32 990:w-32 aspect-square object-contain 990:mr-12 animate-fadeIn shadow-publicInput"
             priority={true}
           />
         ) : (
