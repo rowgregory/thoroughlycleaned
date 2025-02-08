@@ -54,6 +54,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <meta property="fb:app_id" content="1641155699941738" />
+      </head>
       <body className={`${poppins.className} ${rubik.className}`}>
         <ReduxWrapper
           data={{

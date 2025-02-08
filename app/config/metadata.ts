@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "Thoroughly Cleaned",
     images: [
       {
-        url: "https://thoroughlycleaned.vercel.app/images/cleaning-preview.png",
+        url: "https://firebasestorage.googleapis.com/v0/b/thoroughly-cleaned-66710.firebasestorage.app/o/images%2FTHOROUGHLYCLEANED-BUBBLE-FINAL.png?alt=media&token=04f19c8c-84ef-463c-b1b3-7dba669c8550",
         width: 1200,
         height: 630,
         alt: "Thoroughly Cleaned logo",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     ],
     videos: [
       {
-        url: "https://thoroughlycleaned.vercel.app/videos/banner-vid.mp4",
+        url: "https://thoroughlycleaned.vercel.app/videos/cleaning-vid.mp4",
         width: 1280,
         height: 720,
         type: "video/mp4",
