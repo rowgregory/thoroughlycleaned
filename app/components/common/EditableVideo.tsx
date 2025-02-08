@@ -82,8 +82,8 @@ const EditableVideo = forwardRef<HTMLVideoElement, EditableVideoProps>(({ src, s
   }
 
   return (
-    <div className="w-full h-full" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      {/* <video
+    <div className="w-full h-full z-30 relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <video
         onLoadedData={() => dispatch(setIsMediaReady())}
         onClick={handleUpdateVideo}
         ref={videoRef}
@@ -98,18 +98,6 @@ const EditableVideo = forwardRef<HTMLVideoElement, EditableVideoProps>(({ src, s
         crossOrigin="anonymous"
         onPlay={handlePlay}
         onPause={handlePause}
-      >
-        <source src={src} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video> */}
-      <video
-        ref={videoRef}
-        className="block w-full h-full object-cover absolute top-0 left-0 z-40"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
       >
         <source src={src} type="video/mp4" />
         Your browser does not support the video tag.

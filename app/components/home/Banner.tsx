@@ -47,22 +47,22 @@ const Banner = ({ textBlockMap, openModalEditableVideoPublic }: any) => {
             <BubbleBtn bubbleColor="bg-[#00B8D9]" text="View All Services" />
           </Link> */}
         </div>
-        <div className="relative w-full h-auto max-h-[1059px] 990:max-h-[733px] max-w-[1059px] 990:max-w-[733px]">
-          {/* <div className="bg-coolGray aspect-square relative z-40 flex items-center justify-center"> */}
-          {textBlockMap?.HOME_PAGE_BANNER?.homePageBannerFile?.value && (
-            <EditableVideo
-              show={openModalEditableVideoPublic}
-              src={textBlockMap?.HOME_PAGE_BANNER?.homePageBannerFile?.value}
-              type="HOME_PAGE_BANNER"
-              textBlockKey="homePageBannerFile"
-            />
-          )}
-          {/* <BubbleLogoSVG
+        <div className="relative w-full h-full max-h-[1059px] 990:max-h-[733px] max-w-[1059px] 990:max-w-[733px]">
+          <div className="bg-coolGray w-full h-full aspect-square relative z-40 flex items-center justify-center">
+            {textBlockMap?.HOME_PAGE_BANNER?.homePageBannerFile?.value && (
+              <EditableVideo
+                show={openModalEditableVideoPublic}
+                src={textBlockMap?.HOME_PAGE_BANNER?.homePageBannerFile?.value}
+                type="HOME_PAGE_BANNER"
+                textBlockKey="homePageBannerFile"
+              />
+            )}
+            <BubbleLogoSVG
               className={`${
                 !isMediaReady ? 'block' : 'hidden'
               } hidden 760:block animate-scaleBackForth max-w-96 absolute z-10 transform -translate-x-1/2 -translate-y-1/2`}
-            /> */}
-          {/* </div> */}
+            />
+          </div>
           <div className="absolute z-50 bottom-2 right-2 w-40 400:w-80 h-2 bg-neonIce"></div>
           <div className="absolute z-50 bottom-2 right-2 w-2 h-40 400:h-80 bg-neonIce"></div>
           <div className="absolute z-50 top-2 left-2 w-2 h-40 400:h-80 bg-neonIce"></div>
