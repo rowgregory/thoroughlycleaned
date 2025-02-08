@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "Thoroughly Cleaned",
     images: [
       {
-        url: "https://firebasestorage.googleapis.com/v0/b/thoroughly-cleaned-66710.firebasestorage.app/o/images%2FTHOROUGHLYCLEANED-BUBBLE-FINAL.png?alt=media&token=04f19c8c-84ef-463c-b1b3-7dba669c8550",
+        url: "https://firebasestorage.googleapis.com/v0/b/thoroughly-cleaned-66710.firebasestorage.app/o/images%2FUntitled%20design%20(8).png?alt=media&token=1b068844-1c24-4124-a207-b1f9734426c9",
         width: 1200,
         height: 630,
         alt: "Thoroughly Cleaned logo",
