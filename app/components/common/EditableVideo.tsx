@@ -57,6 +57,7 @@ const EditableVideo = forwardRef<HTMLVideoElement, EditableVideoProps>(({ src, s
 
   const handlePlayPause = () => {
     if (videoRef.current) {
+      videoRef.current.load()
       if (isPlaying) {
         videoRef.current.pause()
       } else {
@@ -92,9 +93,10 @@ const EditableVideo = forwardRef<HTMLVideoElement, EditableVideoProps>(({ src, s
         controls={false}
         autoPlay={false}
         loop
-        muted
+        muted={true}
         playsInline
-        preload="metadata"
+        preload="auto"
+        crossOrigin="anonymous"
         onPlay={handlePlay}
         onPause={handlePause}
       >
