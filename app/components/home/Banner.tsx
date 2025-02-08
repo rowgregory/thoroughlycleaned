@@ -49,9 +49,6 @@ const Banner = ({ textBlockMap, openModalEditableVideoPublic }: any) => {
         </div>
         <div className="relative w-full h-auto max-h-[1059px] 990:max-h-[733px] max-w-[1059px] 990:max-w-[733px]">
           <div className="bg-coolGray aspect-square relative z-40 flex items-center justify-center">
-            {!isMediaReady && (
-              <BubbleLogoSVG className="animate-scaleBackForth max-w-96 absolute z-10 transform -translate-x-1/2 -translate-y-1/2" />
-            )}
             {textBlockMap?.HOME_PAGE_BANNER?.homePageBannerFile?.value && (
               <EditableVideo
                 show={openModalEditableVideoPublic}
@@ -59,6 +56,9 @@ const Banner = ({ textBlockMap, openModalEditableVideoPublic }: any) => {
                 type="HOME_PAGE_BANNER"
                 textBlockKey="homePageBannerFile"
               />
+            )}
+            {!isMediaReady && (
+              <BubbleLogoSVG className="animate-scaleBackForth max-w-96 absolute z-10 transform -translate-x-1/2 -translate-y-1/2" />
             )}
           </div>
           <div className="absolute z-50 bottom-2 right-2 w-40 400:w-80 h-2 bg-neonIce"></div>
