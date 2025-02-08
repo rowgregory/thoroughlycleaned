@@ -50,7 +50,7 @@ const Banner = ({ textBlockMap, openModalEditableVideoPublic }: any) => {
         <div className="relative w-full h-auto max-h-[1059px] 990:max-h-[733px] max-w-[1059px] 990:max-w-[733px]">
           <div className="bg-coolGray aspect-square relative z-40 flex items-center justify-center">
             {!isMediaReady && (
-              <BubbleLogoSVG className="animate-scaleBackForth max-w-96 absolute transform -translate-x-1/2 -translate-y-1/2" />
+              <BubbleLogoSVG className="animate-scaleBackForth max-w-96 absolute z-10 transform -translate-x-1/2 -translate-y-1/2" />
             )}
             {textBlockMap?.HOME_PAGE_BANNER?.homePageBannerFile?.value && (
               <EditableVideo
