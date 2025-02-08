@@ -58,7 +58,11 @@ const Banner = ({ textBlockMap, openModalEditableVideoPublic }: any) => {
               />
             )}
             {!isMediaReady && (
-              <BubbleLogoSVG className="animate-scaleBackForth max-w-96 absolute z-10 transform -translate-x-1/2 -translate-y-1/2" />
+              <BubbleLogoSVG
+                className={`${
+                  isMediaReady ? 'hidden' : 'block'
+                } animate-scaleBackForth max-w-96 absolute z-10 transform -translate-x-1/2 -translate-y-1/2`}
+              />
             )}
           </div>
           <div className="absolute z-50 bottom-2 right-2 w-40 400:w-80 h-2 bg-neonIce"></div>

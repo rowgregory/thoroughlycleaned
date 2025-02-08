@@ -81,12 +81,9 @@ const EditableVideo = forwardRef<HTMLVideoElement, EditableVideoProps>(({ src, s
   }
 
   return (
-    <div className="w-full h-full z-20 relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div className="w-full h-full z-30 absolute" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <video
-        onLoadedData={() => {
-          console.log('ON LOADED DATA READY TO DISPATCH')
-          dispatch(setIsMediaReady())
-        }}
+        onLoadedData={() => dispatch(setIsMediaReady())}
         onClick={handleUpdateVideo}
         ref={videoRef}
         src={src}
