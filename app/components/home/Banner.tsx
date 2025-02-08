@@ -14,7 +14,7 @@ const Banner = ({ textBlockMap, openModalEditableVideoPublic }: any) => {
   const { isMediaReady } = useAppSelector((state: RootState) => state.app)
 
   return (
-    <section className="flex flex-col 990:flex-row bg-iceMist xs:bg-bannerMobile sm:bg-banner relative overflow-hidden px-4 lg:px-12 xl:px-4 py-12 990:py-0 h-auto 990:h-[800px]">
+    <section className="flex flex-col 990:flex-row items-center bg-iceMist xs:bg-bannerMobile sm:bg-banner relative overflow-hidden px-4 lg:px-12 xl:px-4 py-12 990:py-0 h-auto 990:h-[800px]">
       <div className="relative max-w-[520px] 760:max-w-[700px] 990:max-w-[960px] 1200:max-w-[1280px] mx-auto w-full flex flex-col 990:flex-row items-center gap-y-10 990:gap-x-10">
         <div className="flex flex-1 flex-col items-center justify-center">
           {/* <EditableImage
@@ -48,7 +48,7 @@ const Banner = ({ textBlockMap, openModalEditableVideoPublic }: any) => {
           </Link> */}
         </div>
         <div className="relative w-full h-full max-h-[1059px] 990:max-h-[733px] max-w-[1059px] 990:max-w-[733px]">
-          <div className="bg-coolGray w-full h-full aspect-square relative z-40 flex items-center justify-center">
+          <div className="bg-coolGray aspect-square relative z-40 flex items-center justify-center">
             {textBlockMap?.HOME_PAGE_BANNER?.homePageBannerFile?.value && (
               <EditableVideo
                 show={openModalEditableVideoPublic}
@@ -57,11 +57,13 @@ const Banner = ({ textBlockMap, openModalEditableVideoPublic }: any) => {
                 textBlockKey="homePageBannerFile"
               />
             )}
-            <BubbleLogoSVG
-              className={`${
-                !isMediaReady ? 'block' : 'hidden'
-              } hidden 760:block animate-scaleBackForth max-w-96 absolute z-10 transform -translate-x-1/2 -translate-y-1/2`}
-            />
+            {!isMediaReady && (
+              <BubbleLogoSVG
+                className={`${
+                  !isMediaReady ? 'block' : 'hidden'
+                } hidden 760:block animate-scaleBackForth max-w-96 absolute z-10 transform -translate-x-1/2 -translate-y-1/2`}
+              />
+            )}
           </div>
           <div className="absolute z-50 bottom-2 right-2 w-40 400:w-80 h-2 bg-neonIce"></div>
           <div className="absolute z-50 bottom-2 right-2 w-2 h-40 400:h-80 bg-neonIce"></div>

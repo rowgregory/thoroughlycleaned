@@ -57,7 +57,6 @@ const EditableVideo = forwardRef<HTMLVideoElement, EditableVideoProps>(({ src, s
 
   const handlePlayPause = () => {
     if (videoRef.current) {
-      videoRef.current.load()
       if (isPlaying) {
         videoRef.current.pause()
       } else {
@@ -65,6 +64,7 @@ const EditableVideo = forwardRef<HTMLVideoElement, EditableVideoProps>(({ src, s
       }
     }
   }
+
   const [isHovered, setIsHovered] = useState(false)
   const handlePlay = () => {
     setIsPlaying(true) // Set to true when the video starts playing
@@ -81,8 +81,25 @@ const EditableVideo = forwardRef<HTMLVideoElement, EditableVideoProps>(({ src, s
     setIsHovered(false) // Hide pause button when mouse leaves
   }
 
+  // **Mobile Touch Handlers**
+  const handleTouchStart = () => {
+    setIsHovered(true) // Show controls when tapped
+  }
+
+  const handleTouchEnd = () => {
+    setTimeout(() => {
+      setIsHovered(false) // Hide after delay
+    }, 2000) // Adjust delay if needed
+  }
+
   return (
-    <div className="w-full h-full z-30 relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div
+      className="w-full h-full z-40 relative"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <video
         onLoadedData={() => dispatch(setIsMediaReady())}
         onClick={handleUpdateVideo}
@@ -90,12 +107,11 @@ const EditableVideo = forwardRef<HTMLVideoElement, EditableVideoProps>(({ src, s
         style={{ width: size, height: size }}
         className="object-cover w-full h-full"
         controls={false}
-        autoPlay={false}
+        autoPlay={size > 480 ? false : true}
         loop
         muted={true}
         playsInline
         preload="auto"
-        crossOrigin="anonymous"
         onPlay={handlePlay}
         onPause={handlePause}
       >
